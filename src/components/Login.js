@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-
 import { Dropbox } from 'dropbox';
+
+import Button from './Button'
 
 export default function() {
   function connect() {
@@ -14,6 +15,16 @@ export default function() {
     // callback -> sida som plockar ut token och redirectar till main
   }
 
-  return <button onClick={connect}>Sign in</button>;
+  const handleLogout = () => {
+    console.log('Button clicked');
+    
+  }
+
+  return (
+    <>
+      <button onClick={connect}>Sign in</button>
+      <Button handleLogout={handleLogout} /> {/*Här ska logout functionen in*/ }
+    </>
+  ) 
 }
 
