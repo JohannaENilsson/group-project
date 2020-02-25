@@ -1,5 +1,8 @@
 import React from 'react';
+
 import Login from './components/Login';
+import Home from './components/Home';
+import Folder from './components/Folder'
 
 import './App.css';
 
@@ -8,6 +11,8 @@ function App() {
     <div className="App">
 
       <Login />
+      <Home />
+      <Folder />
       
     </div>
   );
