@@ -7,7 +7,6 @@ export default function Home() {
     <div>
       <Header />
       <h2 className="homeTitle">Home</h2>
-
       <div className="outerContainer">
         <div className="sidebarContainer">
           <Sidebar />
