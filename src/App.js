@@ -2,7 +2,7 @@ import React from 'react';
 
 import Login from './components/Login';
 import Home from './components/Home';
-import Folder from './components/Folder'
+import Folders from './components/Folders';
 
 import './App.css';
 
@@ -12,7 +12,7 @@ function App() {
 
       <Login />
       <Home />
-      <Folder />
+      <Folders />
       
     </div>
   );
