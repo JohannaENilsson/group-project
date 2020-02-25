@@ -1,9 +1,18 @@
 import React from 'react';
+import Sidebar from './Sidebar';
 
 export default function Home() {
     return (
         <div>
-            <h2>Home</h2>
+            <h2 className="homeTitle">Home</h2>
+            <div className="outerContainer">
+                <div className="sidebarContainer">
+                    <Sidebar />
+                </div>
+                <div className="innerContainer">
+
+                </div>
+            </div>
         </div>
     );
 }
