@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import Login from "./components/Login.js";
 import Home from "./components/Home.js";
 import Folder from "./components/Folder.js";
+import Auth from  './components/Auth';
 import "./App.css";
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
         <Route exact path="/home" component={Home} />
         <Route path="/login" component={Login} />
         <Route path="/home/:id" component={Folder} />
+        <Route path="/login/auth" component={Auth} />
       </Router>
       <Login />
     </div>

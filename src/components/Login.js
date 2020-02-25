@@ -2,21 +2,21 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Dropbox } from 'dropbox';
 import { token$, updateToken } from './Store';
-import { Redirect } from 'react-router-dom';
+import { Redirect } from "react-router-dom";
 import Button from './Button'
 
 export default function Login() {
   const [token, setToken] = useState(token$.value);
-  const URL = useRef(window.location.href);
+  let URL = useRef(window.location.href);
   
 
   useEffect(() => {
     const subscription = token$.subscribe(setToken);
-    // console.log(' href => ' + window.location.href);
-    console.log(URL);
-    if(URL.includes('access_token')){
+    console.log(' href => ' + window.location.href);
+    
+    if(URL !== null ){
       updateToken(URL);
-      return <Redirect to={'/Auth'} />;
+      return <Redirect to={'/auth'} />;
 
     }
     return () => subscription.unsubscribe();

@@ -7,3 +7,21 @@ export default function Auth(){
 
     );
 }
+
+
+
+
+// function tokenFromUrl(authUrl){
+//     console.log(authUrl);
+  
+//     if(typeof authUrl !== 'string'){
+//       return null;
+//     }
+//     authUrl = authUrl.trim().replace(/^(\?|#|&)/, '');
+  
+//     console.log(authUrl)
+  
+//   // radera allt fram till = 
+//   // radera allt efter &
+//   }
+  
