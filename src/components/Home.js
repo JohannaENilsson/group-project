@@ -1,6 +1,8 @@
 import React from "react";
+
 import Header from "./Header.js";
 import Sidebar from "./Sidebar";
+import InnerContainer from "./InnerContainer"
 
 export default function Home() {
   return (
@@ -11,7 +13,7 @@ export default function Home() {
         <div className="sidebarContainer">
           <Sidebar />
         </div>
-        <div className="innerContainer"></div>
+            <InnerContainer />
       </div>
     </div>
   );
