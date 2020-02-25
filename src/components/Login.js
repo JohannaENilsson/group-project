@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useRef } from 'react';
 import { Dropbox } from 'dropbox';
 import { token$, updateToken } from './Store';
@@ -26,6 +27,7 @@ export default function Login() {
     var client = new Dropbox({ clientId: '2hos0tue9wqtxdo' });
     let auth = client.getAuthenticationUrl(
       'http://localhost:3000/login/auth'
+
     );
     // console.log(authUrl);
     // tokenFromUrl(authUrl);
@@ -36,17 +38,25 @@ export default function Login() {
   }
   
 
-  /* const handleLogout = () => {
+  const handleLogout = () => {
     console.log('Button clicked');
     
-  } */
+  }
 
   return (
     <>
+
       <button onClick={connectToDropbox}>Sign in</button>
        {/* <Button handleLogout={handleLogout} /> {/*Här ska logout functionen in*/ }
  </>
   ) 
 }
 
+
+
+    //   <Button
+    //     handleLogout={handleLogout}
+    //   /> {/*Här ska logout functionen in*/}
+    // </>
+  
 
