@@ -15,15 +15,15 @@ export default function() {
     // callback -> sida som plockar ut token och redirectar till main
   }
 
-  const handleLogout = () => {
+  /* const handleLogout = () => {
     console.log('Button clicked');
     
-  }
+  } */
 
   return (
     <>
       <button onClick={connect}>Sign in</button>
-      <Button handleLogout={handleLogout} /> {/*Här ska logout functionen in*/ }
-    </>
+{/*       <Button handleLogout={handleLogout} /> {/*Här ska logout functionen in*/ }
+ */}    </>
   ) 
 }
