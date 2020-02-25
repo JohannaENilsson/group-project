@@ -1,6 +1,11 @@
-import React from "react";
 
-import Login from "./components/Login.js";
+
+import React from 'react';
+
+import Login from './components/Login';
+import Home from './components/Home';
+import Folders from './components/Folders';
+
 
 
 
@@ -12,6 +17,9 @@ function App() {
 
 
       <Login />
+      <Home />
+      <Folders />
+      
     </div>
   );
 }
