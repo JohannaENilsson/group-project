@@ -1,27 +1,21 @@
+import React from "react";
+import { Route, BrowserRouter as Router } from "react-router-dom";
 
-
-import React from 'react';
-
-import Login from './components/Login';
-import Home from './components/Home';
-import Folders from './components/Folders';
-
-
-
-
+import Login from "./components/Login.js";
+import Home from "./components/Home.js";
+import Folder from "./components/Folder.js";
 import "./App.css";
 
 function App() {
   return (
     <div className="App">
-
-
+      <Router>
+        <Route exact path="/home" component={Home} />
+        <Route path="/login" component={Login} />
+        <Route path="/home/:id" component={Folder} />
+      </Router>
       <Login />
-      <Home />
-      <Folders />
-      
     </div>
   );
 }
-
 export default App;
