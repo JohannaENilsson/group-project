@@ -4,11 +4,19 @@
 
 }
 
-
 .button {
   border-radius: 8px;
   width: 100px;
   height: 30px;
+}
+
+header{
+  border: 2px solid pink;
+  height: 100px;
+}
+
+.headerTitle{
+  margin: 0;
 }
 
 .homeTitle{
