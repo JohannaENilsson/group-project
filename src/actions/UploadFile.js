@@ -1,22 +1,22 @@
 import React, { useState, useEffect } from 'react';
-import { token$ } from "./Store";
 import { Dropbox } from 'dropbox';
 
 
-export default function UploadFile() {
-  const [token, setToken] = useState(token$.value);
+export default function UploadFile({ token }) {
   const [file, setFile] = useState(null);
 
-  useEffect(() => {
+  /*useEffect(() => {
     const subscription = token$.subscribe(setToken);
     return () => subscription.unsubscribe();
-  }, []);
+  }, []);*/
 
   const handleUploadFile = (e) => {
     if (e.target.files.length > 0) {
       const file = e.target.files[0];
       console.log(file);
       const dbx = new Dropbox({ accessToken: token });
+
+      // TODO: Update path
       dbx.filesUpload({ path: "/" + file.name, contents: file });
     }
   }

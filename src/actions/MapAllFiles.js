@@ -8,7 +8,7 @@ export default function MapAllFiles({ fileList }) {
 
     return (
       <tr key={file.id}>
-        <td>{file.name}</td>
+        <td>{file[".tag"]} {file.name}</td>
         <td>{file.size} bytes</td>
         <td>{file.client_modified}</td>
       </tr>
