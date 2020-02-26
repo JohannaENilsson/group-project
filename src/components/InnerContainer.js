@@ -1,19 +1,8 @@
-<<<<<<< HEAD
-import React from 'react';
-import AddFile from "./AddFile";
-
-
-export default function InnerContainer() {
-    return (
-            <div className="innerContainer">
-                <AddFile />
-            </div>
-    );   
-}
-=======
 import React from "react";
 import { Dropbox } from "dropbox";
 import { token$ } from "./Store.js";
+import AddFile from "../actions/AddFile";
+
 
 export default function InnerContainer() {
   // hämtas
@@ -33,6 +22,8 @@ export default function InnerContainer() {
   return (
     <div className="innerContainer">
       <h2>Inner container title</h2>
+       <AddFile />
+
 
       <table>
         <thead>
@@ -47,4 +38,3 @@ export default function InnerContainer() {
     </div>
   );
 }
->>>>>>> 99fe23e39b442d2f9863fdabcd42343351578430

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Dropbox } from "dropbox";
-import { updateToken, updateAccountId, updateUid } from "./Store";
+import { updateToken, updateAccountId, updateUid } from "../components/Store";
 import { Redirect } from "react-router-dom";
 import queryString from "query-string";
 
@@ -24,5 +24,5 @@ export default function Login() {
 
   useEffect(getTokenFromUrl, []);
 
-  return <>{parsedToken && <Redirect to={"/home"} />}</>;
+  return <>{parsedToken && <Redirect to={"/"} />}</>;
 }

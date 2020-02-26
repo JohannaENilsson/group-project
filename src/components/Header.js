@@ -1,6 +1,6 @@
 import React from 'react';
 import Logout from './Logout';
-import GetUserAccount from './GetUserAccount.js';
+import GetUserAccount from '../actions/GetUserAccount.js';
 
 export default function Header() {
   return (

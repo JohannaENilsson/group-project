@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Dropbox } from "dropbox";
-import { token$ } from "./Store.js";
+import { token$ } from "../components/Store.js";
 
 var dbx = new Dropbox({ accessToken: token$.value, fetch });
 
