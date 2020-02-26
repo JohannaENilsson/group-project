@@ -2,39 +2,23 @@ import React from "react";
 import { Dropbox } from "dropbox";
 import { token$ } from "./Store.js";
 import AddFile from "../actions/AddFile";
+import GetAllFiles from "../actions/GetAllFiles";
+
 
 
 export default function InnerContainer() {
   // hämtas
   // renderas ut & mappas
 
-  var dbx = new Dropbox({ accessToken: token$.value, fetch });
-
-  dbx
-    .filesListFolder({ path: "" })
-    .then(function(response) {
-      console.log(response);
-    })
-    .catch(function(error) {
-      console.error(error);
-    });
+ 
 
   return (
     <div className="innerContainer">
       <h2>Inner container title</h2>
        <AddFile />
+       <GetAllFiles />
 
 
-      <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Size</th>
-            <th>Last modified</th>
-          </tr>
-        </thead>
-        <tbody>{/*.map här*/}</tbody>
-      </table>
     </div>
   );
 }

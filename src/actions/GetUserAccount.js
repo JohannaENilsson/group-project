@@ -12,7 +12,6 @@ export default function GetUserAccount() {
       .usersGetCurrentAccount()
       .then(function(response) {
         setProfile(response);
-        console.log(response);
       })
       .catch(function(error) {
         console.error(error);
