@@ -23,6 +23,10 @@ header{
   margin: 0px;
 }
 
+.liSidebar {
+  cursor: pointer;
+}
+
 .outerContainer {
   border: 2px solid yellow;
   width: 100vw;
