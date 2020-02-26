@@ -1,16 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import UploadFile from './UploadFile'
 
 export default function Sidebar() {
-    const lis = ['Add new folder', 'Add new file', 'Home']
     return (
         <div>
             <div>
                 <h2>Menu</h2>
                 <ul className="ulMenuContainer">
-                    {lis.map(li => {
-                        return <li key={li} className="liSidebar">{li}</li>
-                    })}
+                    <li>
+                        <UploadFile />
+                    </li>
+                    <li>Add new file</li>
+                    <li>Home</li>
                 </ul>
                 <ul>
                     <li> <Link to={'/home'}>Home</Link> </li>
