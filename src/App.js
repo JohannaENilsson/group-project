@@ -17,7 +17,6 @@ function App() {
         <Route exact path="/home" component={Home} />
         <Route path="/login" component={Login} />
         <Route path="/folder/:id" component={Folder} />
-        <Login />
       </div>
     </Router>
   );

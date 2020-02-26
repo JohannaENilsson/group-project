@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "./Button";
+import Logout from "./Logout";
 
 export default function Header() {
 
@@ -8,7 +8,7 @@ export default function Header() {
   return (
     <header>
       <h1 className="headerTitle">Header</h1>
-      <Button />
+      <Logout />
     </header>
   );
 }
