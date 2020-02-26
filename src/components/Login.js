@@ -3,7 +3,6 @@ import { Dropbox } from 'dropbox';
 import { updateToken } from './Store';
 import { Redirect } from 'react-router-dom';
 import queryString from 'query-string';
-import Button from './Button';
 
 export default function Login() {
   const [parsedToken, setParsedToken] = useState(null);
@@ -19,18 +18,14 @@ export default function Login() {
 
   useEffect(getTokenFromUrl, []);
 
-  const handleLogout = () => {
-    console.log('Button clicked');
-  };
-
-  if(!parsedToken) {
+  if(parsedToken) {
+    setParsedToken(null);
     return <Redirect to={'/home'} />;
   }
 
   return (
     <>
       <button onClick={connectToDropbox}>Sign in</button>
-      {/* <Button handleLogout={handleLogout} /> {/*Här ska logout functionen in*/}
     </>
   );
 }

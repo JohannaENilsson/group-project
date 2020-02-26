@@ -9,14 +9,14 @@ import "./App.css";
 
 function App() {
   return (
-    <div className="App">
-      <Router>
+    <Router>
+      <div className="App">
         <Route exact path="/home" component={Home} />
         <Route path="/login" component={Login} />
         <Route path="/folder/:id" component={Folder} />
-      </Router>
-      <Login />
-    </div>
+        <Login />
+      </div>
+    </Router>
   );
 }
 export default App;
