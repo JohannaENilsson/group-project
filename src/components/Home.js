@@ -7,9 +7,9 @@ import Sidebar from "./Sidebar";
 import InnerContainer from "./InnerContainer";
 
 export default function Home() {
- if (token$ === null) {
+/*  if (token$ === null) {
      return <Redirect to={"/login"} />;
-  }
+  } */
 
   return (
     <div>

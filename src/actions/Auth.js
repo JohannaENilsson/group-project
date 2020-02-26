@@ -24,5 +24,5 @@ export default function Login() {
 
   useEffect(getTokenFromUrl, []);
 
-  return <>{parsedToken && <Redirect to={"/"} />}</>;
+  return <>{parsedToken && <Redirect to={"/home"} />}</>;
 }
