@@ -16,6 +16,7 @@ function App() {
         <Route exact path="/">
           <Redirect to="/login" />
         </Route>
+        
         <Route path="/home" component={Home} />
         <Route path="/auth" component={Auth} />
         <Route path="/login" component={Login} />

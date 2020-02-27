@@ -12,7 +12,7 @@ export function updateToken(token) {
   token$.next(token);
 }
 
-export const account_id$ = new BehaviorSubject(); 
+/* export const account_id$ = new BehaviorSubject(); 
 
 export function updateAccountId(account_id) {
   console.log(account_id);
@@ -26,3 +26,4 @@ export function updateUid(uid) {
   console.log(uid);
   uid$.next(uid);
 }
+ */

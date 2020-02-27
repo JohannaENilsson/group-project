@@ -5,7 +5,7 @@ import GetUserAccount from '../actions/GetUserAccount.js';
 export default function Header() {
   return (
     <header>
-      <h1 className='headerTitle'>Header</h1>
+      <h1 className='headerTitle'>Drop<span>box</span></h1>
       <Logout />
       <GetUserAccount />
     </header>

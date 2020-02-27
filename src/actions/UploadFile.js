@@ -5,11 +5,6 @@ import { Dropbox } from 'dropbox';
 export default function UploadFile({ token }) {
   const [file, setFile] = useState(null);
 
-  /*useEffect(() => {
-    const subscription = token$.subscribe(setToken);
-    return () => subscription.unsubscribe();
-  }, []);*/
-
   const handleUploadFile = (e) => {
     if (e.target.files.length > 0) {
       const file = e.target.files[0];
@@ -23,7 +18,7 @@ export default function UploadFile({ token }) {
 
   return (
     <div>
-        <label>
+        <label className="uploadFileInputLabel">
           Upload file
               <input className="uploadFileInput"
             type="file"

@@ -18,10 +18,11 @@ export default function GetUserAccount() {
       });
   }, []);
 
-    if (profile.name === undefined) return null;
-
+  if (profile.name === undefined) return null;
 
   return (
-    <p>Inloggad som: {profile.name.given_name} </p>
+    <div className="userNameDiv">
+      <p className="userName"><span>Logged in as:</span> {profile.name.given_name.toUpperCase()} </p>
+    </div>
   );
 }

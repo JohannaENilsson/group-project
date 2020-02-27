@@ -9,7 +9,7 @@ export default function InnerContainer() {
 
   return (
     <div className="innerContainer">
-      <h2>Inner container title</h2>
+      <h2 className="innerContainerTitle">Inner container title <i>(ex Home, eller Home/Undermapp)</i></h2>
        <GetAllFiles />
     </div>
   );

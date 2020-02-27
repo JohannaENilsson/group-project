@@ -7,15 +7,13 @@ import Sidebar from "./Sidebar";
 import InnerContainer from "./InnerContainer";
 
 export default function Home() {
-/*  if (token$ === null) {
-     return <Redirect to={"/login"} />;
-  } */
+
 
 
   return (
     <div>
       <Header />
-      <h2 className="homeTitle">Home</h2>
+      <h2 className="pageTitle">Home</h2>
       <div className="outerContainer">
         <div className="sidebarContainer">
           <Sidebar token={token$.value} />

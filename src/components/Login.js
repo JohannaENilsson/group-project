@@ -9,8 +9,8 @@ export default function Login() {
   }
 
   return (
-    <>
-      <button onClick={connectToDropbox}>Sign in</button>
-    </>
+    <div className="loginPageDiv">
+      <button className="loginButton" onClick={connectToDropbox}>Sign in</button>
+    </div>
   );
 }
