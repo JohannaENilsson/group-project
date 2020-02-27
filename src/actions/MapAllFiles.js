@@ -5,7 +5,6 @@ export default function MapAllFiles({ fileList }) {
   console.log("fileList->", fileList);
 
   const mappedList = fileList.map((file, idx) => {
-
     return (
       <tr key={file.id}>
         <td>{file.name}</td>

@@ -12,6 +12,7 @@ export default function GetAllFiles() {
     dbx
       .filesListFolder({ path: "" })
       .then(function(response) {
+          console.log(response);
         updateFileList(response.entries);
       })
       .catch(function(error) {
