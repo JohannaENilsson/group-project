@@ -11,13 +11,14 @@ export default function Home() {
      return <Redirect to={"/login"} />;
   } */
 
+
   return (
     <div>
       <Header />
       <h2 className="homeTitle">Home</h2>
       <div className="outerContainer">
         <div className="sidebarContainer">
-          <Sidebar />
+          <Sidebar token={token$.value} />
         </div>
         <InnerContainer />
       </div>
