@@ -94,15 +94,12 @@ header{
   margin: 0px;
 }
 
-/* .innerContainer, .sidebarContainer {
-  border-radius: 5px;
-} */
-
 .innerContainer {
   width: 83%;
-  max-height: 100vh;
+  height: 100vh;
   margin: 0px 3px;
   border-left: 1px solid darksalmon;
+  overflow: auto;
 }
 
 .sidebarContainer {
@@ -157,4 +154,14 @@ td {
 
 tr:nth-child(even) {
     background-color: #f2f2f2a1;
+  }
+
+  .tableNameLink{
+    text-decoration: none;
+    color:black;
+  }
+
+  .tableNameLink:hover{
+    text-decoration: underline;
+    color: darksalmon;
   }

@@ -5,19 +5,18 @@ import { token$ } from "../components/Store.js";
 
 import GetAllFiles from "../actions/GetAllFiles";
 
-/* function downloadFileRequest(file) {
+function downloadFileRequest(file) {
   const dbx = new Dropbox({ accessToken: token$.value, fetch });
   dbx
-    .filesDownload({ path: file.path_lower })
+    .filesGetTemporaryLink({ path: file.path_lower })
     .then(function(response) {
-      let url = URL.createObjectURL(response.fileBlob);
-
+      window.location.href = response.link;
       console.log("download", response);
     })
     .catch(function(error) {
       console.error(error);
     });
-} */
+}
 
 export default function MapAllFiles({ fileList }) {
   console.log("fileList->", fileList);
@@ -28,17 +27,34 @@ export default function MapAllFiles({ fileList }) {
         <td>{file[".tag"]}</td>
         <td>
           {file[".tag"] === "folder" ? (
-            <Link to={`/folder/${file.name}`}>{file.name}</Link>
+            <Link to={`/folder/${file.name}`} className="tableNameLink">
+              {file.name}
+            </Link>
           ) : (
-            <span> {file.name}</span> //en download-funktion här
+            <span
+              className="tableNameLink"
+              style={{ cursor: "pointer" }}
+              onClick={() => downloadFileRequest(file)}
+            >
+              {file.name}
+            </span>
           )}
         </td>
 
-        <td>{file.size} bytes</td>
+        <td>{sizeFormat(file.size)}</td>
         <td>{file.client_modified}</td>
       </tr>
     );
   });
+
+  function sizeFormat(byte) {
+    if (!byte) return "--";
+    else if (byte > 100 && byte < 99999) {
+      return (byte / 1000).toFixed(1) + " kb";
+    } else if (byte > 100000) {
+      return (byte / 1000000).toFixed(1) + " mb";
+    } else return byte + "bytes";
+  }
 
   return (
     <table>
