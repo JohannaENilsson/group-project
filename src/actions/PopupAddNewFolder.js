@@ -5,7 +5,7 @@ import { Dropbox } from 'dropbox';
 
 export default function PopupAddNewFolder({ token }) {
     const [inputValue, setInputValue] = useState("")
-    const [folder, setFolder] = useState()
+    const [folder, setFolder] = useState(null)
 
     const handleChange = (e) => {
         setInputValue(e.target.value);
@@ -17,7 +17,6 @@ export default function PopupAddNewFolder({ token }) {
         setFolder(folder);
         handleAddNewFolder();
         console.log(inputValue);
-        setInputValue("")
     }
     
     const handleAddNewFolder = () => {
