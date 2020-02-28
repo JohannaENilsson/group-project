@@ -8,16 +8,13 @@ import PopupAddNewFolder from '../actions/PopupAddNewFolder'
 
 
 export default function InnerContainer() {
-  // hämtas
-  // renderas ut & mappas
-
- 
-
   return (
     <div className="innerContainer">
-      <h2>Inner container title</h2>
-      <GetAllFiles />
 
+      <h2 className="innerContainerTitle">
+        Inner container title <i>(ex Home, eller Home/Undermapp)</i>
+      </h2>
+      <GetAllFiles />
     </div>
   );
 }

@@ -18,7 +18,7 @@ export default function UploadFile({ token }) {
 
   return (
     <div>
-        <label>
+        <label className="uploadFileInputLabel">
           Upload file
               <input className="uploadFileInput"
             type="file"

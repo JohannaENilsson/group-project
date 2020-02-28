@@ -1,8 +1,29 @@
 .App {
-  background-color: grey;
   height: 100vh;
   position: relative;
+  width: 100%;
+  box-sizing: border-box;
+}
 
+.loginPageDiv{
+  width: 100%;
+  height: 100vh;
+  background-image: url("./pics/clouds1.jpeg");    background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+.loginButton{
+  width: 300px;
+  height: 110px;
+  border-radius: 5px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0.5;
+  font-size: 40px;
+  cursor: pointer;
+  box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.75);
 }
 
 .buttonPopupButton {
@@ -11,47 +32,113 @@
   height: 30px;
 }
 
-header{
-  border: 2px solid pink;
-  height: 100px;
+.loginButton:hover, .logoutButton:hover{
+  opacity: 0.8;
 }
 
+header{
+  height: 160px;
+  position: relative;
+  background-image: url("./pics/clouds1.jpeg");    background-repeat: no-repeat;
+  background-position-y: 23%;
+  background-size: cover;
+  box-shadow: 8px -98px 50px -42px rgba(255,255,255,1) inset;
+
+}
 .headerTitle{
+  padding-top: 10px;
+  font-size: 40px;
+  display: inline-block;
+  color: darksalmon;
+  font-weight: 200;
+  writing-mode: vertical-rl;
+}
+
+.headerTitle span{
+  font-weight: 600;
+  color:darksalmon;
+}
+
+.userNameDiv{
+  padding:0;
+  position: absolute;
+  top: 40%;
+  right: 3px;
   margin: 0;
 }
+.userName{
+  padding:0;
+  margin:0;
+  color: darksalmon;
+  font-size: 30px;
+  font-weight: 600;
+}
 
-.homeTitle{
+.userName span{
+  color: darksalmon;
+  font-weight: 200;
+  font-size: 25px;
+}
+
+.logoutButton {
+  font-size: 30px;
+  position: absolute;
+  bottom: 3px;
+  right: 3px;
+  opacity: 0.7;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+}
+
+.outerContainer {
+  width: 100vw;
+  height: 500px;
+  display: flex;
+  margin: 3px;
+}
+.pageTitle{
   margin: 0px;
+}
+
+.innerContainer {
+  width: 83%;
+  height: 100vh;
+  margin: 0px 3px;
+  border-left: 1px solid darksalmon;
+  overflow: auto;
+}
+
+.sidebarContainer {
+  width: 10%;
+  height: 100%;
+}
+.sidebarTitle, .innerContainerTitle{
+  color: darksalmon;
+  font-size: 25px;
+  margin: 3px 10px;
 }
 
 .liSidebar {
   cursor: pointer;
 }
 
-.outerContainer {
-  border: 2px solid yellow;
-  width: 100vw;
-  height: 500px;
-  display: flex;
-
-}
-
-.sidebarContainer {
-  border: 2px solid black;
-  width: 20%;
-  height: 100%;
-}
-
 .ulMenuContainer {
   list-style: none;
+  padding-left: 5px;
 }
 
+.uploadFileInput {
+  display: none;
+}
 
-.innerContainer {
-  border: 2px solid red;
-  width: 80%;
-  height: 100%;
+.uploadFileInputLabel{
+  cursor: pointer;
+  text-decoration: underline;
+}
 
+.uploadFileInputLabel:hover{
+  color: darksalmon;
 }
 
 .uploadFileInput {
@@ -66,3 +153,34 @@ header{
   background-color: white;
   border-radius: 8px;
 }
+
+table {
+  border-collapse: collapse;
+  width: 90%;
+  margin: 5px 0px 5px 20px ;
+}
+
+th {
+  text-align: left;
+  padding: 10px 10px 10px 3px;
+}
+
+td {
+  text-align: left;
+  padding: 5px;
+  font-size: 18px;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2a1;
+  }
+
+  .tableNameLink{
+    text-decoration: none;
+    color:black;
+  }
+
+  .tableNameLink:hover{
+    text-decoration: underline;
+    color: darksalmon;
+  }

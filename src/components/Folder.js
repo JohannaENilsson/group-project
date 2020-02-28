@@ -7,7 +7,7 @@ export default function Folder() {
     return (
     <div>
       <Header />
-      <h2 className="homeTitle">Folder</h2>
+      <h2 className="pageTitle">Folder</h2>
       <div className="outerContainer">
         <div className="sidebarContainer">
           <Sidebar />
