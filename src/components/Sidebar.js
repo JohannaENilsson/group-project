@@ -20,7 +20,7 @@ export default function Sidebar({ token }) {
             <Link to={"/home"}>Home</Link>
           </li>
           <li>
-            <Link to={"/folder/:id"}>Folder</Link>
+            <Link to={"/folder"}>Folder</Link>
           </li>
         </ul>
       </div>

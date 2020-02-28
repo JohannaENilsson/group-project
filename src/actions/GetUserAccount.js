@@ -22,7 +22,7 @@ export default function GetUserAccount() {
 
   return (
     <div className="userNameDiv">
-      <p className="userName"><span>Logged in as:</span> {profile.name.given_name.toUpperCase()} </p>
+      <p className="userName"><span>Logged in as:</span> {profile.name.given_name} </p>
     </div>
   );
 }

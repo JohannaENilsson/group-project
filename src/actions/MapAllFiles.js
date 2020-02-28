@@ -1,5 +1,23 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import { Dropbox } from "dropbox";
+import { token$ } from "../components/Store.js";
+
 import GetAllFiles from "../actions/GetAllFiles";
+
+/* function downloadFileRequest(file) {
+  const dbx = new Dropbox({ accessToken: token$.value, fetch });
+  dbx
+    .filesDownload({ path: file.path_lower })
+    .then(function(response) {
+      let url = URL.createObjectURL(response.fileBlob);
+
+      console.log("download", response);
+    })
+    .catch(function(error) {
+      console.error(error);
+    });
+} */
 
 export default function MapAllFiles({ fileList }) {
   console.log("fileList->", fileList);
@@ -8,7 +26,14 @@ export default function MapAllFiles({ fileList }) {
     return (
       <tr key={file.id}>
         <td>{file[".tag"]}</td>
-        <td>{file.name}</td> {/* if-sats om det är en folder=länka vidare. annars ladda ner. Kod: {file[".tag"] === "folder" ? <Link to=?????> : <Download???>*/}
+        <td>
+          {file[".tag"] === "folder" ? (
+            <Link to={`/folder/${file.name}`}>{file.name}</Link>
+          ) : (
+            <span> {file.name}</span> //en download-funktion här
+          )}
+        </td>
+
         <td>{file.size} bytes</td>
         <td>{file.client_modified}</td>
       </tr>

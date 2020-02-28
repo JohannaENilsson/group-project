@@ -3,10 +3,10 @@ import { updateToken, token$ } from "./Store";
 import { Redirect } from "react-router-dom";
 
 export default function Logout() {
-  const [token, setToken] = useState(token$);
+  const [token, setToken] = useState(token$.value);
 
   useEffect(() => {
-    const subscription = token$.subscribe(token$);
+    const subscription = token$.subscribe(setToken);
     return () => subscription.unsubscribe();
   }, []);
 
