@@ -1,5 +1,6 @@
 .App {
   height: 100vh;
+  position: relative;
   width: 100%;
   box-sizing: border-box;
 }
@@ -23,6 +24,12 @@
   font-size: 40px;
   cursor: pointer;
   box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.75);
+}
+
+.buttonPopupButton {
+  border-radius: 8px;
+  width: 100px;
+  height: 30px;
 }
 
 .loginButton:hover, .logoutButton:hover{
@@ -94,15 +101,12 @@ header{
   margin: 0px;
 }
 
-/* .innerContainer, .sidebarContainer {
-  border-radius: 5px;
-} */
-
 .innerContainer {
   width: 83%;
-  max-height: 100vh;
+  height: 100vh;
   margin: 0px 3px;
   border-left: 1px solid darksalmon;
+  overflow: auto;
 }
 
 .sidebarContainer {
@@ -137,6 +141,18 @@ header{
   color: darksalmon;
 }
 
+.uploadFileInput {
+  display: none;
+}
+
+.popupWindow {
+  position: absolute;
+  translate: transformY(-50%);
+  left: 50%;
+  top: 50%;
+  background-color: white;
+  border-radius: 8px;
+}
 
 table {
   border-collapse: collapse;
@@ -157,4 +173,14 @@ td {
 
 tr:nth-child(even) {
     background-color: #f2f2f2a1;
+  }
+
+  .tableNameLink{
+    text-decoration: none;
+    color:black;
+  }
+
+  .tableNameLink:hover{
+    text-decoration: underline;
+    color: darksalmon;
   }

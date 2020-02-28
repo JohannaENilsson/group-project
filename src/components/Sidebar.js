@@ -1,8 +1,18 @@
-import React from "react";
+
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import UploadFile from "../actions/UploadFile";
+import AddNewFolder from '../actions/AddNewFolder'
+
 
 export default function Sidebar({ token }) {
+    const [addFolderPopUp, setAddFolderPopUp] = useState( false );
+
+    const handleAddFolder = () => {
+        setAddFolderPopUp( true );
+        console.log('Click');        
+    }
+
   return (
     <div>
       <div>
@@ -11,7 +21,11 @@ export default function Sidebar({ token }) {
           <li>
             <UploadFile token={token} />
           </li>
-          <li>Add new file</li>
+          <li>
+              <AddNewFolder 
+                token={token}
+                onClick={handleAddFolder}/>
+        </li>
           <li>Home</li>
         </ul>
         <ul>
