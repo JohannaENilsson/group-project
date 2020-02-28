@@ -1,14 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Dropbox } from 'dropbox';
 
 
 export default function UploadFile({ token }) {
   const [file, setFile] = useState(null);
-
-  /*useEffect(() => {
-    const subscription = token$.subscribe(setToken);
-    return () => subscription.unsubscribe();
-  }, []);*/
 
   const handleUploadFile = (e) => {
     if (e.target.files.length > 0) {

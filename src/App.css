@@ -1,10 +1,11 @@
 .App {
   background-color: grey;
   height: 100vh;
+  position: relative;
 
 }
 
-.button {
+.buttonPopupButton {
   border-radius: 8px;
   width: 100px;
   height: 30px;
@@ -55,4 +56,13 @@ header{
 
 .uploadFileInput {
   display: none;
+}
+
+.popupWindow {
+  position: absolute;
+  translate: transformY(-50%);
+  left: 50%;
+  top: 50%;
+  background-color: white;
+  border-radius: 8px;
 }
