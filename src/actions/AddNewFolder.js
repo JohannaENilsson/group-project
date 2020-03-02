@@ -7,15 +7,19 @@ export default function AddNewFolder({ token }) {
     const [showPopup, setShowPopup] = useState(false);
 
     const handleAddNewFolderPopup = () => {
-        setShowPopup({ showPopup: true });
+        setShowPopup(true);
         setFolder(folder);
+    }
+
+    const handleCancelAddNewFolder = () => {
+        setShowPopup(false);        
     }
 
     return (
         <>
             <div style={{cursor: 'pointer'}} onClick={handleAddNewFolderPopup}>Add new folder</div>
             {
-                showPopup && <PopupAddNewFolder token={token} showPopup={showPopup} />
+                showPopup ? <PopupAddNewFolder token={token} handleCancelAddNewFolder={handleCancelAddNewFolder} /> : null
             }
         </>
     );

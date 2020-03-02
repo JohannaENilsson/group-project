@@ -26,11 +26,6 @@
   box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.75);
 }
 
-.buttonPopupButton {
-  border-radius: 8px;
-  width: 100px;
-  height: 30px;
-}
 
 .loginButton:hover, .logoutButton:hover{
   opacity: 0.8;
@@ -148,11 +143,45 @@ header{
 .popupWindow {
   position: absolute;
   translate: transformY(-50%);
-  left: 50%;
+  left: 35%;
   top: 50%;
+  width: 500px;
+  height: 400px;
   background-color: white;
+  border: 1px solid darksalmon;
   border-radius: 8px;
+  color: darksalmon;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
+
+.popupWindowContainer{
+  width: 300px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.popupAddFolderButton {
+  border-radius: 8px;
+  width: 100px;
+  height: 30px;
+  margin-left: 10px;
+}
+
+.popupWindowButton {
+  border-radius: 8px;
+  width: 80px;
+  height: 30px;
+}
+
+.popupWindowButtonContainer {
+  display: flex;
+}
+
 
 table {
   border-collapse: collapse;
