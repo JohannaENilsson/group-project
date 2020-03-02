@@ -4,6 +4,7 @@ import { Dropbox } from "dropbox";
 import { token$ } from "../components/Store.js";
 
 import GetAllFiles from "../actions/GetAllFiles";
+import DeleteFile from './DeleteFile';
 
 function downloadFileRequest(file) {
   const dbx = new Dropbox({ accessToken: token$.value, fetch });
@@ -43,6 +44,7 @@ export default function MapAllFiles({ fileList }) {
 
         <td>{sizeFormat(file.size)}</td>
         <td>{file.client_modified}</td>
+        <td><DeleteFile path={file.path_lower}/></td>
       </tr>
     );
   });
