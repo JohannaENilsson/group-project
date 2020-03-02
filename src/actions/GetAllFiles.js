@@ -8,7 +8,9 @@ var dbx = new Dropbox({ accessToken: token$.value, fetch });
 export default function GetAllFiles() {
   const [fileList, updateFileList] = useState(null);
 
-  useEffect(() => {
+  // här TROR vi att det ska in OM path är tom, så är man i home, annars har man klickat på en folder och då ska det innehållet visas
+
+  function getFiles() {
     dbx
       .filesListFolder({ path: "" })
       .then(function(response) {
@@ -18,6 +20,14 @@ export default function GetAllFiles() {
       .catch(function(error) {
         console.error(error);
       });
+  }
+
+  function onDelete(id) {
+    updateFileList(fileList.filter(x => x.id !== id));
+  }
+
+  useEffect(() => {
+    getFiles();
   }, []);
 
   return (
@@ -25,7 +35,7 @@ export default function GetAllFiles() {
       {fileList === null ? (
         <p>Loading files..</p>
       ) : (
-        <MapAllFiles fileList={fileList} />
+        <MapAllFiles onDelete={onDelete} fileList={fileList} />
       )}
     </>
   );

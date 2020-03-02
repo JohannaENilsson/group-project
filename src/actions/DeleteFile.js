@@ -4,7 +4,7 @@ import { token$ } from '../components/Store.js';
 
 // import GetAllFiles from './GetAllFiles'; // ha för att rendera om listan MEN funkar ej
 
-export default function DeleteFile({ path }) {
+export default function DeleteFile({ path, onDelete }) {
   //   const [rerender, setRerender] = useState(false);
   var dbx = new Dropbox({ accessToken: token$.value, fetch });
 
@@ -17,6 +17,8 @@ export default function DeleteFile({ path }) {
         console.log(response);
         // setRerender(true);
         //GetAllFiles();
+
+        onDelete(response.metadata.id);
       })
       .catch(function(error) {
         console.log(error);

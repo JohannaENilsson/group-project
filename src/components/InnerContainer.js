@@ -5,8 +5,6 @@ import { token$ } from "./Store.js";
 import GetAllFiles from "../actions/GetAllFiles";
 import PopupAddNewFolder from '../actions/PopupAddNewFolder'
 
-
-
 export default function InnerContainer() {
   return (
     <div className="innerContainer">
