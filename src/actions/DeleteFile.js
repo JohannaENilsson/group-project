@@ -1,27 +1,46 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Dropbox } from 'dropbox';
 import { token$ } from '../components/Store';
 
-export default function DeleteFile({ path, onDelete }) {
+import PopupDeleteFile from './PopupDeleteFile';
+
+export default function DeleteFile({ name, path, onDelete }) {
+  const [showPopup, setShowPopup] = useState(false);
+
+  const handleDeleteFilePopUp = () => {
+    setShowPopup(true);
+  };
+
+  const handleCancelDelete = () => {
+    setShowPopup(false);
+  };
+
   var dbx = new Dropbox({ accessToken: token$.value, fetch });
 
-  function handleDelete(e) {
-    console.log(path);
-    console.log(dbx);
+  const handleDelete = e => {
     dbx
       .filesDeleteV2({ path: path })
       .then(function(response) {
-        // console.log(response);
         onDelete(response.metadata.id);
       })
       .catch(function(error) {
         console.log('could not delete file ', error);
       });
-  }
+  };
 
   return (
-    <button onClick={e => handleDelete(e)}>
-      <i className='fa fa-trash'></i>
-    </button>
+    <>
+      <button onClick={e => handleDeleteFilePopUp(e)}>
+        <i className='fa fa-trash'></i>
+      </button>
+
+      {showPopup ? (
+        <PopupDeleteFile
+          name={name}
+          handleCancelDelete={handleCancelDelete}
+          handleDelete={handleDelete}
+        />
+      ) : null}
+    </>
   );
 }

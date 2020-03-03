@@ -44,7 +44,7 @@ export default function MapAllFiles({ fileList, onDelete }) {
         <td>{sizeFormat(file.size)}</td>
         <td>{file.client_modified}</td>
         <td>
-          <DeleteFile onDelete={onDelete} path={file.path_lower} />
+          <DeleteFile onDelete={onDelete} path={file.path_lower} name={file.name}/>
         </td>
       </tr>
     );
