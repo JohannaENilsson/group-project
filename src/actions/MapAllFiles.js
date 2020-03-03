@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { Dropbox } from "dropbox";
 import { token$ } from "../components/Store.js";
 
-import GetAllFiles from "../actions/GetAllFiles";
 import DeleteFile from "./DeleteFile";
 
 function downloadFileRequest(file) {
@@ -65,11 +64,11 @@ export default function MapAllFiles({ fileList, onDelete }) {
 // LÅT DENNA FUNKTION VARA / ANNA
   function getIcon(file) {
     if (file[".tag"] === "folder") {
-      return <i class="fa fa-folder"></i>;
+      return <i className="fa fa-folder"></i>;
     } else if (file[".tag"] === "file" && file.name.includes(".jpg")) {
       return "här ska en THUMBNAIL IN";
     } else if (file[".tag"] === "file") {
-      return <i class="fa fa-file"></i>;
+      return <i className="fa fa-file"></i>;
     }
   }
 

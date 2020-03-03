@@ -5,7 +5,7 @@ import UploadFile from "../actions/UploadFile";
 import AddNewFolder from '../actions/AddNewFolder'
 
 
-export default function Sidebar({ token }) {
+export default function Sidebar({ token, getFiles }) {
     const [addFolderPopUp, setAddFolderPopUp] = useState( false );
 
     const handleAddFolder = () => {
@@ -19,7 +19,7 @@ export default function Sidebar({ token }) {
         <h2 className="sidebarTitle">Menu</h2>
         <ul className="ulMenuContainer">
           <li>
-            <UploadFile token={token} />
+            <UploadFile token={token} getFiles={getFiles}/>
           </li>
           <li>
               <AddNewFolder 
