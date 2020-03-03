@@ -20,7 +20,7 @@ export default function Home() {
         updateFileList(response.entries);
       })
       .catch(function(error) {
-        console.error(error);
+        console.error('Can´t get files ', error);
       });
   }
 

@@ -14,7 +14,7 @@ export default function GetUserAccount() {
         setProfile(response);
       })
       .catch(function(error) {
-        console.error(error);
+        console.error('Can´t get Current account ', error);
       });
   }, []);
 
