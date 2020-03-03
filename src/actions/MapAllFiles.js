@@ -27,7 +27,7 @@ export default function MapAllFiles({ fileList, onDelete }) {
         <td>{getIcon(file)}</td>
         <td>
           {file[".tag"] === "folder" ? (
-            <Link to={`/folder/${file.name}`} className="tableNameLink">
+            <Link to={`/folder${file.path_lower}/`} className="tableNameLink">
               {file.name}
             </Link>
           ) : (
