@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { Dropbox } from "dropbox";
 import { token$ } from "../components/Store.js";
 
-import GetAllFiles from "../actions/GetAllFiles";
 import DeleteFile from "./DeleteFile";
 import GetFileType from "./GetFileType";
 
@@ -35,7 +34,11 @@ export default function MapAllFiles({ fileList, onDelete }) {
         <td>{sizeFormat(file.size)}</td>
         <td>{dateFormat(file.client_modified)}</td>
         <td>
-          <DeleteFile onDelete={onDelete} path={file.path_lower} />
+          <DeleteFile
+            onDelete={onDelete}
+            path={file.path_lower}
+            name={file.name}
+          />
         </td>
         <td>
           <span>...</span>

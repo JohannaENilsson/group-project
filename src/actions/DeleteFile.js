@@ -1,51 +1,50 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Dropbox } from 'dropbox';
-import { token$ } from '../components/Store.js';
+import { token$ } from '../components/Store';
 
-// import GetAllFiles from './GetAllFiles'; // ha för att rendera om listan MEN funkar ej
+import PopupDeleteFile from './PopupDeleteFile';
 
-export default function DeleteFile({ path, onDelete }) {
-  //   const [rerender, setRerender] = useState(false);
+export default function DeleteFile({ name, path, onDelete }) {
+  const [showPopup, setShowPopup] = useState(false);
+
+  const handleDeleteFilePopUp = () => {
+    setShowPopup(true);
+  };
+
+  const handleCancelDelete = () => {
+    setShowPopup(false);
+  };
+
   var dbx = new Dropbox({ accessToken: token$.value, fetch });
 
-  function handleDelete(e) {
-    console.log(path);
-    console.log(dbx);
+  const handleDelete = e => {
     dbx
       .filesDeleteV2({ path: path })
       .then(function(response) {
-        console.log(response);
-        // setRerender(true);
-        //GetAllFiles();
-
         onDelete(response.metadata.id);
       })
       .catch(function(error) {
-        console.log(error);
+        console.log('could not delete file ', error);
       });
-  }
-
-  //    if(rerender){
-  //        setRerender();
-  //        GetAllFiles();
-
-  //    }
+  };
 
 
 // LAGT TILL KLASS PÅ KNAPPEN PGA STYLING, LÅT VARA :)/ANNA
   return (
-    <button className="deleteButton" onClick={e => handleDelete(e)}>
-      <i className='fa fa-trash'></i>
-    </button>
+
+
+    <>
+      <button onClick={e => handleDeleteFilePopUp(e)}>
+        <i className='fa fa-trash'></i>
+      </button>
+
+      {showPopup ? (
+        <PopupDeleteFile
+          name={name}
+          handleCancelDelete={handleCancelDelete}
+          handleDelete={handleDelete}
+        />
+      ) : null}
+    </>
   );
 }
-
-// GetAllFiles(); // Kalla på hämta alla filer igen.
-
-// import ReactDOM from 'react-dom';
-
-// return ReactDOM.createPortal((
-//     <div>
-//   ................
-//     </div>
-// ), document.body);
