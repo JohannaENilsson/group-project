@@ -28,7 +28,11 @@ export default function DeleteFile({ name, path, onDelete }) {
       });
   };
 
+
+// LAGT TILL KLASS PÅ KNAPPEN PGA STYLING, LÅT VARA :)/ANNA
   return (
+
+
     <>
       <button onClick={e => handleDeleteFilePopUp(e)}>
         <i className='fa fa-trash'></i>

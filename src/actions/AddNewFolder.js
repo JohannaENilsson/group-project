@@ -17,7 +17,7 @@ export default function AddNewFolder({ token }) {
 
     return (
         <>
-            <div style={{cursor: 'pointer'}} onClick={handleAddNewFolderPopup}>Add new folder</div>
+            <div className="uploadFileInputLabel" style={{cursor: 'pointer'}} onClick={handleAddNewFolderPopup}>Add new folder</div>
             {
                 showPopup ? <PopupAddNewFolder token={token} handleCancelAddNewFolder={handleCancelAddNewFolder} /> : null
             }
