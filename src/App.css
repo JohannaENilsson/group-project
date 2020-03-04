@@ -31,6 +31,12 @@
   opacity: 0.8;
 }
 
+
+.star {
+  cursor: pointer;
+  font-size: 1.2em;
+}
+
 header{
   height: 160px;
   position: relative;

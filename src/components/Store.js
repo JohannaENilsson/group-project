@@ -3,7 +3,7 @@ import { BehaviorSubject } from 'rxjs';
 export const token$ = new BehaviorSubject(localStorage.getItem('token')); 
 
 export function updateToken(token) {
-  console.log("HEJ", token);
+  // console.log("HEJ", token);
   if (token) {
     localStorage.setItem('token', token);
   } else {
@@ -11,18 +11,12 @@ export function updateToken(token) {
   }
 }
 
-/* export const account_id$ = new BehaviorSubject(); 
-
-export function updateAccountId(account_id) {
-  console.log(account_id);
- 
-  account_id$.next(account_id);
-}
-
-export const uid$ = new BehaviorSubject(); 
-
-export function updateUid(uid) {
-  console.log(uid);
-  uid$.next(uid);
-}
- */
+// export const path$ = new BehaviorSubject(localStorage.getItem('path')); 
+// export function updatePath(path) {
+//   console.log("Path", path);
+//   if (path) {
+//     localStorage.setItem('path', token);
+//   } else {
+//     localStorage.removeItem('path');
+//   }
+// }
