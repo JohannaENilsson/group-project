@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Dropbox } from "dropbox";
 import { token$ } from "../components/Store.js";
+import StarFileOrFolder from './Star';
 
 import GetAllFiles from "../actions/GetAllFiles";
 import DeleteFile from './DeleteFile';
@@ -45,6 +46,7 @@ export default function MapAllFiles({ fileList }) {
         <td>{sizeFormat(file.size)}</td>
         <td>{file.client_modified}</td>
         <td><DeleteFile path={file.path_lower}/></td>
+        <td><StarFileOrFolder /></td>
       </tr>
     );
   });
