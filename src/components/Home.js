@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Redirect } from "react-router-dom";
 import { Dropbox } from "dropbox";
-import { token$ } from "./Store";
 
+import { token$ } from "./Store";
 import Header from "./Header.js";
 import Sidebar from "./Sidebar";
 import InnerContainer from "./InnerContainer";
@@ -10,6 +10,7 @@ import InnerContainer from "./InnerContainer";
 
 export default function Home() {
   const [fileList, updateFileList] = useState(null);
+  const [ filePath, setFilePath ] = useState(['home']);
 
   var dbx = new Dropbox({ accessToken: token$.value, fetch });
 
@@ -41,7 +42,7 @@ export default function Home() {
         <div className="sidebarContainer">
           <Sidebar token={token$.value} getFiles={getFiles}/>
         </div>
-        <InnerContainer onDelete={onDelete} fileList={fileList} getFiles={getFiles}/>
+        <InnerContainer onDelete={onDelete} fileList={fileList} getFiles={getFiles} filePath={filePath}/>
       </div>
     </div>
   );

@@ -1,21 +1,28 @@
-import React from "react";
-import { Dropbox } from "dropbox";
-import { token$ } from "./Store.js";
+import React from 'react';
+import { Dropbox } from 'dropbox';
+import { Link } from 'react-router-dom';
 
+import { token$ } from './Store.js';
 
-import GetAllFiles from "../actions/GetAllFiles";
-import PopupAddNewFolder from '../actions/PopupAddNewFolder'
+import GetAllFiles from '../actions/GetAllFiles';
+import PopupAddNewFolder from '../actions/PopupAddNewFolder';
 
-export default function InnerContainer({ fileList, getFiles , onDelete}) {
-  
+export default function InnerContainer({
+  fileList,
+  getFiles,
+  onDelete,
+  filePath
+}) {
+  console.log('filePath ', filePath);
+
   return (
-    <div className="innerContainer">
-
-      <h2 className="innerContainerTitle">
-        Inner container title <i>(ex Home, eller Home/Undermapp)</i>
-      </h2>
-      <GetAllFiles onDelete={onDelete} fileList={fileList} getFiles={getFiles}/>
-      
+    <div className='innerContainer'>
+      <h2 className='innerContainerTitle'></h2>
+      <GetAllFiles
+        onDelete={onDelete}
+        fileList={fileList}
+        getFiles={getFiles}
+      />
     </div>
   );
 }

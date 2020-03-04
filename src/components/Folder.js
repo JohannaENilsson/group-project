@@ -10,10 +10,19 @@ import InnerContainer from "./InnerContainer";
 
 export default function Folder() {
   const [fileList, updateFileList] = useState(null);
+  const [ filePath, setFilePath ] = useState('home');
   let {id} = useParams();
   console.log(id);
   var dbx = new Dropbox({ accessToken: token$.value, fetch });
 
+
+function getBreadCrum(){
+  console.log(" href => " + window.location.href);
+  let path = window.location.href.split('/').splice(3);
+  setFilePath(path)
+  console.log(path);
+
+}
   function getFiles(id) {
     dbx
       .filesListFolder({ path: `/${id}` })
@@ -33,6 +42,7 @@ export default function Folder() {
     useEffect(() => {
         console.log(id);
         getFiles(id);
+        getBreadCrum();
       }, []);
   
   return (
@@ -42,7 +52,7 @@ export default function Folder() {
         <div className="sidebarContainer">
           <Sidebar token={token$.value} getFiles={getFiles}/>
         </div>
-        <InnerContainer onDelete={onDelete} fileList={fileList} getFiles={getFiles}/>
+        <InnerContainer onDelete={onDelete} fileList={fileList} getFiles={getFiles} filePath={filePath}/>
       </div>
     </div>
 

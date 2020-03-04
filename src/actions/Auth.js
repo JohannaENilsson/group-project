@@ -13,8 +13,9 @@ export default function Auth() {
     let parseUrl = queryString.parse(window.location.hash);
     let token = parseUrl.access_token;
 
-    setParsedToken(token);
     updateToken(token);
+    setParsedToken(token);
+    console.log();
   }
 
   useEffect(getTokenFromUrl, []);
