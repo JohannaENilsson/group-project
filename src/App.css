@@ -193,6 +193,7 @@ table {
   border-collapse: collapse;
   width: 90%;
   margin: 5px 0px 5px 20px ;
+  overflow-y: scroll;
 }
 
 th {
@@ -219,3 +220,18 @@ tr:nth-child(even) {
     text-decoration: underline;
     color: darksalmon;
   }
+
+  .deleteButton{
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    font-size: 20px;
+  }
+
+  .fa-folder, .fa-file{
+    font-size: 25px;
+    opacity: 0.7;
+    color: #265b7e;
+  }
+
+ 
