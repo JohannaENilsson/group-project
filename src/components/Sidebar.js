@@ -16,8 +16,8 @@ export default function Sidebar({ token, getFiles }) {
       <div>
         <h2 className='sidebarTitle'>Menu</h2>
         <ul className='ulMenuContainer'>
-          <li>
-            <Link to={'/home'}>Home</Link>
+          <li >
+            <Link to={'/home'} className="homeLinkSidebar">Home</Link>
           </li>
           <li>
             <UploadFile token={token} getFiles={getFiles} />

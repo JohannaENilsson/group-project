@@ -16,3 +16,8 @@ export default function GetAllFiles({ fileList, getFiles, onDelete }) {
     </>
   );
 }
+
+// IF searchList.length > 1 då --> <MapAllFiles onDelete={onDelete} fileList={searchList} />
+// 
+
+ 

@@ -14,7 +14,7 @@ export default function PopupAddNewFolder({ token,handleCancelAddNewFolder }) {
         e.preventDefault();
         
         handleAddNewFolder(inputValue);
-        console.log(inputValue); // funkar
+        console.log(inputValue);
 
     }
     
