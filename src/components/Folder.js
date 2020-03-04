@@ -3,13 +3,15 @@ import {useParams} from 'react-router-dom';
 import { Dropbox } from "dropbox";
 import { token$ } from "./Store.js";
 
-import MapAllFiles from '../actions/MapAllFiles';
+import Header from "./Header.js";
+import Sidebar from "./Sidebar";
+import InnerContainer from "./InnerContainer";
 
 
 export default function Folder() {
   const [fileList, updateFileList] = useState(null);
   let {id} = useParams();
-  
+  console.log(id);
   var dbx = new Dropbox({ accessToken: token$.value, fetch });
 
   function getFiles(id) {
@@ -24,22 +26,25 @@ export default function Folder() {
       });
   }
 
+  function onDelete(id) {
+    updateFileList(fileList.filter(x => x.id !== id));
+  }
+
     useEffect(() => {
         console.log(id);
         getFiles(id);
       }, []);
   
   return (
-    <div className="innerContainer">
-
-      <h2 className="innerContainerTitle">
-        {id} <i>(ex Home, eller Home/Undermapp)</i>
-      </h2>
-      {fileList === null ? (
-        <p>Loading files..</p>
-      ) : (
-        <MapAllFiles  fileList={fileList} />
-      )}
+    <div>
+      <Header />
+      <div className="outerContainer">
+        <div className="sidebarContainer">
+          <Sidebar token={token$.value} getFiles={getFiles}/>
+        </div>
+        <InnerContainer onDelete={onDelete} fileList={fileList} getFiles={getFiles}/>
+      </div>
     </div>
+
   );
 }

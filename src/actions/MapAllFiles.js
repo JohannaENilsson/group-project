@@ -22,12 +22,13 @@ export default function MapAllFiles({ fileList, onDelete }) {
   console.log("fileList->", fileList);
 
   const mappedList = fileList.map((file, idx) => {
+    console.log(file.path_lower);
     return (
       <tr key={file.id}>
         <td>{getIcon(file)}</td>
         <td>
           {file[".tag"] === "folder" ? (
-            <Link to={`/folder${file.path_lower}/`} className="tableNameLink">
+            <Link to={`/folder${file.path_lower}`} className="tableNameLink">
               {file.name}
             </Link>
           ) : (

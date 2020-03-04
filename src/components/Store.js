@@ -10,3 +10,13 @@ export function updateToken(token) {
     localStorage.removeItem('token');
   }
 }
+
+// export const path$ = new BehaviorSubject(localStorage.getItem('path')); 
+// export function updatePath(path) {
+//   console.log("Path", path);
+//   if (path) {
+//     localStorage.setItem('path', token);
+//   } else {
+//     localStorage.removeItem('path');
+//   }
+// }

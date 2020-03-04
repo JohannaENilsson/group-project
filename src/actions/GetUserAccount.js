@@ -3,6 +3,7 @@ import { Dropbox } from "dropbox";
 import { token$ } from "../components/Store.js";
 
 var dbx = new Dropbox({ accessToken: token$.value, fetch });
+console.log(token$.value);
 
 export default function GetUserAccount() {
   const [profile, setProfile] = useState({});
