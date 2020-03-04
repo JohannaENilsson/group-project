@@ -15,7 +15,7 @@ export default function Auth() {
     //let account_id = parseUrl.account_id;
     //let uid = parseUrl.uid;
 
-    console.log(parseUrl);
+    console.log(token);
     setParsedToken(token);
     updateToken(token);
     //updateAccountId(account_id);
