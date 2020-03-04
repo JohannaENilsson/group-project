@@ -31,8 +31,10 @@ export default function DeleteFile({ path, onDelete }) {
 
   //    }
 
+
+// LAGT TILL KLASS PÅ KNAPPEN PGA STYLING, LÅT VARA :)/ANNA
   return (
-    <button onClick={e => handleDelete(e)}>
+    <button className="deleteButton" onClick={e => handleDelete(e)}>
       <i className='fa fa-trash'></i>
     </button>
   );
