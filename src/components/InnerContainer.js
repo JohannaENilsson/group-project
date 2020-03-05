@@ -36,6 +36,7 @@ export default function InnerContainer({ fileList, getFiles, onDelete }) {
         onDelete={onDelete}
         fileList={fileList}
         getFiles={getFiles}
+        onClickStar={onClickStar}
       />
     </div>
   );

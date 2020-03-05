@@ -11,3 +11,17 @@ export function updateToken(token) {
     localStorage.removeItem('token');
   }
 }
+
+
+export const star$ = new BehaviorSubject(localStorage.getItem('star')); 
+
+export function updateStar(star) {
+  console.log("Star-->", star);
+  if (star) {
+    localStorage.setItem('star', star);
+  } else {
+    localStorage.removeItem('star');
+  }
+}
+
+// logout --> uppdatera star function till null!

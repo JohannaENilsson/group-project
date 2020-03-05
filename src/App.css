@@ -12,6 +12,18 @@
   color: #265b7e;
 }
 
+
+.fa-star {
+  opacity: 0;
+  font-size: 1.2em;
+}
+
+.fa-star:hover {
+  color: black;
+  opacity: 1;
+  cursor: pointer;
+} 
+
 .fa-search{
   color: darksalmon;
   font-size: 20px;
@@ -156,6 +168,7 @@ header {
 .searchInput::placeholder{
   font-size: 14px;
 }
+
 
 .searchInputDiv {
   position: absolute;

@@ -14,7 +14,6 @@ export default function GetFileType({ file }) {
         .filesGetThumbnail({ path: file.path_lower, size: 'w32h32' })
         .then(res => {
           let urlBlob = URL.createObjectURL(res.fileBlob);
-
           setUrl(urlBlob);
         })
         .catch(error => {
