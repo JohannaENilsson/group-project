@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { updateToken, token$ } from "./Store";
+import { updateToken, updateStar, token$ } from "./Store";
 import { Redirect } from "react-router-dom";
 
 export default function Logout() {
@@ -13,6 +13,7 @@ export default function Logout() {
   function handleLogout() {
     updateToken(null);
     setToken(null);
+    updateStar(null);
   }
 
   if (!token) {
@@ -21,6 +22,7 @@ export default function Logout() {
 
   return (
     <button className="logoutButton" onClick={handleLogout}>
+      
       <i className="fa fa-sign-out"></i>
     </button>
 

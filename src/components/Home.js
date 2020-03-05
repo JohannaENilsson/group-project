@@ -2,16 +2,16 @@ import React, { useEffect, useState } from "react";
 import { Redirect } from "react-router-dom";
 import { Dropbox } from "dropbox";
 
-import { token$ } from "./Store";
+import { token$, updateStar, star$ } from "./Store";
+
 import Header from "./Header.js";
 import Sidebar from "./Sidebar";
 import InnerContainer from "./InnerContainer";
 
-
 export default function Home() {
   const [fileList, updateFileList] = useState(null);
   const [starList, updateStarList] = useState([]);
-  const [ filePath, setFilePath ] = useState(['home']);
+  const [filePath, setFilePath] = useState(["home"]);
 
   var dbx = new Dropbox({ accessToken: token$.value, fetch });
 
@@ -22,7 +22,7 @@ export default function Home() {
         updateFileList(response.entries);
       })
       .catch(function(error) {
-        console.error('Can´t get files ', error);
+        console.error("Can´t get files ", error);
       });
   }
 
@@ -31,25 +31,31 @@ export default function Home() {
   }
 
   function onClickStar(id) {
-    console.log('Id', id);
-    updateStarList([id, ...starList]);
-    console.log('STARLIST', starList);
-    
+    updateStar([id, ...starList]); //store, sparar till localStorage
+    updateStarList([...starList, id]); //state
   }
 
   useEffect(() => {
     getFiles();
   }, []);
 
+  console.log("STARLIST", starList);
+  console.log("stars value", star$._value);
 
   return (
     <div>
       <Header />
       <div className="outerContainer">
         <div className="sidebarContainer">
-          <Sidebar token={token$.value} getFiles={getFiles}/>
+          <Sidebar token={token$.value} getFiles={getFiles} />
         </div>
-        <InnerContainer onDelete={onDelete} fileList={fileList} getFiles={getFiles} onClickStar={onClickStar} filePath={filePath}/>
+        <InnerContainer
+          onDelete={onDelete}
+          fileList={fileList}
+          getFiles={getFiles}
+          onClickStar={onClickStar}
+          filePath={filePath}
+        />
       </div>
     </div>
   );

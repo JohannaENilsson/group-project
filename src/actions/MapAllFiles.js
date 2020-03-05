@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Dropbox } from "dropbox";
 
 import { token$ } from "../components/Store.js";
-import StarFileOrFolder from './Star';
+import StarFileOrFolder from './StarFileOrFolder';
 import DeleteFile from "./DeleteFile";
 import GetFileType from "./GetFileType";
 
@@ -12,6 +12,7 @@ const dbx = new Dropbox({ accessToken: token$.value, fetch });
 export default function MapAllFiles({ fileList, onDelete, onClickStar }) {
 
   const mappedList = fileList.map((file, idx) => {
+    //console.log(file.path_lower);
     // console.log('path_lower ', file.path_lower);
     return (
       <tr key={file.id}>

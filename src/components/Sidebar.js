@@ -1,23 +1,26 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import UploadFile from '../actions/UploadFile';
-import AddNewFolder from '../actions/AddNewFolder';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import UploadFile from "../actions/UploadFile";
+import AddNewFolder from "../actions/AddNewFolder";
+import ShowStarList from "../actions/ShowStarList";
 
 export default function Sidebar({ token, getFiles }) {
   const [addFolderPopUp, setAddFolderPopUp] = useState(false);
 
   const handleAddFolder = () => {
     setAddFolderPopUp(true);
-    console.log('Click');
+    console.log("Click");
   };
 
   return (
     <div>
       <div>
-        <h2 className='sidebarTitle'>Menu</h2>
-        <ul className='ulMenuContainer'>
-          <li >
-            <Link to={'/home'} className="homeLinkSidebar">Home</Link>
+        <h2 className="sidebarTitle">Menu</h2>
+        <ul className="ulMenuContainer">
+          <li>
+            <Link to={"/home"} className="homeLinkSidebar">
+              Home
+            </Link>
           </li>
           <li>
             <UploadFile token={token} getFiles={getFiles} />
@@ -25,7 +28,9 @@ export default function Sidebar({ token, getFiles }) {
           <li>
             <AddNewFolder token={token} onClick={handleAddFolder} getFiles={getFiles}/>
           </li>
-          <li>Show starred</li>
+          <li>
+            <ShowStarList />
+          </li>
         </ul>
       </div>
     </div>
