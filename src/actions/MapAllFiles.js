@@ -13,6 +13,7 @@ export default function MapAllFiles({ fileList, onDelete, onClickStar }) {
 
   const mappedList = fileList.map((file, idx) => {
     //console.log(file.path_lower);
+    // console.log('path_lower ', file.path_lower);
     return (
       <tr key={file.id}>
         <td>{<GetFileType file={file} />}</td>
