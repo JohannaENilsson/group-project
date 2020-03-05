@@ -13,7 +13,7 @@ export default function Search() {
         placeholder="Search"
         //onChange={}
       />
-      <i class="fa fa-search"></i>
+      <i className="fa fa-search"></i>
     </div>
   );
 }

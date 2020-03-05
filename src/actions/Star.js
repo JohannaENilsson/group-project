@@ -8,7 +8,6 @@ export default function StarFileOrFolder() {
         { color === 'black' ? setColor( 'yellow' ) : setColor( 'black' ) }
     }
 
-    
-
     return <i className='fa fa-star star' onClick={clickStar} style={{ color: color }}></i>
 }
+
