@@ -9,6 +9,7 @@ import InnerContainer from "./InnerContainer";
 
 export default function Home() {
   const [fileList, updateFileList] = useState(null);
+  const [starList, updateStarList] = useState([]);
 
   var dbx = new Dropbox({ accessToken: token$.value, fetch });
 
@@ -16,7 +17,6 @@ export default function Home() {
     dbx
       .filesListFolder({ path: "" })
       .then(function(response) {
-          console.log(response);
         updateFileList(response.entries);
       })
       .catch(function(error) {
@@ -26,6 +26,13 @@ export default function Home() {
 
   function onDelete(id) {
     updateFileList(fileList.filter(x => x.id !== id));
+  }
+
+  function onClickStar(id) {
+    console.log('Id', id);
+    updateStarList([id, ...starList]);
+    console.log('STARLIST', starList);
+    
   }
 
   useEffect(() => {
@@ -41,7 +48,7 @@ export default function Home() {
         <div className="sidebarContainer">
           <Sidebar token={token$.value} getFiles={getFiles}/>
         </div>
-        <InnerContainer onDelete={onDelete} fileList={fileList} getFiles={getFiles}/>
+        <InnerContainer onDelete={onDelete} fileList={fileList} getFiles={getFiles} onClickStar={onClickStar}/>
       </div>
     </div>
   );

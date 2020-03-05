@@ -32,10 +32,16 @@
 }
 
 
-.star {
-  cursor: pointer;
+.fa-star {
+  opacity: 0;
   font-size: 1.2em;
 }
+
+.fa-star:hover {
+  color: black;
+  opacity: 1;
+  cursor: pointer;
+} 
 
 header{
   height: 160px;

@@ -27,6 +27,7 @@ export default function Sidebar({ token, getFiles }) {
                 onClick={handleAddFolder}/>
         </li>
           <li>Home</li>
+          <li>Show starred</li>
         </ul>
         <ul>
         <li><i>(home- och folder-links ska bort, så orkar inte styla detta)</i></li>

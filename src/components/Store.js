@@ -11,18 +11,16 @@ export function updateToken(token) {
   }
 }
 
-/* export const account_id$ = new BehaviorSubject(); 
 
-export function updateAccountId(account_id) {
-  console.log(account_id);
- 
-  account_id$.next(account_id);
+export const star$ = new BehaviorSubject(localStorage.getItem('star')); 
+
+export function updateStar(star) {
+  console.log("Star-->", star);
+  if (star) {
+    localStorage.setItem('star', star);
+  } else {
+    localStorage.removeItem('star');
+  }
 }
 
-export const uid$ = new BehaviorSubject(); 
-
-export function updateUid(uid) {
-  console.log(uid);
-  uid$.next(uid);
-}
- */
+// logout --> uppdatera star function till null!

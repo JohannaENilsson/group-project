@@ -12,17 +12,15 @@ export default function PopupAddNewFolder({ token,handleCancelAddNewFolder }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        
         handleAddNewFolder(inputValue);
         console.log(inputValue); // funkar
-
     }
     
     const handleAddNewFolder = (folderName) => {
         const dbx = new Dropbox({ accessToken: token, fetch });
         dbx
             .filesCreateFolderV2({ path: "/" + folderName, autorename: true })
-            .then((response) => {
+            .then(() => {
                 handleCancelAddNewFolder();
             });
     }

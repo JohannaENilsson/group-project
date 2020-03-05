@@ -1,16 +1,15 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Dropbox } from "dropbox";
+
 import { token$ } from "../components/Store.js";
 import StarFileOrFolder from './Star';
-
 import DeleteFile from "./DeleteFile";
 import GetFileType from "./GetFileType";
 
 const dbx = new Dropbox({ accessToken: token$.value, fetch });
 
-export default function MapAllFiles({ fileList, onDelete }) {
-  console.log("fileList->", fileList);
+export default function MapAllFiles({ fileList, onDelete, onClickStar }) {
 
   const mappedList = fileList.map((file, idx) => {
     return (
@@ -41,7 +40,7 @@ export default function MapAllFiles({ fileList, onDelete }) {
             name={file.name}
           />
         </td>
-        <td><StarFileOrFolder /></td>
+        <td><StarFileOrFolder fileId={file.id} onClickStar={onClickStar} /></td>
         <td>
           <span>...</span>
         </td>
