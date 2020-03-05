@@ -1,33 +1,31 @@
-import React, { useState, useEffect } from "react";
-import {useParams} from 'react-router-dom';
-import { Dropbox } from "dropbox";
-import { token$ } from "./Store.js";
+import React, { useState, useEffect } from 'react';
+import { useParams, useHistory, useLocation } from 'react-router-dom';
+import { Dropbox } from 'dropbox';
+import { token$ } from './Store.js';
 
-import Header from "./Header.js";
-import Sidebar from "./Sidebar";
-import InnerContainer from "./InnerContainer";
-
+import Header from './Header.js';
+import Sidebar from './Sidebar';
+import InnerContainer from './InnerContainer';
 
 export default function Folder() {
   const [fileList, updateFileList] = useState(null);
-  const [ filePath, setFilePath ] = useState('home');
-  let {id} = useParams();
-  console.log(id);
+  const [filePath, setFilePath] = useState('');
+
+  let { id } = useParams();
+  let location = useLocation();
+  let history = useHistory();
+
+  console.log('Id ', id);
+  console.log('location ', location);
+  console.log('history ', history);
   var dbx = new Dropbox({ accessToken: token$.value, fetch });
 
-
-function getBreadCrum(){
-  console.log(" href => " + window.location.href);
-  let path = window.location.href.split('/').splice(3);
-  setFilePath(path)
-  console.log(path);
-
-}
-  function getFiles(id) {
+  function getFiles(currentLocation) {
+    console.log('current  ', currentLocation);
     dbx
-      .filesListFolder({ path: `/${id}` })
+      .filesListFolder({ path: `/${currentLocation}` })
       .then(function(response) {
-          console.log(response);
+        console.log(response);
         updateFileList(response.entries);
       })
       .catch(function(error) {
@@ -39,22 +37,29 @@ function getBreadCrum(){
     updateFileList(fileList.filter(x => x.id !== id));
   }
 
-    useEffect(() => {
-        console.log(id);
-        getFiles(id);
-        getBreadCrum();
-      }, []);
-  
+  useEffect(() => {
+    let currentLocation = location.pathname
+      .split('/')
+      .splice(2)
+      .join('/');
+    console.log(currentLocation);
+    getFiles(currentLocation);
+  }, [location]);
+
   return (
     <div>
       <Header />
-      <div className="outerContainer">
-        <div className="sidebarContainer">
-          <Sidebar token={token$.value} getFiles={getFiles}/>
+      <div className='outerContainer'>
+        <div className='sidebarContainer'>
+          <Sidebar token={token$.value} getFiles={getFiles} />
         </div>
-        <InnerContainer onDelete={onDelete} fileList={fileList} getFiles={getFiles} filePath={filePath}/>
+        <InnerContainer
+          onDelete={onDelete}
+          fileList={fileList}
+          getFiles={getFiles}
+          filePath={filePath}
+        />
       </div>
     </div>
-
   );
 }

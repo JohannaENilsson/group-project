@@ -15,7 +15,6 @@ export default function Auth() {
 
     updateToken(token);
     setParsedToken(token);
-    console.log();
   }
 
   useEffect(getTokenFromUrl, []);

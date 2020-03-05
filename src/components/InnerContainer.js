@@ -13,8 +13,6 @@ export default function InnerContainer({
   onDelete,
   filePath
 }) {
-  console.log('filePath ', filePath);
-
   return (
     <div className='innerContainer'>
       <h2 className='innerContainerTitle'></h2>
