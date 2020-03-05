@@ -24,6 +24,9 @@ export default function StarFileOrFolder({ fileId, onClickStar }) {
         } else {
             setOpacity(0);
         }
+
+        
+
         //{ star === false ? setOpacity(1) : setOpacity (0)}
         //{ color === 'black' ? setOpacity(1) : setOpacity (0) }
         //{ color === 'black' ? setColor( 'yellow' ) : setColor( 'black' ) }
@@ -36,8 +39,6 @@ export default function StarFileOrFolder({ fileId, onClickStar }) {
         <>
             <div>
                 <FaStar onClick={clickStar} style={{ color, opacity, hover }} />
-            </div>
-            <div>
             </div>
         </> 
     )

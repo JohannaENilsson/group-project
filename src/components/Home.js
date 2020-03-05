@@ -11,7 +11,7 @@ import InnerContainer from "./InnerContainer";
 export default function Home() {
   const [fileList, updateFileList] = useState(null);
   const [starList, updateStarList] = useState([]);
-  const [ filePath, setFilePath ] = useState(['home']);
+  const [filePath, setFilePath ] = useState(['home']);
 
   var dbx = new Dropbox({ accessToken: token$.value, fetch });
 
