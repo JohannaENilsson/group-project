@@ -10,7 +10,7 @@ import GetFileType from "./GetFileType";
 const dbx = new Dropbox({ accessToken: token$.value, fetch });
 
 export default function MapAllFiles({ fileList, onDelete }) {
-  console.log("fileList->", fileList);
+  // console.log("fileList->", fileList);
 
   const mappedList = fileList.map((file, idx) => {
     // console.log('path_lower ', file.path_lower);
