@@ -11,6 +11,7 @@ export default function Folder() {
   const [fileList, updateFileList] = useState(null);
 
   let location = useLocation();
+  console.log('location ', location);
 
   var dbx = new Dropbox({ accessToken: token$.value, fetch });
 
