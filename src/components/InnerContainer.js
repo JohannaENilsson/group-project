@@ -6,7 +6,7 @@ import { token$ } from './Store.js';
 import GetAllFiles from '../actions/GetAllFiles';
 import PopupAddNewFolder from '../actions/PopupAddNewFolder';
 
-export default function InnerContainer({ fileList, getFiles, onDelete }) {
+export default function InnerContainer({ fileList, getFiles, onDelete,onClickStar }) {
   const history = useHistory(); // använd för breadcrums
   let breadcrums = history.location.pathname.split('/').splice(1);
   let linkToUrl = '';
