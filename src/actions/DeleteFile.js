@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Dropbox } from 'dropbox';
-import { token$ } from '../components/Store';
 
+import { token$ } from '../components/Store';
 import PopupDeleteFile from './PopupDeleteFile';
 
 export default function DeleteFile({ name, path, onDelete }) {
@@ -31,7 +31,6 @@ export default function DeleteFile({ name, path, onDelete }) {
 
 // LAGT TILL KLASS PÅ KNAPPEN PGA STYLING, LÅT VARA :)/ANNA
   return (
-
 
     <>
       <button onClick={e => handleDeleteFilePopUp(e)}>

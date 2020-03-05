@@ -25,6 +25,7 @@ export default function Sidebar({ token, getFiles }) {
           <li>
             <AddNewFolder token={token} onClick={handleAddFolder} />
           </li>
+          <li>Show starred</li>
         </ul>
       </div>
     </div>
