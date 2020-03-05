@@ -12,12 +12,13 @@ const dbx = new Dropbox({ accessToken: token$.value, fetch });
 export default function MapAllFiles({ fileList, onDelete, onClickStar }) {
 
   const mappedList = fileList.map((file, idx) => {
+    console.log(file.path_lower);
     return (
       <tr key={file.id}>
         <td>{<GetFileType file={file} />}</td>
         <td>
           {file[".tag"] === "folder" ? (
-            <Link to={`/folder/${file.name}`} className="tableNameLink">
+            <Link to={`/folder${file.path_lower}`} className="tableNameLink">
               {file.name}
             </Link>
           ) : (

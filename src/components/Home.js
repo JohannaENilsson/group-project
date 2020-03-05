@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { Redirect } from "react-router-dom";
 import { Dropbox } from "dropbox";
-import { token$ } from "./Store";
 
+import { token$ } from "./Store";
 import Header from "./Header.js";
 import Sidebar from "./Sidebar";
 import InnerContainer from "./InnerContainer";
 
+
 export default function Home() {
   const [fileList, updateFileList] = useState(null);
   const [starList, updateStarList] = useState([]);
+  const [ filePath, setFilePath ] = useState(['home']);
 
   var dbx = new Dropbox({ accessToken: token$.value, fetch });
 
@@ -20,7 +22,7 @@ export default function Home() {
         updateFileList(response.entries);
       })
       .catch(function(error) {
-        console.error(error);
+        console.error('Can´t get files ', error);
       });
   }
 
@@ -43,12 +45,11 @@ export default function Home() {
   return (
     <div>
       <Header />
-      <h2 className="pageTitle">Home</h2>
       <div className="outerContainer">
         <div className="sidebarContainer">
           <Sidebar token={token$.value} getFiles={getFiles}/>
         </div>
-        <InnerContainer onDelete={onDelete} fileList={fileList} getFiles={getFiles} onClickStar={onClickStar}/>
+        <InnerContainer onDelete={onDelete} fileList={fileList} getFiles={getFiles} onClickStar={onClickStar} filePath={filePath}/>
       </div>
     </div>
   );

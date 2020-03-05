@@ -13,7 +13,12 @@ export default function PopupAddNewFolder({ token,handleCancelAddNewFolder }) {
     const handleSubmit = (e) => {
         e.preventDefault();
         handleAddNewFolder(inputValue);
+<<<<<<< HEAD
         console.log(inputValue); // funkar
+=======
+        console.log(inputValue);
+
+>>>>>>> 02ac736a1a587a74a02ed5ed0fe2f9b5bd741b68
     }
     
     const handleAddNewFolder = (folderName) => {

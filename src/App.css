@@ -5,30 +5,11 @@
   box-sizing: border-box;
 }
 
-.loginPageDiv{
-  width: 100%;
-  height: 100vh;
-  background-image: url("./pics/clouds1.jpeg");    background-repeat: no-repeat;
-  background-size: cover;
-  position: relative;
-}
-.loginButton{
-  width: 300px;
-  height: 110px;
-  border-radius: 5px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  opacity: 0.5;
-  font-size: 40px;
-  cursor: pointer;
-  box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.75);
-}
-
-
-.loginButton:hover, .logoutButton:hover{
-  opacity: 0.8;
+.fa-folder,
+.fa-file {
+  font-size: 25px;
+  opacity: 0.7;
+  color: #265b7e;
 }
 
 
@@ -43,16 +24,24 @@
   cursor: pointer;
 } 
 
-header{
+.fa-search{
+  color: darksalmon;
+  font-size: 20px;
+  padding-left: 5px;
+}
+
+header {
   height: 160px;
   position: relative;
-  background-image: url("./pics/clouds1.jpeg");    background-repeat: no-repeat;
+  background-image: url("./pics/clouds1.jpeg");
+  background-repeat: no-repeat;
   background-position-y: 23%;
   background-size: cover;
-  box-shadow: 8px -98px 50px -42px rgba(255,255,255,1) inset;
+  box-shadow: 8px -98px 50px -42px rgba(255, 255, 255, 1) inset;
 
 }
-.headerTitle{
+
+.headerTitle {
   padding-top: 10px;
   font-size: 40px;
   display: inline-block;
@@ -61,30 +50,45 @@ header{
   writing-mode: vertical-rl;
 }
 
-.headerTitle span{
+.headerTitle span {
   font-weight: 600;
-  color:darksalmon;
+  color: darksalmon;
 }
 
-.userNameDiv{
-  padding:0;
+.innerContainer {
+  width: 83%;
+  height: 100vh;
+  margin: 0px 3px;
+  border-left: 1px solid darksalmon;
+  overflow: auto;
+}
+
+.loginButton {
+  width: 300px;
+  height: 110px;
+  border-radius: 5px;
   position: absolute;
-  top: 40%;
-  right: 3px;
-  margin: 0;
-}
-.userName{
-  padding:0;
-  margin:0;
-  color: darksalmon;
-  font-size: 30px;
-  font-weight: 600;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0.5;
+  font-size: 40px;
+  cursor: pointer;
+  box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.75);
 }
 
-.userName span{
-  color: darksalmon;
-  font-weight: 200;
-  font-size: 25px;
+.loginButton:hover,
+.logoutButton:hover {
+  opacity: 0.8;
+}
+
+.loginPageDiv {
+  width: 100%;
+  height: 100vh;
+  background-image: url("./pics/clouds1.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
 }
 
 .logoutButton {
@@ -104,52 +108,16 @@ header{
   display: flex;
   margin: 3px;
 }
-.pageTitle{
+
+.pageTitle {
   margin: 0px;
 }
 
-.innerContainer {
-  width: 83%;
-  height: 100vh;
-  margin: 0px 3px;
-  border-left: 1px solid darksalmon;
-  overflow: auto;
-}
-
-.sidebarContainer {
-  width: 10%;
-  height: 100%;
-}
-.sidebarTitle, .innerContainerTitle{
-  color: darksalmon;
-  font-size: 25px;
-  margin: 3px 10px;
-}
-
-.liSidebar {
-  cursor: pointer;
-}
-
-.ulMenuContainer {
-  list-style: none;
-  padding-left: 5px;
-}
-
-.uploadFileInput {
-  display: none;
-}
-
-.uploadFileInputLabel{
-  cursor: pointer;
-  text-decoration: underline;
-}
-
-.uploadFileInputLabel:hover{
-  color: darksalmon;
-}
-
-.uploadFileInput {
-  display: none;
+.popupAddFolderButton {
+  border-radius: 8px;
+  width: 100px;
+  height: 30px;
+  margin-left: 10px;
 }
 
 .popupWindow {
@@ -169,21 +137,6 @@ header{
   align-items: center;
 }
 
-.popupWindowContainer{
-  width: 300px;
-  height: 300px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.popupAddFolderButton {
-  border-radius: 8px;
-  width: 100px;
-  height: 30px;
-  margin-left: 10px;
-}
-
 .popupWindowButton {
   border-radius: 8px;
   width: 80px;
@@ -194,17 +147,67 @@ header{
   display: flex;
 }
 
+.popupWindowContainer {
+  width: 300px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.searchInput {
+  outline: none;
+  border-radius: 8px;
+  border: 1px solid darksalmon;
+  width: 80%;
+  height: 25px;
+  background-color: transparent;
+  font-size: 16px;
+}
+
+.searchInput::placeholder{
+  font-size: 14px;
+}
+
+.searchInputDiv {
+  position: absolute;
+  left: 12%;
+  bottom: 0px;
+  width: 250px;
+}
+
+.sidebarContainer {
+  width: 10%;
+  height: 100%;
+}
+
+.sidebarTitle,
+.innerContainerTitle {
+  color: darksalmon;
+  font-size: 25px;
+  margin: 20px 10px;
+}
+
+.star {
+  cursor: pointer;
+  font-size: 1.2em;
+}
 
 table {
   border-collapse: collapse;
   width: 90%;
-  margin: 5px 0px 5px 20px ;
+  margin: 5px 0px 5px 20px;
   overflow-y: scroll;
 }
 
-th {
-  text-align: left;
-  padding: 10px 10px 10px 3px;
+.tableNameLink {
+  text-decoration: none;
+  color: black;
+}
+
+.tableNameLink:hover {
+  text-decoration: underline;
+  color: darksalmon;
 }
 
 td {
@@ -213,31 +216,60 @@ td {
   font-size: 18px;
 }
 
+th {
+  text-align: left;
+  padding: 10px 10px 10px 3px;
+}
+
 tr:nth-child(even) {
-    background-color: #f2f2f2a1;
-  }
+  background-color: #f2f2f2a1;
+}
 
-  .tableNameLink{
-    text-decoration: none;
-    color:black;
-  }
+.ulMenuContainer {
+  list-style: none;
+  padding-left: 10px;
+}
 
-  .tableNameLink:hover{
-    text-decoration: underline;
-    color: darksalmon;
-  }
+.ulMenuContainer li {
+  padding-bottom: 20px;
+}
 
-  .deleteButton{
-    cursor: pointer;
-    background-color: transparent;
-    border: none;
-    font-size: 20px;
-  }
+.userName {
+  padding: 0;
+  margin: 0;
+  color: darksalmon;
+  font-size: 30px;
+  font-weight: 600;
+}
 
-  .fa-folder, .fa-file{
-    font-size: 25px;
-    opacity: 0.7;
-    color: #265b7e;
-  }
+.userNameDiv {
+  padding: 0;
+  position: absolute;
+  top: 40%;
+  right: 10px;
+  margin: 0;
+}
 
- 
+.userName span {
+  color: darksalmon;
+  font-weight: 200;
+  font-size: 25px;
+}
+
+.uploadFileInput {
+  display: none;
+}
+
+.uploadFileInputLabel,
+.addFolderInputLabel,
+.homeLinkSidebar {
+  cursor: pointer;
+  text-decoration: underline;
+  color: black;
+}
+
+.uploadFileInputLabel:hover,
+.addFolderInputLabel:hover,
+.homeLinkSidebar:hover {
+  color: darksalmon;
+}

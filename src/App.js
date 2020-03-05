@@ -20,9 +20,10 @@ function App() {
         <Route path="/home" component={Home} />
         <Route path="/auth" component={Auth} />
         <Route path="/login" component={Login} />
-        <Route path="/folder" component={Folder} />
+        <Route path="/folder/:id" component={Folder} />
       </div>
     </Router>
   );
 }
 export default App;
+
