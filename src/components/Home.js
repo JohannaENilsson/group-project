@@ -38,11 +38,11 @@ export default function Home() {
   useEffect(() => {
     getFiles();
 
-/*     const interval = setInterval(() => {
+    const interval = setInterval(() => {
       getFiles();      
-    }, 3000);
+    }, 20000);
 
-    return () => clearInterval(interval); */
+    return () => clearInterval(interval);
   }, []);
 
   console.log("STARLIST", starList);
