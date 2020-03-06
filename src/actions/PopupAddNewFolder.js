@@ -13,11 +13,7 @@ export default function PopupAddNewFolder({ token, handleCancelAddNewFolder, get
     setInputValue(e.target.value);
   };
 
-  const handleSubmit = e => {
-    e.preventDefault();
-    handleAddNewFolder(inputValue);
-  };
-
+ 
     const handleSubmit = (e) => {
         e.preventDefault();
         handleAddNewFolder(inputValue);
