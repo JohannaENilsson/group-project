@@ -4,7 +4,11 @@ import { Link, useHistory, useLocation } from "react-router-dom";
 
 import { token$, star$, updateStar } from "./Store.js";
 import MapAllFiles from "../actions/MapAllFiles";
+<<<<<<< HEAD
 import PopupAddNewFolder from "../actions/PopupAddNewFolder";
+=======
+
+>>>>>>> 0c61681255f84cebebc56592f7a7aa43826279bd
 
 export default function InnerContainer({
   fileList,

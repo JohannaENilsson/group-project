@@ -24,7 +24,7 @@ export default function DeleteFile({
 
   const handleDelete = e => {
     dbx
-      .filesDeleteV2({ path: path })
+      .filesDeleteV2({ path })
       .then(function(response) {
         onDelete(response.metadata.id);
         console.log("response.metadata.id", response.metadata.id)

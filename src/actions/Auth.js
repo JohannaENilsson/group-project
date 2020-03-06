@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Dropbox } from 'dropbox';
 import { updateToken } from '../components/Store';
 import { Redirect } from 'react-router-dom';
 import queryString from 'query-string';

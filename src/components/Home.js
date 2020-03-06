@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Redirect, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { Dropbox } from "dropbox";
-import { token$ } from "./Store";
 
+import { token$ } from "./Store";
 import Header from "./Header.js";
 import Sidebar from "./Sidebar";
 import InnerContainer from "./InnerContainer";
@@ -10,11 +10,13 @@ import GetAllFiles from "../actions/GetAllFiles";
 
 export default function Home() {
   const [fileList, updateFileList] = useState(null);
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState("")
   const [showStarIsClicked, setShowStarIsClicked] = useState(false);
 
+  var dbx = new Dropbox({ accessToken: token$.value, fetch });
+  
   let location = useLocation();
-  console.log("location ", location);
+  console.log('location ', location);
 
   function getFiles(currentLocation) {
     GetAllFiles(currentLocation)
@@ -40,15 +42,21 @@ export default function Home() {
     return () => clearInterval(interval);
   }, [location]);
 
-  function searchFilesAndFolders(inputValue) {
-    /*   dbx
+
+//  Denna är under konstruktion! Vill ni försöka rätta till denna så gör gärna det:) 
+function searchFilesAndFolders(inputValue, fileList) {
+
+       dbx
         .filesSearch({ path: "", query: query })
         .then((response) => {
-        }) */
-    console.log(inputValue);
-  }
-
-  function shouldStarListShow(childData) {
+          setQuery(response)
+          console.log(response.matches);
+        })
+        .catch((error) => {
+          console.log(error);
+        })     
+}
+ function shouldStarListShow(childData) {
     console.log("childData", childData);
     setShowStarIsClicked(true);
   }

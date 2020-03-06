@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { updateToken, updateStar, token$ } from "./Store";
 import { Redirect } from "react-router-dom";
+import { FaSignOutAlt } from 'react-icons/fa';
 
 
 export default function Logout() {
@@ -23,8 +24,7 @@ export default function Logout() {
 
   return (
     <button className="logoutButton" onClick={handleLogout}>
-      
-      <i className="fa fa-sign-out"></i>
+      <FaSignOutAlt />
     </button>
 
   );
