@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { Dropbox } from 'dropbox';
 
 export default function UploadFile({ token, getFiles }) {
   const [file, setFile] = useState(null);
+
+  const location = useLocation(); // använd för breadcrums
+  let breadcrums = location.pathname.slice(5);
+  console.log('path ', breadcrums);
 
   const handleUploadFile = e => {
     if (e.target.files.length > 0) {
@@ -12,10 +17,10 @@ export default function UploadFile({ token, getFiles }) {
 
       // TODO: Update path
       dbx
-        .filesUpload({ path: '/' + file.name, contents: file })
+        .filesUpload({ path: `${breadcrums}/` + file.name, contents: file })
         .then(function(resp) {
           // console.log(resp);
-          getFiles();
+          getFiles(location);
         })
         .catch(function(error) {
           console.log('could not upload file ', error);

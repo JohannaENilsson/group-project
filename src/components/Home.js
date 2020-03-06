@@ -20,6 +20,7 @@ export default function Home() {
   
 
   function getFiles(currentLocation) {
+    console.log('locations home', currentLocation );
     GetAllFiles(currentLocation) /// skicka in path
     .then(function(response) {
       updateFileList(response.entries);

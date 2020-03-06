@@ -16,6 +16,7 @@ export default function Folder() {
 
 
   function getFiles(currentLocation) {
+    console.log('locations folder', currentLocation );
     GetAllFiles(currentLocation) /// skicka in path
     .then(function(response) {
       updateFileList(response.entries);
