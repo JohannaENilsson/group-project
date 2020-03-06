@@ -9,6 +9,7 @@ import InnerContainer from './InnerContainer';
 
 export default function Folder() {
   const [fileList, updateFileList] = useState(null);
+  const [query, setQuery] = useState("")
 
   let location = useLocation();
 
@@ -27,6 +28,15 @@ export default function Folder() {
 
   function onDelete(id) {
     updateFileList(fileList.filter(x => x.id !== id));
+  }
+
+  function searchFilesAndFolders() {
+    dbx
+      .filesSearch({ path: "", query: query })
+      .then((response) => {
+        console.log(response);
+      })
+      
   }
 
   useEffect(() => {
@@ -49,6 +59,7 @@ export default function Folder() {
           onDelete={onDelete}
           fileList={fileList}
           getFiles={getFiles}
+          searchFilesAndFolders={searchFilesAndFolders}
         />
       </div>
     </div>
