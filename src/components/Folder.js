@@ -1,22 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { Dropbox } from 'dropbox';
+
 import { token$ } from './Store.js';
 
 import Header from './Header.js';
 import Sidebar from './Sidebar';
 import InnerContainer from './InnerContainer';
+import GetAllFiles from '../actions/GetAllFiles';
 
 export default function Folder() {
   const [fileList, updateFileList] = useState(null);
 
   let location = useLocation();
-
-  var dbx = new Dropbox({ accessToken: token$.value, fetch });
+  // console.log('location ', location);
 
   function getFiles(currentLocation) {
-    dbx
-      .filesListFolder({ path: `/${currentLocation}` })
+    // console.log('locations folder', currentLocation);
+    GetAllFiles(currentLocation)
       .then(function(response) {
         updateFileList(response.entries);
       })
@@ -30,12 +30,7 @@ export default function Folder() {
   }
 
   useEffect(() => {
-    let currentLocation = location.pathname
-      .split('/')
-      .splice(2)
-      .join('/');
-    // console.log(currentLocation);
-    getFiles(currentLocation);
+    getFiles(location);
   }, [location]);
 
   return (

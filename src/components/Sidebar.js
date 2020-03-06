@@ -29,7 +29,7 @@ export default function Sidebar({ token, getFiles }) {
             <UploadFile token={token} getFiles={getFiles} />
           </li>
           <li>
-            <AddNewFolder token={token} onClick={handleAddFolder} />
+            <AddNewFolder token={token} onClick={handleAddFolder} getFiles={getFiles}/>
           </li>
           <li>
             <p onClick={clickShowStarred}>Show starred list</p>

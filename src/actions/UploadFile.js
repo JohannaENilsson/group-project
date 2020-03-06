@@ -1,21 +1,23 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useLocation } from 'react-router-dom';
 import { Dropbox } from 'dropbox';
 
 export default function UploadFile({ token, getFiles }) {
-  const [file, setFile] = useState(null);
+
+  const location = useLocation();
+  let breadcrums = location.pathname.slice(5); // plockar bort 'home/'
+  // console.log('path ', breadcrums);
 
   const handleUploadFile = e => {
     if (e.target.files.length > 0) {
       const file = e.target.files[0];
-      console.log(file);
+      // console.log(file);
       const dbx = new Dropbox({ accessToken: token });
 
-      // TODO: Update path
       dbx
-        .filesUpload({ path: '/' + file.name, contents: file })
+        .filesUpload({ path: `${breadcrums}/${file.name}`, contents: file })
         .then(function(resp) {
-          // console.log(resp);
-          getFiles();
+          getFiles(location);
         })
         .catch(function(error) {
           console.log('could not upload file ', error);

@@ -33,31 +33,18 @@ export default function InnerContainer({ fileList, getFiles, onDelete }) {
     <div className="innerContainer">
       {breadcrums.map(path => {
         linkToUrl += `/${path}`;
-        console.log("Curr url ", linkToUrl);
-
-        if (path === "folder") {
-          return (
-            <div key={"Home"}>
-              <Link to={`/home`}>Home</Link>
-            </div>
-          );
-        } else {
-          return (
-            <div key={path}>
-              <Link to={`${linkToUrl}`}>{path}</Link>
-            </div>
-          );
-        }
+        return (
+          <div key={path}>
+            <Link to={`${linkToUrl}`}>{path}</Link>
+          </div>
+        );
       })}
-      <h2 className="innerContainerTitle"></h2>
-      <GetAllFiles
-        onDelete={onDelete}
-        fileList={fileList}
-        getFiles={getFiles}
-        onClickStar={onClickStar}
-        onClickStarRemove={onClickStarRemove}
-        starList={starList}
-      />
+      <h2 className='innerContainerTitle'></h2>
+      {fileList === null ? (
+        <p>Loading files..</p>
+      ) : (
+        <MapAllFiles onDelete={onDelete} fileList={fileList} onClickStar={onClickStar}/>
+      )}
     </div>
   );
 }
