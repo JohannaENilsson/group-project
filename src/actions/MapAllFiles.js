@@ -7,18 +7,28 @@ import StarFileOrFolder from "./StarFileOrFolder";
 import DeleteFile from "./DeleteFile";
 import GetFileType from "./GetFileType";
 
-const dbx = new Dropbox({ accessToken: token$.value, fetch });
-
-
 export default function MapAllFiles({
   fileList,
   onDelete,
   onClickStar,
   onClickStarRemove,
-  starList
+  starList,
+  showStarIsClicked
 }) {
-  const mappedList = fileList.map((file, idx) => {
+  const dbx = new Dropbox({ accessToken: token$.value, fetch });
+  console.log("showStarIsClicked", showStarIsClicked, starList);
 
+  if (showStarIsClicked) {
+    console.log("filelist i star is clicked", fileList);
+
+    
+
+    //starList.filter(file => file.id === starList)
+    // x antal funktioner här
+    // return fileList som har blivit reducerad
+  }
+
+  const mappedList = fileList.map((file, idx) => {
     return (
       <tr key={file.id}>
         <td>{<GetFileType file={file} />}</td>
@@ -45,6 +55,7 @@ export default function MapAllFiles({
             onDelete={onDelete}
             path={file.path_lower}
             name={file.name}
+            onClickStarRemove={onClickStarRemove}
           />
         </td>
         <td>
@@ -62,12 +73,8 @@ export default function MapAllFiles({
     );
   });
 
-  
-
   return (
     <>
-
-    
       {!fileList ? (
         <p>List is empty. Upload a file or add a new folder</p>
       ) : (
@@ -105,6 +112,8 @@ function dateFormat(date) {
 }
 
 function downloadFileRequest(file) {
+  const dbx = new Dropbox({ accessToken: token$.value, fetch });
+
   dbx
     .filesGetTemporaryLink({ path: file.path_lower })
     .then(function(response) {

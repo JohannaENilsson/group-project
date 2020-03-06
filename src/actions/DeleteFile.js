@@ -1,10 +1,15 @@
-import React, { useState } from 'react';
-import { Dropbox } from 'dropbox';
+import React, { useState } from "react";
+import { Dropbox } from "dropbox";
 
-import { token$ } from '../components/Store';
-import PopupDeleteFile from './PopupDeleteFile';
+import { token$ } from "../components/Store";
+import PopupDeleteFile from "./PopupDeleteFile";
 
-export default function DeleteFile({ name, path, onDelete }) {
+export default function DeleteFile({
+  name,
+  path,
+  onDelete,
+  onClickStarRemove
+}) {
   const [showPopup, setShowPopup] = useState(false);
 
   const handleDeleteFilePopUp = () => {
@@ -22,18 +27,19 @@ export default function DeleteFile({ name, path, onDelete }) {
       .filesDeleteV2({ path: path })
       .then(function(response) {
         onDelete(response.metadata.id);
+        console.log("response.metadata.id", response.metadata.id)
+        onClickStarRemove(response.metadata.id);
       })
+
       .catch(function(error) {
-        console.log('could not delete file ', error);
+        console.log("could not delete file ", error);
       });
   };
 
-
   return (
-
     <>
       <button onClick={e => handleDeleteFilePopUp(e)}>
-        <i className='fa fa-trash'></i>
+        <i className="fa fa-trash"></i>
       </button>
 
       {showPopup ? (

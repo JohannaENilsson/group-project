@@ -28,5 +28,5 @@ export default function GetFileType({ file }) {
     return <img src={url} alt={file.name}></img>;
   } else if (file['.tag'] === 'file') {
     return <i className='fa fa-file'></i>;
-  }
+  } else return <p>No pic</p>;
 }

@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+
 import UploadFile from "../actions/UploadFile";
 import AddNewFolder from "../actions/AddNewFolder";
 
-export default function Sidebar({ token, getFiles }) {
+export default function Sidebar({ token, getFiles, shouldStarListShow }) {
   const [addFolderPopUp, setAddFolderPopUp] = useState(false);
 
   const handleAddFolder = () => {
@@ -13,6 +14,8 @@ export default function Sidebar({ token, getFiles }) {
 
   function clickShowStarred() {
     console.log("clicked starred");
+    shouldStarListShow("show some stars")
+
   }
 
   return (

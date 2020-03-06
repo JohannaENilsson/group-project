@@ -4,10 +4,14 @@ import { Link, useHistory, useLocation } from "react-router-dom";
 
 import { token$, star$, updateStar } from "./Store.js";
 import MapAllFiles from "../actions/MapAllFiles";
-
 import PopupAddNewFolder from "../actions/PopupAddNewFolder";
 
-export default function InnerContainer({ fileList, getFiles, onDelete }) {
+export default function InnerContainer({
+  fileList,
+  getFiles,
+  onDelete,
+  showStarIsClicked
+}) {
   const [starList, updateStarList] = useState(star$.value);
   const history = useHistory(); // använd för breadcrums
 
@@ -30,8 +34,9 @@ export default function InnerContainer({ fileList, getFiles, onDelete }) {
 
   console.log("starlist -->", starList);
 
-  console.log(fileList);
-  
+  //console.log(fileList);
+  console.log("showStarIsClicked", showStarIsClicked);
+
   return (
     <div className="innerContainer">
       {breadcrums.map(path => {
@@ -43,6 +48,16 @@ export default function InnerContainer({ fileList, getFiles, onDelete }) {
         );
       })}
       <h2 className="innerContainerTitle"></h2>
+{/*       {showStarIsClicked && (
+        <MapAllFiles
+          onDelete={onDelete}
+          fileList={fileList}
+          onClickStar={onClickStar}
+          onClickStarRemove={onClickStarRemove}
+          starList={starList}
+          showStarIsClicked={showStarIsClicked}
+        />
+      )} */}
       {fileList === null ? (
         <p>Loading files..</p>
       ) : (
@@ -52,6 +67,7 @@ export default function InnerContainer({ fileList, getFiles, onDelete }) {
           onClickStar={onClickStar}
           onClickStarRemove={onClickStarRemove}
           starList={starList}
+          showStarIsClicked={showStarIsClicked}
         />
       )}
     </div>
