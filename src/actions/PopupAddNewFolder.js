@@ -1,28 +1,38 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
+import { useLocation } from 'react-router-dom';
 import { Dropbox } from 'dropbox';
 
+export default function PopupAddNewFolder({ token, handleCancelAddNewFolder, getFiles }) {
+  const [inputValue, setInputValue] = useState('');
 
-export default function PopupAddNewFolder({ token,handleCancelAddNewFolder }) {
-    const [inputValue, setInputValue] = useState("");
+  const location = useLocation();
+  let breadcrums = location.pathname.slice(5); // plockar bort 'home/'
+  
+  const handleChange = e => {
+    setInputValue(e.target.value);
+  };
 
-    const handleChange = (e) => {
-        setInputValue(e.target.value);
-    }
+  const handleSubmit = e => {
+    e.preventDefault();
+    handleAddNewFolder(inputValue);
+  };
 
     const handleSubmit = (e) => {
         e.preventDefault();
         handleAddNewFolder(inputValue);
     }
-    
-    const handleAddNewFolder = (folderName) => {
+
+
+    const handleAddNewFolder = folderName => {
         const dbx = new Dropbox({ accessToken: token, fetch });
         dbx
-            .filesCreateFolderV2({ path: "/" + folderName, autorename: true })
-            .then(() => {
-                handleCancelAddNewFolder();
-            });
-    }
+          .filesCreateFolderV2({ path: `${breadcrums}/${folderName}`, autorename: true })
+          .then(() => {
+            handleCancelAddNewFolder();
+            getFiles(location);
+          });
+      };
     
     return ReactDOM.createPortal((
         <div className="popupBackground">
@@ -41,3 +51,4 @@ export default function PopupAddNewFolder({ token,handleCancelAddNewFolder }) {
         </div>
     ), document.body);
 }
+
