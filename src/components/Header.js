@@ -9,8 +9,7 @@ export default function Header({ searchFilesAndFolders }) {
       <h1 className='headerTitle'>Drop<span>box</span></h1>
       <Logout />
       <GetUserAccount />
-      <Search
-      searchFilesAndFolders={searchFilesAndFolders} />
+      <Search searchFilesAndFolders={searchFilesAndFolders} />
     </header>
   );
 }

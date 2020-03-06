@@ -14,12 +14,9 @@ export default function Folder() {
 
   var dbx = new Dropbox({ accessToken: token$.value, fetch });
 
-
   let location = useLocation();
-  // console.log('location ', location);
 
   function getFiles(currentLocation) {
-    // console.log('locations folder', currentLocation);
     GetAllFiles(currentLocation)
       .then(function(response) {
         updateFileList(response.entries);
@@ -33,22 +30,24 @@ export default function Folder() {
     updateFileList(fileList.filter(x => x.id !== id));
   }
 
-  function searchFilesAndFolders() {
-    dbx
+  function searchFilesAndFolders(inputValue) {
+  /*   dbx
       .filesSearch({ path: "", query: query })
       .then((response) => {
-        console.log(response);
-      })
-      
+      }) */
+      console.log(inputValue);
   }
 
   useEffect(() => {
     getFiles(location);
   }, [location]);
 
+  console.log("HEJ", searchFilesAndFolders);
+
   return (
     <div>
-      <Header />
+      <Header
+      searchFilesAndFolders={searchFilesAndFolders} />
       <div className='outerContainer'>
         <div className='sidebarContainer'>
           <Sidebar token={token$.value} getFiles={getFiles} />
@@ -57,7 +56,6 @@ export default function Folder() {
           onDelete={onDelete}
           fileList={fileList}
           getFiles={getFiles}
-          searchFilesAndFolders={searchFilesAndFolders}
         />
       </div>
     </div>

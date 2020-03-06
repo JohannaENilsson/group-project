@@ -9,7 +9,6 @@ export default function AddNewFolder({ token, getFiles }) {
     const handleAddNewFolderPopup = () => {
         setShowPopup(true);
         setFolder(folder);
-        
     }
 
     const handleCancelAddNewFolder = () => {

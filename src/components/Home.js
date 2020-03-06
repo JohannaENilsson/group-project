@@ -34,17 +34,21 @@ export default function Home() {
   useEffect(() => {
     getFiles(location);
 
-/*     const interval = setInterval(() => {
-      getFiles();      
+    const interval = setInterval(() => {
+    getFiles(location);      
     }, 20000);
 
-    return () => clearInterval(interval); */
+    return () => clearInterval(interval); 
   }, [location]);
 
+ 
+function searchFilesAndFolders() {
+  console.log("HEJ");
+}
 
 return (
     <div>
-      <Header />
+      <Header searchFilesAndFolders={searchFilesAndFolders} />
       <div className="outerContainer">
         <div className="sidebarContainer">
           <Sidebar token={token$.value} getFiles={getFiles} />

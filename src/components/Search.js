@@ -6,7 +6,9 @@ export default function Search({ searchFilesAndFolders }) {
 
   const onChangeSearch = (e) => {
     setsearchInput(e.target.value);
-    console.log(searchInput);
+    console.log(searchInput); 
+    
+    console.log(searchFilesAndFolders);
   }
 
 

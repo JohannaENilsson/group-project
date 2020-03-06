@@ -3,7 +3,6 @@ import { updateToken, updateStar, token$ } from "./Store";
 import { Redirect } from "react-router-dom";
 
 
-
 export default function Logout() {
   const [token, setToken] = useState(token$.value);
 

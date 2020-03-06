@@ -40,7 +40,7 @@ export default function PopupAddNewFolder({ token, handleCancelAddNewFolder, get
                     </form>
                     </div>
                     <div className="popupWindowButtonContainer">
-                        <button className="popupAddAndCancelButton" type="submit">Add folder</button>
+                        <button className="popupAddAndCancelButton" onClick={handleSubmit} type="submit">Add folder</button>
                         <button className="popupAddAndCancelButton" onClick={handleCancelAddNewFolder}>Cancel</button>
                     </div>
             </div>
