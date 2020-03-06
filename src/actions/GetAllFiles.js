@@ -1,5 +1,4 @@
 import { Dropbox } from 'dropbox';
-
 import { token$ } from '../components/Store';
 
 export default function GetAllFiles(path) {

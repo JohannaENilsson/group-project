@@ -8,8 +8,7 @@ import PopupAddNewFolder from '../actions/PopupAddNewFolder';
 
 export default function InnerContainer({ fileList, getFiles, onDelete,onClickStar }) {
   const history = useHistory(); // använd för breadcrums
-  let breadcrums = history.location.pathname.split('/').splice(2);
-  console.log(history);
+  let breadcrums = history.location.pathname.split('/').splice(1);
   let linkToUrl = '';
 
   return (
