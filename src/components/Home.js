@@ -46,7 +46,6 @@ export default function Home() {
           onDelete={onDelete}
           fileList={fileList}
           getFiles={getFiles}
-          onClickStar={onClickStar}
         />
       </div>
     </div>

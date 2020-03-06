@@ -3,7 +3,8 @@ import { Dropbox } from "dropbox";
 import { Link, useHistory, useLocation } from "react-router-dom";
 
 import { token$, star$, updateStar } from "./Store.js";
-import GetAllFiles from "../actions/GetAllFiles";
+import MapAllFiles from "../actions/MapAllFiles";
+
 import PopupAddNewFolder from "../actions/PopupAddNewFolder";
 
 export default function InnerContainer({ fileList, getFiles, onDelete }) {
@@ -39,11 +40,17 @@ export default function InnerContainer({ fileList, getFiles, onDelete }) {
           </div>
         );
       })}
-      <h2 className='innerContainerTitle'></h2>
+      <h2 className="innerContainerTitle"></h2>
       {fileList === null ? (
         <p>Loading files..</p>
       ) : (
-        <MapAllFiles onDelete={onDelete} fileList={fileList} onClickStar={onClickStar}/>
+        <MapAllFiles
+          onDelete={onDelete}
+          fileList={fileList}
+          onClickStar={onClickStar}
+          onClickStarRemove={onClickStarRemove}
+          starList={starList}
+        />
       )}
     </div>
   );
