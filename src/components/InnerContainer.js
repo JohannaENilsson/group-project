@@ -1,11 +1,11 @@
-import React, { useState } from "react";
-import { Dropbox } from "dropbox";
-import { Link, useHistory, useLocation } from "react-router-dom";
+import React, { useState } from 'react';
+import { Dropbox } from 'dropbox';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 
-import { token$, star$, updateStar } from "./Store.js";
-import MapAllFiles from "../actions/MapAllFiles";
+import { token$, star$, updateStar } from './Store.js';
+import MapAllFiles from '../actions/MapAllFiles';
 
-import PopupAddNewFolder from "../actions/PopupAddNewFolder";
+import PopupAddNewFolder from '../actions/PopupAddNewFolder';
 
 export default function InnerContainer({
   fileList,
@@ -16,8 +16,8 @@ export default function InnerContainer({
   const [starList, updateStarList] = useState(star$.value);
   const history = useHistory(); // använd för breadcrums
 
-  let breadcrums = history.location.pathname.split("/").splice(1);
-  let linkToUrl = "";
+  let breadcrums = history.location.pathname.split('/').splice(1);
+  let linkToUrl = '';
 
   function onClickStar(id) {
     updateStar([id, ...starList]); //store, sparar till localStorage
@@ -33,13 +33,13 @@ export default function InnerContainer({
     updateStarList(removed);
   }
 
-  console.log("starlist -->", starList);
+  console.log('starlist -->', starList);
 
   //console.log(fileList);
-  console.log("showStarIsClicked", showStarIsClicked);
+  console.log('showStarIsClicked', showStarIsClicked);
 
   return (
-    <div className="innerContainer">
+    <div className='innerContainer'>
       {breadcrums.map(path => {
         linkToUrl += `/${path}`;
         return (
@@ -48,17 +48,8 @@ export default function InnerContainer({
           </div>
         );
       })}
-      <h2 className="innerContainerTitle"></h2>
-{/*       {showStarIsClicked && (
-        <MapAllFiles
-          onDelete={onDelete}
-          fileList={fileList}
-          onClickStar={onClickStar}
-          onClickStarRemove={onClickStarRemove}
-          starList={starList}
-          showStarIsClicked={showStarIsClicked}
-        />
-      )} */}
+      <h2 className='innerContainerTitle'></h2>
+
       {fileList === null ? (
         <p>Loading files..</p>
       ) : (
