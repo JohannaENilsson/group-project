@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Redirect, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { Dropbox } from "dropbox";
-import { token$ } from "./Store";
 
+import { token$ } from "./Store";
 import Header from "./Header.js";
 import Sidebar from "./Sidebar";
 import InnerContainer from "./InnerContainer";
@@ -10,13 +10,12 @@ import GetAllFiles from '../actions/GetAllFiles';
 
 export default function Home() {
   const [fileList, updateFileList] = useState(null);
-  const [starList, updateStarList] = useState([]);
   const [query, setQuery] = useState("")
 
-
+  var dbx = new Dropbox({ accessToken: token$.value, fetch });
+  
   let location = useLocation();
   console.log('location ', location);
- 
 
   function getFiles(currentLocation) {
     GetAllFiles(currentLocation)
@@ -27,7 +26,6 @@ export default function Home() {
       console.error("Can´t get files ", error);
     });
   }
-
 
   function onDelete(id) {
     updateFileList(fileList.filter(x => x.id !== id));
@@ -43,15 +41,19 @@ export default function Home() {
     return () => clearInterval(interval); 
   }, [location]);
 
- 
-function searchFilesAndFolders(inputValue) {
 
-    /*   dbx
+//  Denna är under konstruktion! Vill ni försöka rätta till denna så gör gärna det:) 
+function searchFilesAndFolders(inputValue, fileList) {
+
+       dbx
         .filesSearch({ path: "", query: query })
         .then((response) => {
-        }) */
-        console.log(inputValue);
-    
+          setQuery(response)
+          console.log(response.matches);
+        })
+        .catch((error) => {
+          console.log(error);
+        })     
 }
 
 return (

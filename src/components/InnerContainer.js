@@ -5,7 +5,6 @@ import { Link, useHistory, useLocation } from "react-router-dom";
 import { token$, star$, updateStar } from "./Store.js";
 import MapAllFiles from "../actions/MapAllFiles";
 
-import PopupAddNewFolder from "../actions/PopupAddNewFolder";
 
 export default function InnerContainer({ fileList, getFiles, onDelete }) {
   const [starList, updateStarList] = useState(star$.value);
@@ -27,8 +26,6 @@ export default function InnerContainer({ fileList, getFiles, onDelete }) {
     updateStar(removed);
     updateStarList(removed);
   }
-
-  console.log("starlist -->", starList);
 
   console.log(fileList);
   
