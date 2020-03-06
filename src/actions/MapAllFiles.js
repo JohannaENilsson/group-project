@@ -61,9 +61,11 @@ export default function MapAllFiles({
     );
   });
 
+  
+
   return (
     <>
-    
+
     
       {!fileList ? (
         <p>List is empty. Upload a file or add a new folder</p>
@@ -84,7 +86,6 @@ export default function MapAllFiles({
   );
 }
 
-// LÅT DENNA FUNKTION VARA / ANNA
 function sizeFormat(byte) {
   if (!byte) return "-";
   else if (byte > 100 && byte < 999999) {
@@ -96,15 +97,11 @@ function sizeFormat(byte) {
   }
 }
 
-// LÅT NEDAN FUNKTION VARA / ANNA
-
 function dateFormat(date) {
   if (!date) return "-";
   let newdate = new Date(date);
   return `${newdate.toLocaleDateString()}, ${newdate.toLocaleTimeString()}`;
 }
-
-// LÅT NEDAN FUNKTION VARA / ANNA
 
 function downloadFileRequest(file) {
   dbx

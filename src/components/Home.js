@@ -10,11 +10,10 @@ import GetAllFiles from '../actions/GetAllFiles';
 
 export default function Home() {
   const [fileList, updateFileList] = useState(null);
-  const [starList, updateStarList] = useState([]);
+  //const [starList, updateStarList] = useState([]);
 
   let location = useLocation();
   console.log('location ', location);
- 
 
   function getFiles(currentLocation) {
     GetAllFiles(currentLocation)
@@ -25,7 +24,6 @@ export default function Home() {
       console.error("Can´t get files ", error);
     });
   }
-
 
   function onDelete(id) {
     updateFileList(fileList.filter(x => x.id !== id));

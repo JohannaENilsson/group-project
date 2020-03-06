@@ -29,7 +29,6 @@ export default function DeleteFile({ name, path, onDelete }) {
   };
 
 
-// LAGT TILL KLASS PÅ KNAPPEN PGA STYLING, LÅT VARA :)/ANNA
   return (
 
     <>
