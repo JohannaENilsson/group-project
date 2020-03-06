@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Redirect } from "react-router-dom";
 import { Dropbox } from "dropbox";
-
-import { token$, updateStar, star$ } from "./Store";
+import { token$ } from "./Store";
 
 import Header from "./Header.js";
 import Sidebar from "./Sidebar";
@@ -10,7 +9,6 @@ import InnerContainer from "./InnerContainer";
 
 export default function Home() {
   const [fileList, updateFileList] = useState(null);
-  const [starList, updateStarList] = useState([]);
   const [filePath, setFilePath] = useState(["home"]);
 
   var dbx = new Dropbox({ accessToken: token$.value, fetch });
@@ -30,17 +28,9 @@ export default function Home() {
     updateFileList(fileList.filter(x => x.id !== id));
   }
 
-  function onClickStar(id) {
-    updateStar([id, ...starList]); //store, sparar till localStorage
-    updateStarList([...starList, id]); //state
-  }
-
   useEffect(() => {
     getFiles();
   }, []);
-
-  console.log("STARLIST", starList);
-  console.log("stars value", star$._value);
 
   return (
     <div>
@@ -53,7 +43,6 @@ export default function Home() {
           onDelete={onDelete}
           fileList={fileList}
           getFiles={getFiles}
-          onClickStar={onClickStar}
           filePath={filePath}
         />
       </div>

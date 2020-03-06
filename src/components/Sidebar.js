@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import UploadFile from "../actions/UploadFile";
 import AddNewFolder from "../actions/AddNewFolder";
-import ShowStarList from "../actions/ShowStarList";
 
 export default function Sidebar({ token, getFiles }) {
   const [addFolderPopUp, setAddFolderPopUp] = useState(false);
@@ -11,6 +10,10 @@ export default function Sidebar({ token, getFiles }) {
     setAddFolderPopUp(true);
     console.log("Click");
   };
+
+  function clickShowStarred() {
+    console.log("clicked starred");
+  }
 
   return (
     <div>
@@ -29,7 +32,7 @@ export default function Sidebar({ token, getFiles }) {
             <AddNewFolder token={token} onClick={handleAddFolder} />
           </li>
           <li>
-            <ShowStarList />
+            <p onClick={clickShowStarred}>Show starred list</p>
           </li>
         </ul>
       </div>
