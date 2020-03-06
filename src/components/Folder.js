@@ -12,31 +12,24 @@ export default function Folder() {
   const [fileList, updateFileList] = useState(null);
 
   let location = useLocation();
-  console.log('location ', location);
-
+  // console.log('location ', location);
 
   function getFiles(currentLocation) {
-    console.log('locations folder', currentLocation );
-    GetAllFiles(currentLocation) /// skicka in path
-    .then(function(response) {
-      updateFileList(response.entries);
-    })
-    .catch(function(error) {
-      console.error("Can´t get files ", error);
-    });
+    // console.log('locations folder', currentLocation);
+    GetAllFiles(currentLocation)
+      .then(function(response) {
+        updateFileList(response.entries);
+      })
+      .catch(function(error) {
+        console.error('Can´t get files ', error);
+      });
   }
-
 
   function onDelete(id) {
     updateFileList(fileList.filter(x => x.id !== id));
   }
 
   useEffect(() => {
-    // let currentLocation = location.pathname
-      // .split('/')
-      // .splice(2)
-      // .join('/');
-    // console.log(currentLocation);
     getFiles(location);
   }, [location]);
 

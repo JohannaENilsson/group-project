@@ -12,7 +12,6 @@ import GetAllFiles from '../actions/GetAllFiles';
 export default function Home() {
   const [fileList, updateFileList] = useState(null);
   const [starList, updateStarList] = useState([]);
-  const [filePath, setFilePath] = useState(["home"]);
 
   let location = useLocation();
   console.log('location ', location);
@@ -20,8 +19,7 @@ export default function Home() {
   
 
   function getFiles(currentLocation) {
-    console.log('locations home', currentLocation );
-    GetAllFiles(currentLocation) /// skicka in path
+    GetAllFiles(currentLocation)
     .then(function(response) {
       updateFileList(response.entries);
     })
@@ -59,7 +57,6 @@ export default function Home() {
           fileList={fileList}
           getFiles={getFiles}
           onClickStar={onClickStar}
-          filePath={filePath}
         />
       </div>
     </div>
