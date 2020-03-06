@@ -1,7 +1,7 @@
 .App {
   height: 100vh;
   position: relative;
-  width: 100%;
+  width: 100vw;
   box-sizing: border-box;
 }
 
@@ -12,7 +12,7 @@
   color: #265b7e;
 }
 
-.fa-search{
+.search{
   color: darksalmon;
   font-size: 20px;
   padding-left: 5px;
@@ -92,29 +92,32 @@ header {
 
 .outerContainer {
   width: 100vw;
-  height: 500px;
+  height: 100vh;
   display: flex;
-  margin: 3px;
 }
 
 .pageTitle {
   margin: 0px;
 }
 
-.popupAddFolderButton {
-  border-radius: 8px;
-  width: 100px;
-  height: 30px;
-  margin-left: 10px;
+.popupBackground {
+  min-width: 100vw;
+  min-height: 100vh;
+  max-height: 1000px;
+  backdrop-filter: blur(6px);
+  position: absolute;
+  top: 160px;
+}
+
+.popupDeleteP {
+  margin: 20px;
 }
 
 .popupWindow {
   position: absolute;
   translate: transformY(-50%);
   left: 35%;
-  top: 50%;
-  width: 500px;
-  height: 400px;
+  top: 15%;
   background-color: white;
   border: 1px solid darksalmon;
   border-radius: 8px;
@@ -123,12 +126,15 @@ header {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 320px;
+  height: 200px;
 }
 
-.popupWindowButton {
+.popupAddAndCancelButton {
   border-radius: 8px;
   width: 80px;
   height: 30px;
+  margin: 20px;
 }
 
 .popupWindowButtonContainer {
@@ -136,14 +142,12 @@ header {
 }
 
 .popupWindowContainer {
-  width: 300px;
-  height: 300px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.searchInput {
+.searchAndAddNewFolderInput {
   outline: none;
   border-radius: 8px;
   border: 1px solid darksalmon;
@@ -151,6 +155,10 @@ header {
   height: 25px;
   background-color: transparent;
   font-size: 16px;
+}
+
+.folder {
+  margin: 20px;
 }
 
 .searchInput::placeholder{
@@ -161,8 +169,10 @@ header {
 .searchInputDiv {
   position: absolute;
   left: 12%;
-  bottom: 0px;
+  top: 65%;
   width: 250px;
+  display: flex;
+  align-items: center;
 }
 
 .sidebarContainer {
@@ -261,3 +271,4 @@ tr:nth-child(even) {
 .homeLinkSidebar:hover {
   color: darksalmon;
 }
+

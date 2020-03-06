@@ -30,6 +30,8 @@ export default function InnerContainer({ fileList, getFiles, onDelete }) {
 
   console.log("starlist -->", starList);
 
+  console.log(fileList);
+  
   return (
     <div className="innerContainer">
       {breadcrums.map(path => {

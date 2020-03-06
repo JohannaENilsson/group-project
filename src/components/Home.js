@@ -10,7 +10,9 @@ import GetAllFiles from '../actions/GetAllFiles';
 
 export default function Home() {
   const [fileList, updateFileList] = useState(null);
-  //const [starList, updateStarList] = useState([]);
+  const [starList, updateStarList] = useState([]);
+  const [query, setQuery] = useState("")
+
 
   let location = useLocation();
   console.log('location ', location);
@@ -31,11 +33,28 @@ export default function Home() {
 
   useEffect(() => {
     getFiles(location);
+
+    const interval = setInterval(() => {
+    getFiles(location);      
+    }, 20000);
+
+    return () => clearInterval(interval); 
   }, [location]);
 
-  return (
+ 
+function searchFilesAndFolders(inputValue) {
+
+    /*   dbx
+        .filesSearch({ path: "", query: query })
+        .then((response) => {
+        }) */
+        console.log(inputValue);
+    
+}
+
+return (
     <div>
-      <Header />
+      <Header searchFilesAndFolders={searchFilesAndFolders} />
       <div className="outerContainer">
         <div className="sidebarContainer">
           <Sidebar token={token$.value} getFiles={getFiles} />

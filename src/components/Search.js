@@ -1,7 +1,15 @@
 import React, { useState } from "react";
+import { FaSearch } from 'react-icons/fa';
 
-export default function Search() {
+export default function Search({ searchFilesAndFolders }) {
+  const [searchInput, setsearchInput] = useState("");
 
+  const onChangeSearch = (e) => {
+    setsearchInput(e.target.value);
+    console.log(searchInput); 
+    
+    console.log(searchFilesAndFolders);
+  }
 
 
   return (
@@ -9,11 +17,12 @@ export default function Search() {
       <input
         type="text"
         name="search"
-        className="searchInput"
+        className="searchAndAddNewFolderInput"
         placeholder="Search"
-        //onChange={}
+        value={searchInput} 
+        onChange={onChangeSearch}
       />
-      <i className="fa fa-search"></i>
+      <FaSearch className="search" /> 
     </div>
   );
 }

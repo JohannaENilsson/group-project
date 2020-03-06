@@ -17,40 +17,38 @@ export default function PopupAddNewFolder({
     setInputValue(e.target.value);
   };
 
-  const handleSubmit = e => {
-    e.preventDefault();
-    handleAddNewFolder(inputValue);
-  };
+ 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        handleAddNewFolder(inputValue);
+    }
 
-  const handleAddNewFolder = folderName => {
-    const dbx = new Dropbox({ accessToken: token, fetch });
-    dbx
-      .filesCreateFolderV2({
-        path: `${breadcrums}/${folderName}`,
-        autorename: true
-      })
-      .then(() => {
-        handleCancelAddNewFolder();
-        getFiles(location);
-      });
-  };
 
-  return ReactDOM.createPortal(
-    <div className="popupWindow">
-      <div className="popupWindowContainer">
-        <h3>Add new folder</h3>
-        <form onSubmit={handleSubmit}>
-          <input type="text" onChange={handleChange} value={inputValue} />
-          <button className="popupAddFolderButton" type="submit">
-            Add folder
-          </button>
-        </form>
-      </div>
-      <div className="popupWindowButtonContainer"></div>
-      <button className="popupWindowButton" onClick={handleCancelAddNewFolder}>
-        Cancel
-      </button>
-    </div>,
-    document.body
-  );
+    const handleAddNewFolder = folderName => {
+        const dbx = new Dropbox({ accessToken: token, fetch });
+        dbx
+          .filesCreateFolderV2({ path: `${breadcrums}/${folderName}`, autorename: true })
+          .then(() => {
+            handleCancelAddNewFolder();
+            getFiles(location);
+          });
+      };
+    
+    return ReactDOM.createPortal((
+        <div className="popupBackground">
+            <div className="popupWindow">
+                <div className="popupWindowContainer">
+                    <h3>Add new folder</h3>
+                    <form onSubmit={handleSubmit}>
+                        <input className="searchAndAddNewFolderInput folder" type="text" onChange={handleChange} value={inputValue}   />
+                    </form>
+                    </div>
+                    <div className="popupWindowButtonContainer">
+                        <button className="popupAddAndCancelButton" onClick={handleSubmit}>Add folder</button>
+                        <button className="popupAddAndCancelButton" onClick={handleCancelAddNewFolder}>Cancel</button>
+                    </div>
+            </div>
+        </div>
+    ), document.body);
 }
+
