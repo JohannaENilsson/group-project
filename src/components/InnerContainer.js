@@ -3,13 +3,13 @@ import { Dropbox } from 'dropbox';
 import { Link, useHistory } from 'react-router-dom';
 
 import { token$ } from './Store.js';
-import GetAllFiles from '../actions/GetAllFiles';
+import MapAllFiles from '../actions/MapAllFiles';
 import PopupAddNewFolder from '../actions/PopupAddNewFolder';
 
 export default function InnerContainer({ fileList, getFiles, onDelete,onClickStar }) {
   const history = useHistory(); // använd för breadcrums
-  let breadcrums = history.location.pathname.split('/').splice(1);
-  // console.log(history);
+  let breadcrums = history.location.pathname.split('/').splice(2);
+  console.log(history);
   let linkToUrl = '';
 
   return (
@@ -23,12 +23,11 @@ export default function InnerContainer({ fileList, getFiles, onDelete,onClickSta
         );
       })}
       <h2 className='innerContainerTitle'></h2>
-      <GetAllFiles
-        onDelete={onDelete}
-        fileList={fileList}
-        getFiles={getFiles}
-        onClickStar={onClickStar}
-      />
+      {fileList === null ? (
+        <p>Loading files..</p>
+      ) : (
+        <MapAllFiles onDelete={onDelete} fileList={fileList} onClickStar={onClickStar}/>
+      )}
     </div>
   );
 }
