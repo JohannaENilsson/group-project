@@ -1,9 +1,14 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
+import { useLocation } from 'react-router-dom';
 import { Dropbox } from 'dropbox';
 
 export default function PopupAddNewFolder({ token, handleCancelAddNewFolder, getFiles }) {
   const [inputValue, setInputValue] = useState('');
+
+  const location = useLocation(); // använd för breadcrums
+  let breadcrums = location.pathname.slice(5);
+  console.log('path ', breadcrums);
 
   const handleChange = e => {
     setInputValue(e.target.value);
@@ -17,10 +22,10 @@ export default function PopupAddNewFolder({ token, handleCancelAddNewFolder, get
   const handleAddNewFolder = folderName => {
     const dbx = new Dropbox({ accessToken: token, fetch });
     dbx
-      .filesCreateFolderV2({ path: '/' + folderName, autorename: true })
+      .filesCreateFolderV2({ path: `${breadcrums}/` + folderName, autorename: true })
       .then(() => {
         handleCancelAddNewFolder();
-        getFiles();
+        getFiles(location);
       });
   };
 
