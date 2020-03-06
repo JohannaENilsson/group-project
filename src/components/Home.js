@@ -11,6 +11,8 @@ import GetAllFiles from '../actions/GetAllFiles';
 export default function Home() {
   const [fileList, updateFileList] = useState(null);
   const [starList, updateStarList] = useState([]);
+  const [query, setQuery] = useState("")
+
 
   let location = useLocation();
   console.log('location ', location);
@@ -42,8 +44,14 @@ export default function Home() {
   }, [location]);
 
  
-function searchFilesAndFolders() {
-  console.log("HEJ");
+function searchFilesAndFolders(inputValue) {
+
+    /*   dbx
+        .filesSearch({ path: "", query: query })
+        .then((response) => {
+        }) */
+        console.log(inputValue);
+    
 }
 
 return (
