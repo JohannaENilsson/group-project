@@ -5,6 +5,17 @@
   box-sizing: border-box;
 }
 
+.breadCrumbs{
+  display: flex;
+  font-weight: bold;
+}
+.breadCrumbs a{
+  margin-left: 7px;
+  color: darksalmon;
+  cursor: pointer;
+  text-decoration: none;
+}
+
 .fa-folder,
 .fa-file {
   font-size: 25px;
@@ -159,6 +170,7 @@ header {
   height: 25px;
   background-color: transparent;
   font-size: 16px;
+  padding:0;
 }
 
 .showStarsP {
@@ -169,7 +181,6 @@ header {
 .searchInput::placeholder{
   font-size: 14px;
 }
-
 
 .searchInputDiv {
   position: absolute;
@@ -259,7 +270,7 @@ tr:nth-child(even) {
   margin: 0;
 }
 
-.userName span {
+.userName span{
   color: darksalmon;
   font-weight: 200;
   font-size: 25px;

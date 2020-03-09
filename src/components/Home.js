@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { Dropbox } from "dropbox";
 
-import { token$ } from "./Store";
+import { token$, star$, updateStar } from "./Store";
 import Header from "./Header.js";
 import Sidebar from "./Sidebar";
 import InnerContainer from "./InnerContainer";
@@ -11,12 +11,11 @@ import GetAllFiles from "../actions/GetAllFiles";
 export default function Home() {
   const [fileList, updateFileList] = useState(null);
   const [query, setQuery] = useState("")
-  const [showStarIsClicked, setShowStarIsClicked] = useState(false);
+  const [showStarIsClicked, setShowStarIsClicked] = useState(window.localStorage.getItem("showFavorites") === "true");
 
   var dbx = new Dropbox({ accessToken: token$.value, fetch });
-  
+
   let location = useLocation();
-  console.log('location ', location);
 
   function getFiles(currentLocation) {
     GetAllFiles(currentLocation)
@@ -27,6 +26,8 @@ export default function Home() {
         console.error("Can´t get files ", error);
       });
   }
+
+
 
   function onDelete(id) {
     updateFileList(fileList.filter(x => x.id !== id));
@@ -42,36 +43,41 @@ export default function Home() {
     return () => clearInterval(interval);
   }, [location]);
 
-
-//  Denna är under konstruktion! Vill ni försöka rätta till denna så gör gärna det:) 
-function searchFilesAndFolders(searchInput) {
-       dbx
-        .filesSearch({ path: "", query: searchInput })
-        .then((response) => {
-          console.log(searchInput);
-
-          setQuery(response)
-          
-          console.log(response);
-        })
-        .catch((error) => {
-          console.log(error);
-        })     
-}
- function shouldStarListShow(childData) {
-    console.log("childData", childData);
-    setShowStarIsClicked(true);
+  function searchFilesAndFolders(searchInput, fileList) {
+    dbx
+      .filesSearch({ path: "", query: searchInput })
+      .then(response => {
+        console.log(searchInput);
+        setQuery(response);
+        console.log(query);
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }
+
+ function shouldStarListShow(childData) {
+   console.log('childData', childData);
+   if (!showStarIsClicked) {
+     setShowStarIsClicked(true);
+     window.localStorage.setItem("showFavorites", "true");
+   } else {
+     setShowStarIsClicked(false);
+     window.localStorage.removeItem("showFavorites");
+   }
+ }
+ 
 
   return (
     <div>
-      <Header searchFilesAndFolders={searchFilesAndFolders} />
+      <Header searchFilesAndFolders={searchFilesAndFolders} query={query} />
       <div className="outerContainer">
         <div className="sidebarContainer">
           <Sidebar
             token={token$.value}
             getFiles={getFiles}
             shouldStarListShow={shouldStarListShow}
+            
           />
         </div>
         <InnerContainer
@@ -79,6 +85,8 @@ function searchFilesAndFolders(searchInput) {
           fileList={fileList}
           getFiles={getFiles}
           showStarIsClicked={showStarIsClicked}
+          query={query}
+          shouldStarListShow = {shouldStarListShow}
         />
       </div>
     </div>

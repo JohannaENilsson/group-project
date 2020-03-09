@@ -23,7 +23,7 @@ export default function Sidebar({ token, getFiles, shouldStarListShow }) {
         <h2 className="sidebarTitle">Menu</h2>
         <ul className="ulMenuContainer">
           <li>
-            <Link to={"/home"} className="homeLinkSidebar">
+            <Link to={"/home"} className="homeLinkSidebar" onClick={() => shouldStarListShow()}>
               Home
             </Link>
           </li>
