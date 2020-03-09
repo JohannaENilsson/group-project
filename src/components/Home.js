@@ -22,6 +22,7 @@ export default function Home() {
     GetAllFiles(currentLocation)
       .then(function(response) {
         updateFileList(response.entries);
+        setShowStarIsClicked(false);
       })
       .catch(function(error) {
         console.error("Can´t get files ", error);

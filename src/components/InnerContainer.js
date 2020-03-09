@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 
-import {  star$, updateStar } from './Store.js';
+import { star$, updateStar } from './Store.js';
 import MapAllFiles from '../actions/MapAllFiles';
 
 export default function InnerContainer({
@@ -36,14 +36,16 @@ export default function InnerContainer({
 
   return (
     <div className='innerContainer'>
-      {breadcrums.map(path => {
-        linkToUrl += `/${path}`;
-        return (
-          <div key={path}>
-            <Link to={`${linkToUrl}`}>{path}</Link>
-          </div>
-        );
-      })}
+      <div className='breadCrumbs'>
+        {breadcrums.map(path => {
+          linkToUrl += `/${path}`;
+          return (
+            <div key={path}>
+              <Link to={`${linkToUrl}`}> / {path.charAt(0).toUpperCase() + path.slice(1)} </Link>
+            </div>
+          );
+        })}
+      </div>
       {fileList === null ? (
         <p>Loading files..</p>
       ) : (
@@ -59,4 +61,3 @@ export default function InnerContainer({
     </div>
   );
 }
-

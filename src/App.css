@@ -5,6 +5,17 @@
   box-sizing: border-box;
 }
 
+.breadCrumbs{
+  display: flex;
+  font-weight: bold;
+}
+.breadCrumbs a{
+  margin-left: 7px;
+  color: darksalmon;
+  cursor: pointer;
+  text-decoration: none;
+}
+
 .fa-folder,
 .fa-file {
   font-size: 25px;
