@@ -56,6 +56,11 @@ export default function Home() {
 
  function shouldStarListShow(childData) {
    console.log('childData', childData);
+   if(childData === false){
+    setShowStarIsClicked(false);
+    window.localStorage.removeItem("showFavorites");
+   }
+   
    if (!showStarIsClicked) {
      setShowStarIsClicked(true);
      window.localStorage.setItem("showFavorites", "true");
@@ -63,6 +68,12 @@ export default function Home() {
      setShowStarIsClicked(false);
      window.localStorage.removeItem("showFavorites");
    }
+ }
+
+ function returnHome(){
+  setQuery('');
+  setShowStarIsClicked(window.localStorage.removeItem("showFavorites"));
+  console.log('go home!');
  }
  
 
@@ -75,6 +86,7 @@ export default function Home() {
             token={token$.value}
             getFiles={getFiles}
             shouldStarListShow={shouldStarListShow}
+            returnHome={returnHome}
             
           />
         </div>
@@ -84,7 +96,8 @@ export default function Home() {
           getFiles={getFiles}
           showStarIsClicked={showStarIsClicked}
           query={query}
-          shouldStarListShow = {shouldStarListShow}
+          returnHome={returnHome}
+          shouldStarListShow={shouldStarListShow}
         />
       </div>
     </div>

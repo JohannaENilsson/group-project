@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Dropbox } from "dropbox";
+import { FaTrashAlt } from 'react-icons/fa';
 
 import { token$ } from "../components/Store";
 import PopupDeleteFile from "./PopupDeleteFile";
@@ -28,7 +29,7 @@ export default function DeleteFile({
       .then(function(response) {
         onDelete(response.metadata.id);
         console.log("response.metadata.id", response.metadata.id)
-        onClickStarRemove(response.metadata.id);
+        onClickStarRemove(response.metadata);
       })
 
       .catch(function(error) {
@@ -38,9 +39,9 @@ export default function DeleteFile({
 
   return (
     <>
-      <button onClick={e => handleDeleteFilePopUp(e)}>
-        <i className="fa fa-trash"></i>
-      </button>
+        <FaTrashAlt 
+        className="trash" 
+        onClick={e => handleDeleteFilePopUp(e)}/>
 
       {showPopup ? (
         <PopupDeleteFile

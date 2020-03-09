@@ -9,6 +9,7 @@ export default function InnerContainer({
   onDelete,
   showStarIsClicked,
   query,
+  returnHome,
   shouldStarListShow
 }) {
   const [starList, updateStarList] = useState(star$.value);
@@ -17,15 +18,15 @@ export default function InnerContainer({
   let breadcrums = history.location.pathname.split("/").splice(1);
   let linkToUrl = "";
 
-  function onClickStar(id) {
-    updateStar([id, ...starList]); //store, sparar till localStorage
-    updateStarList([...starList, id]); //state
-    console.log('stared file -> ', id);
+  function onClickStar(file) {
+    updateStar([file, ...starList]); //store, sparar till localStorage
+    updateStarList([file,...starList]); //state
+    console.log('stared file -> ', file);
   }
 
-  function onClickStarRemove(id) {
+  function onClickStarRemove(file) {
     let removed = starList.filter(function(x) {
-      return x !== id;
+      return x.id !== file.id;
     });
 
     updateStar(removed);
@@ -38,7 +39,7 @@ export default function InnerContainer({
         {breadcrums.map(path => {
           linkToUrl += `/${path}`;
           return (
-            <div key={path} onClick={() => shouldStarListShow()}>
+            <div key={path} onClick={() => returnHome()}>
               <Link to={`${linkToUrl}`}>
                 {' '}
                 / {path.charAt(0).toUpperCase() + path.slice(1)}{' '}
@@ -58,6 +59,7 @@ export default function InnerContainer({
           starList={starList}
           showStarIsClicked={showStarIsClicked}
           query={query}
+          shouldStarListShow={shouldStarListShow}
         />
       )}
     </div>

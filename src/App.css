@@ -236,9 +236,14 @@ th {
   padding: 10px 10px 10px 3px;
 }
 
+.trash {
+  cursor: pointer;
+}
+
 tr:nth-child(even) {
   background-color: #f2f2f2a1;
 }
+
 
 .ulMenuContainer {
   list-style: none;
@@ -285,7 +290,8 @@ tr:nth-child(even) {
 
 .uploadFileInputLabel:hover,
 .addFolderInputLabel:hover,
-.homeLinkSidebar:hover {
+.homeLinkSidebar:hover,
+.showStarsP:hover {
   color: darksalmon;
 }
 
