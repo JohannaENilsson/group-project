@@ -9,7 +9,8 @@ export default function InnerContainer({
   onDelete,
   showStarIsClicked,
   query,
-  returnHome
+  returnHome,
+  shouldStarListShow
 }) {
   const [starList, updateStarList] = useState(star$.value);
   const history = useHistory(); // använd för breadcrums
@@ -58,6 +59,7 @@ export default function InnerContainer({
           starList={starList}
           showStarIsClicked={showStarIsClicked}
           query={query}
+          shouldStarListShow={shouldStarListShow}
         />
       )}
     </div>

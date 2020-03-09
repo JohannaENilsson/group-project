@@ -58,6 +58,11 @@ export default function Home() {
 
  function shouldStarListShow(childData) {
    console.log('childData', childData);
+   if(childData === false){
+    setShowStarIsClicked(false);
+    window.localStorage.removeItem("showFavorites");
+   }
+   
    if (!showStarIsClicked) {
      setShowStarIsClicked(true);
      window.localStorage.setItem("showFavorites", "true");
@@ -94,6 +99,7 @@ export default function Home() {
           showStarIsClicked={showStarIsClicked}
           query={query}
           returnHome={returnHome}
+          shouldStarListShow={shouldStarListShow}
         />
       </div>
     </div>

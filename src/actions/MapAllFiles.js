@@ -14,10 +14,12 @@ export default function MapAllFiles({
   onClickStarRemove,
   starList,
   showStarIsClicked,
-  query
+  query,
+  shouldStarListShow
 }) {
   if (showStarIsClicked) {
     fileList = starList;
+
   }
 
   let searchList = null;
@@ -35,7 +37,7 @@ export default function MapAllFiles({
         <td>{<GetFileType file={file} />}</td>
         <td>
           {file[".tag"] === "folder" ? (
-            <Link to={`/home${file.path_lower}`} className="tableNameLink">
+            <Link to={`/home${file.path_lower}`} className="tableNameLink" onClick={() => shouldStarListShow(false)}>
               {file.name}
             </Link>
           ) : (
