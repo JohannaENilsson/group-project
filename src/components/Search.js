@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { FaSearch } from "react-icons/fa";
-import { Link } from "react-router-dom";
 
 export default function Search({ searchFilesAndFolders, query }) {
   const [searchInput, setsearchInput] = useState("");

@@ -17,7 +17,6 @@ export default function StarFileOrFolder({
       starred ? onClickStarRemove(file) : onClickStar(file);
     }
   };
-  console.log('im i stared? ', starred);
 
 
   const opacity = starred ? 1 : 0.2;
