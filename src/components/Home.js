@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { Dropbox } from "dropbox";
 
-import { token$ } from "./Store";
+import { token$, star$, updateStar } from "./Store";
 import Header from "./Header.js";
 import Sidebar from "./Sidebar";
 import InnerContainer from "./InnerContainer";
@@ -26,6 +26,8 @@ export default function Home() {
         console.error("Can´t get files ", error);
       });
   }
+
+
 
   function onDelete(id) {
     updateFileList(fileList.filter(x => x.id !== id));

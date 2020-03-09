@@ -24,7 +24,6 @@ export default function MapAllFiles({
         }
       }
     }
-
     fileList = fullFavList;
   }
 
@@ -60,7 +59,7 @@ export default function MapAllFiles({
         </td>
         <td>
           <StarFileOrFolder
-            fileId={file.id}
+            file={file}
             starred={starList.includes(file.id)}
             onClickStar={onClickStar}
             onClickStarRemove={onClickStarRemove}
