@@ -12,10 +12,8 @@
   color: #265b7e;
 }
 
-.search{
-  color: darksalmon;
-  font-size: 20px;
-  padding-left: 5px;
+.folder {
+  margin: 20px;
 }
 
 header {
@@ -147,6 +145,12 @@ header {
   align-items: center;
 }
 
+.search{
+  color: darksalmon;
+  font-size: 20px;
+  padding-left: 5px;
+}
+
 .searchAndAddNewFolderInput {
   outline: none;
   border-radius: 8px;
@@ -157,8 +161,9 @@ header {
   font-size: 16px;
 }
 
-.folder {
-  margin: 20px;
+.showStarsP {
+  cursor: pointer;
+  text-decoration: underline;
 }
 
 .searchInput::placeholder{
@@ -176,7 +181,8 @@ header {
 }
 
 .sidebarContainer {
-  width: 10%;
+  text-align: center;
+  width: 17%;
   height: 100%;
 }
 

@@ -1,15 +1,11 @@
 import React, { useState } from 'react';
-import { Dropbox } from 'dropbox';
-import { Link, useHistory, useLocation } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
-import { token$, star$, updateStar } from './Store.js';
+import {  star$, updateStar } from './Store.js';
 import MapAllFiles from '../actions/MapAllFiles';
-
-import PopupAddNewFolder from '../actions/PopupAddNewFolder';
 
 export default function InnerContainer({
   fileList,
-  getFiles,
   onDelete,
   showStarIsClicked
 }) {
@@ -48,8 +44,6 @@ export default function InnerContainer({
           </div>
         );
       })}
-      <h2 className='innerContainerTitle'></h2>
-
       {fileList === null ? (
         <p>Loading files..</p>
       ) : (
@@ -65,3 +59,4 @@ export default function InnerContainer({
     </div>
   );
 }
+

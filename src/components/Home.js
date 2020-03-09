@@ -37,7 +37,7 @@ export default function Home() {
 
     const interval = setInterval(() => {
       getFiles(location);
-    }, 20000);
+    }, 10000);
 
     return () => clearInterval(interval);
   }, [location]);

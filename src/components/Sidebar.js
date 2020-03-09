@@ -15,7 +15,6 @@ export default function Sidebar({ token, getFiles, shouldStarListShow }) {
   function clickShowStarred() {
     console.log("clicked starred");
     shouldStarListShow("show some stars")
-
   }
 
   return (
@@ -34,8 +33,10 @@ export default function Sidebar({ token, getFiles, shouldStarListShow }) {
           <li>
             <AddNewFolder token={token} onClick={handleAddFolder} getFiles={getFiles}/>
           </li>
-          <li>
-            <p onClick={clickShowStarred}>Show starred list</p>
+          <li
+          className="showStarsP"
+          onClick={clickShowStarred}>
+          Show starred list
           </li>
         </ul>
       </div>
