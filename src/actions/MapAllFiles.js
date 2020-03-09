@@ -20,14 +20,6 @@ export default function MapAllFiles({
   shouldStarListShow,
   returnFromStarList
 }) {
-  
-  let error = false;
-    if (showStarIsClicked) {
-      fileList = starList;
-      if (!starList.length > 0 ) {
-        error = true;
-      }
-  }
 
   let searchList = null;
 
@@ -36,6 +28,15 @@ export default function MapAllFiles({
       return x.metadata;
     });
     fileList = searchList;
+  }
+
+  let error = false;
+    if (showStarIsClicked) {
+      fileList = starList;
+      error = false;
+       if (!starList.length > 0 ) {
+        error = true;
+      }
   }
 
   const mappedList = fileList.map((file, idx) => {
@@ -89,8 +90,8 @@ export default function MapAllFiles({
   return (
     <>
     
-      { error ? <p className="error">Click on a <FaStar style={{ color: 'darksalmon' }} /> to show file or folders...</p>
-      :  !fileList ? <p className="error">List is empty. Upload a file or add a new folder</p> 
+      { !fileList ? <p className="error">List is empty. Upload a file or add a new folder</p>
+      : error ? <p className="error">Click on a <FaStar style={{ color: 'darksalmon' }} /> to show file or folders...</p>  
       : (
         <table>
           <thead>
