@@ -49,7 +49,7 @@ export default function InnerContainer({
         })}
       </div>
       {fileList === null ? (
-        <p>Loading files..</p>
+        <p className="error">Loading files..</p>
       ) : (
         <MapAllFiles
           onDelete={onDelete}

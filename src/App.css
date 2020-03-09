@@ -16,6 +16,10 @@
   text-decoration: none;
 }
 
+.error {
+  margin-left: 20px;
+}
+
 .fa-folder,
 .fa-file {
   font-size: 25px;

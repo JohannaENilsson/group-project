@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Dropbox } from "dropbox";
+import { FaStar } from "react-icons/fa";
+
 
 import { token$ } from "../components/Store.js";
 import StarFileOrFolder from "./StarFileOrFolder";
@@ -17,9 +19,13 @@ export default function MapAllFiles({
   query,
   shouldStarListShow
 }) {
-  if (showStarIsClicked) {
-    fileList = starList;
-
+  
+  let error = false;
+    if (showStarIsClicked) {
+      fileList = starList;
+      if (!starList.length > 0 ) {
+        error = true;
+      }
   }
 
   let searchList = null;
@@ -43,7 +49,6 @@ export default function MapAllFiles({
           ) : (
             <span
               className="tableNameLink"
-              style={{ cursor: "pointer" }}
               onClick={() => downloadFileRequest(file)}
             >
               {file.name}
@@ -78,9 +83,10 @@ export default function MapAllFiles({
 
   return (
     <>
-      {!fileList ? (
-        <p>List is empty. Upload a file or add a new folder</p>
-      ) : (
+    
+      { error ? <p className="error">Click on a <FaStar style={{ color: 'darksalmon' }} /> to show file or folders...</p>
+      :  !fileList ? <p className="error">List is empty. Upload a file or add a new folder</p> 
+      : (
         <table>
           <thead>
             <tr>
@@ -92,7 +98,8 @@ export default function MapAllFiles({
           </thead>
           <tbody>{mappedList}</tbody>
         </table>
-      )}
+      )
+      }
     </>
   );
 }
