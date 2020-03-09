@@ -1,26 +1,31 @@
-import React, { useState } from "react";
-import { FaSearch } from 'react-icons/fa';
+import React, { useState, useEffect } from "react";
+import { FaSearch } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
-export default function Search({ searchFilesAndFolders }) {
+export default function Search({ searchFilesAndFolders, query }) {
   const [searchInput, setsearchInput] = useState("");
 
-  const onChangeSearch = (e) => {
-    setsearchInput(e.target.value);
+  useEffect(() => {
     searchFilesAndFolders(searchInput);
-  }
+  }, [searchInput]);
 
+  const onChangeSearch = e => {
+    setsearchInput(e.target.value);
+  };
 
   return (
-    <div className="searchInputDiv">
-      <input
-        type="text"
-        name="search"
-        className="searchAndAddNewFolderInput"
-        placeholder="Search"
-        value={searchInput} 
-        onChange={onChangeSearch}
-      />
-      <FaSearch className="search" /> 
-    </div>
+    
+      <div className="searchInputDiv">
+        <input
+          type="text"
+          name="search"
+          className="searchAndAddNewFolderInput"
+          placeholder="Search"
+          value={searchInput}
+          onChange={onChangeSearch}
+        />
+        <FaSearch className="search" />
+      </div>
+    
   );
 }

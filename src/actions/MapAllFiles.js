@@ -1,11 +1,11 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { Dropbox } from 'dropbox';
+import React from "react";
+import { Link } from "react-router-dom";
+import { Dropbox } from "dropbox";
 
-import { token$ } from '../components/Store.js';
-import StarFileOrFolder from './StarFileOrFolder';
-import DeleteFile from './DeleteFile';
-import GetFileType from './GetFileType';
+import { token$ } from "../components/Store.js";
+import StarFileOrFolder from "./StarFileOrFolder";
+import DeleteFile from "./DeleteFile";
+import GetFileType from "./GetFileType";
 
 export default function MapAllFiles({
   fileList,
@@ -13,7 +13,8 @@ export default function MapAllFiles({
   onClickStar,
   onClickStarRemove,
   starList,
-  showStarIsClicked
+  showStarIsClicked,
+  query
 }) {
   if (showStarIsClicked) {
     let fullFavList = [];
@@ -28,19 +29,28 @@ export default function MapAllFiles({
     fileList = fullFavList;
   }
 
+  let searchList = null;
+
+  if (query && query.matches.length > 0) {
+    searchList = query.matches.map(x => {
+      return x.metadata;
+    });
+    fileList = searchList;
+  }
+
   const mappedList = fileList.map((file, idx) => {
     return (
       <tr key={file.id}>
         <td>{<GetFileType file={file} />}</td>
         <td>
-          {file['.tag'] === 'folder' ? (
-            <Link to={`/home${file.path_lower}`} className='tableNameLink'>
+          {file[".tag"] === "folder" ? (
+            <Link to={`/home${file.path_lower}`} className="tableNameLink">
               {file.name}
             </Link>
           ) : (
             <span
-              className='tableNameLink'
-              style={{ cursor: 'pointer' }}
+              className="tableNameLink"
+              style={{ cursor: "pointer" }}
               onClick={() => downloadFileRequest(file)}
             >
               {file.name}
@@ -95,18 +105,18 @@ export default function MapAllFiles({
 }
 
 function sizeFormat(byte) {
-  if (!byte) return '-';
+  if (!byte) return "-";
   else if (byte > 100 && byte < 999999) {
-    return (byte / 1000).toFixed(1) + ' kb';
+    return (byte / 1000).toFixed(1) + " kb";
   } else if (byte >= 1000000 && byte < 1000000000) {
-    return (byte / 1000000).toFixed(1) + ' mb';
+    return (byte / 1000000).toFixed(1) + " mb";
   } else {
-    return (byte / 1000000000).toFixed(1) + 'gb';
+    return (byte / 1000000000).toFixed(1) + "gb";
   }
 }
 
 function dateFormat(date) {
-  if (!date) return '-';
+  if (!date) return "-";
   let newdate = new Date(date);
   return `${newdate.toLocaleDateString()}, ${newdate.toLocaleTimeString()}`;
 }
@@ -118,7 +128,7 @@ function downloadFileRequest(file) {
     .filesGetTemporaryLink({ path: file.path_lower })
     .then(function(response) {
       window.location.href = response.link;
-      console.log('download', response);
+      console.log("download", response);
     })
     .catch(function(error) {
       console.error(error);

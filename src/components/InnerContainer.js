@@ -1,19 +1,20 @@
-import React, { useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import React, { useState } from "react";
+import { Link, useHistory } from "react-router-dom";
 
-import {  star$, updateStar } from './Store.js';
-import MapAllFiles from '../actions/MapAllFiles';
+import { star$, updateStar } from "./Store.js";
+import MapAllFiles from "../actions/MapAllFiles";
 
 export default function InnerContainer({
   fileList,
   onDelete,
-  showStarIsClicked
+  showStarIsClicked,
+  query
 }) {
   const [starList, updateStarList] = useState(star$.value);
   const history = useHistory(); // använd för breadcrums
 
-  let breadcrums = history.location.pathname.split('/').splice(1);
-  let linkToUrl = '';
+  let breadcrums = history.location.pathname.split("/").splice(1);
+  let linkToUrl = "";
 
   function onClickStar(id) {
     updateStar([id, ...starList]); //store, sparar till localStorage
@@ -29,13 +30,13 @@ export default function InnerContainer({
     updateStarList(removed);
   }
 
-  console.log('starlist -->', starList);
+   console.log('starlist -->', starList);
 
-  //console.log(fileList);
+  console.log(fileList);
   console.log('showStarIsClicked', showStarIsClicked);
 
   return (
-    <div className='innerContainer'>
+    <div className="innerContainer">
       {breadcrums.map(path => {
         linkToUrl += `/${path}`;
         return (
@@ -54,9 +55,9 @@ export default function InnerContainer({
           onClickStarRemove={onClickStarRemove}
           starList={starList}
           showStarIsClicked={showStarIsClicked}
+          query={query}
         />
       )}
     </div>
   );
 }
-

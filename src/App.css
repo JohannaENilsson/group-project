@@ -159,6 +159,7 @@ header {
   height: 25px;
   background-color: transparent;
   font-size: 16px;
+  padding:0;
 }
 
 .showStarsP {
@@ -169,7 +170,6 @@ header {
 .searchInput::placeholder{
   font-size: 14px;
 }
-
 
 .searchInputDiv {
   position: absolute;
@@ -254,7 +254,7 @@ tr:nth-child(even) {
   margin: 0;
 }
 
-.userName span {
+.userName span{
   color: darksalmon;
   font-weight: 200;
   font-size: 25px;

@@ -10,13 +10,13 @@ import GetAllFiles from "../actions/GetAllFiles";
 
 export default function Home() {
   const [fileList, updateFileList] = useState(null);
-  const [query, setQuery] = useState("")
+  const [query, setQuery] = useState("");
   const [showStarIsClicked, setShowStarIsClicked] = useState(false);
 
   var dbx = new Dropbox({ accessToken: token$.value, fetch });
-  
+
   let location = useLocation();
-  console.log('location ', location);
+  //console.log('location ', location);
 
   function getFiles(currentLocation) {
     GetAllFiles(currentLocation)
@@ -42,28 +42,26 @@ export default function Home() {
     return () => clearInterval(interval);
   }, [location]);
 
-
-//  Denna är under konstruktion! Vill ni försöka rätta till denna så gör gärna det:) 
-function searchFilesAndFolders(inputValue, fileList) {
-
-       dbx
-        .filesSearch({ path: "", query: query })
-        .then((response) => {
-          setQuery(response)
-          console.log(response.matches);
-        })
-        .catch((error) => {
-          console.log(error);
-        })     
-}
- function shouldStarListShow(childData) {
-    console.log("childData", childData);
+  function searchFilesAndFolders(searchInput, fileList) {
+    dbx
+      .filesSearch({ path: "", query: searchInput })
+      .then(response => {
+        console.log(searchInput);
+        setQuery(response);
+        console.log(query);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+  function shouldStarListShow(childData) {
+    //console.log("childData", childData);
     setShowStarIsClicked(true);
   }
 
   return (
     <div>
-      <Header searchFilesAndFolders={searchFilesAndFolders} />
+      <Header searchFilesAndFolders={searchFilesAndFolders} query={query} />
       <div className="outerContainer">
         <div className="sidebarContainer">
           <Sidebar
@@ -77,6 +75,7 @@ function searchFilesAndFolders(inputValue, fileList) {
           fileList={fileList}
           getFiles={getFiles}
           showStarIsClicked={showStarIsClicked}
+          query={query}
         />
       </div>
     </div>
