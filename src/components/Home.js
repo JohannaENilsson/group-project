@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { Dropbox } from "dropbox";
 
-import { token$ } from "./Store";
+import { token$, star$, updateStar } from "./Store";
 import Header from "./Header.js";
 import Sidebar from "./Sidebar";
 import InnerContainer from "./InnerContainer";
@@ -10,13 +10,12 @@ import GetAllFiles from "../actions/GetAllFiles";
 
 export default function Home() {
   const [fileList, updateFileList] = useState(null);
-  const [query, setQuery] = useState("");
-  const [showStarIsClicked, setShowStarIsClicked] = useState(false);
+  const [query, setQuery] = useState("")
+  const [showStarIsClicked, setShowStarIsClicked] = useState(window.localStorage.getItem("showFavorites") === "true");
 
   var dbx = new Dropbox({ accessToken: token$.value, fetch });
 
   let location = useLocation();
-  //console.log('location ', location);
 
   function getFiles(currentLocation) {
     GetAllFiles(currentLocation)
@@ -27,6 +26,8 @@ export default function Home() {
         console.error("Can´t get files ", error);
       });
   }
+
+
 
   function onDelete(id) {
     updateFileList(fileList.filter(x => x.id !== id));
@@ -54,10 +55,18 @@ export default function Home() {
         console.log(error);
       });
   }
-  function shouldStarListShow(childData) {
-    //console.log("childData", childData);
-    setShowStarIsClicked(true);
-  }
+
+ function shouldStarListShow(childData) {
+   console.log('childData', childData);
+   if (!showStarIsClicked) {
+     setShowStarIsClicked(true);
+     window.localStorage.setItem("showFavorites", "true");
+   } else {
+     setShowStarIsClicked(false);
+     window.localStorage.removeItem("showFavorites");
+   }
+ }
+ 
 
   return (
     <div>
@@ -68,6 +77,7 @@ export default function Home() {
             token={token$.value}
             getFiles={getFiles}
             shouldStarListShow={shouldStarListShow}
+            
           />
         </div>
         <InnerContainer
@@ -76,6 +86,7 @@ export default function Home() {
           getFiles={getFiles}
           showStarIsClicked={showStarIsClicked}
           query={query}
+          shouldStarListShow = {shouldStarListShow}
         />
       </div>
     </div>

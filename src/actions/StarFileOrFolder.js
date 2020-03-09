@@ -5,15 +5,17 @@ import { FaStar } from "react-icons/fa";
 import { updateStar, token$ } from "../components/Store";
 
 export default function StarFileOrFolder({
-  fileId,
+  file,
   onClickStar,
   onClickStarRemove,
   starred
 }) {
 
   const clickStar = () => {
+    console.log('i got this file ', file);
+    console.log('im i stared? ', starred);
     {
-      starred ? onClickStarRemove(fileId) : onClickStar(fileId);
+      starred ? onClickStarRemove(file) : onClickStar(file);
     }
   };
 

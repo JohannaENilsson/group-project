@@ -9,6 +9,7 @@ export default function InnerContainer({
   onDelete,
   showStarIsClicked,
   query
+  shouldStarListShow
 }) {
   const [starList, updateStarList] = useState(star$.value);
   const history = useHistory(); // använd för breadcrums
@@ -19,6 +20,7 @@ export default function InnerContainer({
   function onClickStar(id) {
     updateStar([id, ...starList]); //store, sparar till localStorage
     updateStarList([...starList, id]); //state
+    console.log('stared file -> ', id);
   }
 
   function onClickStarRemove(id) {
@@ -30,21 +32,21 @@ export default function InnerContainer({
     updateStarList(removed);
   }
 
-   console.log('starlist -->', starList);
-
-  console.log(fileList);
-  console.log('showStarIsClicked', showStarIsClicked);
-
   return (
-    <div className="innerContainer">
-      {breadcrums.map(path => {
-        linkToUrl += `/${path}`;
-        return (
-          <div key={path}>
-            <Link to={`${linkToUrl}`}>{path}</Link>
-          </div>
-        );
-      })}
+    <div className='innerContainer'>
+      <div className='breadCrumbs'>
+        {breadcrums.map(path => {
+          linkToUrl += `/${path}`;
+          return (
+            <div key={path} onClick={() => shouldStarListShow()}>
+              <Link to={`${linkToUrl}`}>
+                {' '}
+                / {path.charAt(0).toUpperCase() + path.slice(1)}{' '}
+              </Link>
+            </div>
+          );
+        })}
+      </div>
       {fileList === null ? (
         <p>Loading files..</p>
       ) : (
