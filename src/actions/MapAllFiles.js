@@ -19,7 +19,6 @@ export default function MapAllFiles({
 }) {
   if (showStarIsClicked) {
     fileList = starList;
-
   }
 
   let searchList = null;
