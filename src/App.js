@@ -16,10 +16,9 @@ function App() {
           <Redirect to="/login" />
         </Route>
         
-        <Route exact path="/home" component={Home} />
+        <Route path="/home" component={Home} />
         <Route path="/auth" component={Auth} />
         <Route path="/login" component={Login} />
-        <Route path="/home/:id" component={Home} />
       </div>
     </Router>
   );

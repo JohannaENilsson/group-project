@@ -7,7 +7,8 @@ import MapAllFiles from '../actions/MapAllFiles';
 export default function InnerContainer({
   fileList,
   onDelete,
-  showStarIsClicked
+  showStarIsClicked,
+  shouldStarListShow
 }) {
   const [starList, updateStarList] = useState(star$.value);
   const history = useHistory(); // använd för breadcrums
@@ -34,13 +35,15 @@ export default function InnerContainer({
   //console.log(fileList);
   console.log('showStarIsClicked', showStarIsClicked);
 
+
+
   return (
     <div className='innerContainer'>
       <div className='breadCrumbs'>
         {breadcrums.map(path => {
           linkToUrl += `/${path}`;
           return (
-            <div key={path}>
+            <div key={path} onClick={() => shouldStarListShow()}>
               <Link to={`${linkToUrl}`}> / {path.charAt(0).toUpperCase() + path.slice(1)} </Link>
             </div>
           );

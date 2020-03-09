@@ -11,18 +11,16 @@ import GetAllFiles from "../actions/GetAllFiles";
 export default function Home() {
   const [fileList, updateFileList] = useState(null);
   const [query, setQuery] = useState("")
-  const [showStarIsClicked, setShowStarIsClicked] = useState(false);
+  const [showStarIsClicked, setShowStarIsClicked] = useState(window.localStorage.getItem("showFavorites") === "true");
 
   var dbx = new Dropbox({ accessToken: token$.value, fetch });
   
   let location = useLocation();
-  console.log('location ', location);
 
   function getFiles(currentLocation) {
     GetAllFiles(currentLocation)
       .then(function(response) {
         updateFileList(response.entries);
-        setShowStarIsClicked(false);
       })
       .catch(function(error) {
         console.error("Can´t get files ", error);
@@ -58,9 +56,16 @@ function searchFilesAndFolders(inputValue, fileList) {
         })     
 }
  function shouldStarListShow(childData) {
-    console.log("childData", childData);
-    setShowStarIsClicked(true);
-  }
+   console.log('childData', childData);
+   if (!showStarIsClicked) {
+     setShowStarIsClicked(true);
+     window.localStorage.setItem("showFavorites", "true");
+   } else {
+     setShowStarIsClicked(false);
+     window.localStorage.removeItem("showFavorites");
+   }
+ }
+ 
 
   return (
     <div>
@@ -71,6 +76,7 @@ function searchFilesAndFolders(inputValue, fileList) {
             token={token$.value}
             getFiles={getFiles}
             shouldStarListShow={shouldStarListShow}
+            
           />
         </div>
         <InnerContainer
@@ -78,6 +84,7 @@ function searchFilesAndFolders(inputValue, fileList) {
           fileList={fileList}
           getFiles={getFiles}
           showStarIsClicked={showStarIsClicked}
+          shouldStarListShow = {shouldStarListShow}
         />
       </div>
     </div>
