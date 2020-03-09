@@ -44,13 +44,15 @@ export default function Home() {
 
 
 //  Denna är under konstruktion! Vill ni försöka rätta till denna så gör gärna det:) 
-function searchFilesAndFolders(inputValue, fileList) {
-
+function searchFilesAndFolders(searchInput) {
        dbx
-        .filesSearch({ path: "", query: query })
+        .filesSearch({ path: "", query: searchInput })
         .then((response) => {
+          console.log(searchInput);
+
           setQuery(response)
-          console.log(response.matches);
+          
+          console.log(response);
         })
         .catch((error) => {
           console.log(error);

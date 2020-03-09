@@ -7,6 +7,16 @@ export default function Search({ searchFilesAndFolders }) {
   const onChangeSearch = (e) => {
     setsearchInput(e.target.value);
     searchFilesAndFolders(searchInput);
+    console.log(searchInput);
+    
+  }
+
+  function debounce(fn, delay = 100) {
+    let timeout;
+    return function (...args) {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => fn.apply(this, args), delay);
+    }
   }
 
 
