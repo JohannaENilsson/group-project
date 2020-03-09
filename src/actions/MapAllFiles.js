@@ -17,7 +17,8 @@ export default function MapAllFiles({
   starList,
   showStarIsClicked,
   query,
-  shouldStarListShow
+  shouldStarListShow,
+  returnFromStarList
 }) {
   
   let error = false;
@@ -43,7 +44,11 @@ export default function MapAllFiles({
         <td>{<GetFileType file={file} />}</td>
         <td>
           {file[".tag"] === "folder" ? (
-            <Link to={`/home${file.path_lower}`} className="tableNameLink" >
+            <Link
+              to={`/home${file.path_lower}`}
+              className="tableNameLink"
+              onClick={() => returnFromStarList()}
+            >
               {file.name}
             </Link>
           ) : (
@@ -135,8 +140,7 @@ function downloadFileRequest(file) {
     });
 }
 
-
-    /*let fullFavList = [];
+/*let fullFavList = [];
     for (let fav of starList) {
       for (let file of fileList) {
         if (file === fav) {

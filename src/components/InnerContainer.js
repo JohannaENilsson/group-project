@@ -9,7 +9,7 @@ export default function InnerContainer({
   onDelete,
   showStarIsClicked,
   query,
-  returnHome,
+  returnFromStarList,
   shouldStarListShow
 }) {
   const [starList, updateStarList] = useState(star$.value);
@@ -20,8 +20,8 @@ export default function InnerContainer({
 
   function onClickStar(file) {
     updateStar([file, ...starList]); //store, sparar till localStorage
-    updateStarList([file,...starList]); //state
-    console.log('stared file -> ', file);
+    updateStarList([file, ...starList]); //state
+    console.log("stared file -> ", file);
   }
 
   function onClickStarRemove(file) {
@@ -34,19 +34,23 @@ export default function InnerContainer({
   }
 
   return (
-    <div className='innerContainer'>
-      <div className='breadCrumbs'>
-        {breadcrums.map(path => {
-          linkToUrl += `/${path}`;
-          return (
-            <div key={path} onClick={() => returnHome()}>
-              <Link to={`${linkToUrl}`}>
-                {' '}
-                / {path.charAt(0).toUpperCase() + path.slice(1)}{' '}
-              </Link>
-            </div>
-          );
-        })}
+    <div className="innerContainer">
+      <div className="breadCrumbs">
+        {showStarIsClicked ? (
+          <p>/ Starred</p>
+        ) : (
+          breadcrums.map(path => {
+            linkToUrl += `/${path}`;
+            return (
+              <div key={path} onClick={() => returnFromStarList()}>
+                <Link to={`${linkToUrl}`}>
+                  {" "}
+                  / {path.charAt(0).toUpperCase() + path.slice(1)}{" "}
+                </Link>
+              </div>
+            );
+          })
+        )}
       </div>
       {fileList === null ? (
         <p className="error">Loading files..</p>
@@ -60,6 +64,7 @@ export default function InnerContainer({
           showStarIsClicked={showStarIsClicked}
           query={query}
           shouldStarListShow={shouldStarListShow}
+          returnFromStarList={returnFromStarList}
         />
       )}
     </div>
