@@ -36,7 +36,7 @@ export default function MapAllFiles({
         <td>{<GetFileType file={file} />}</td>
         <td>
           {file[".tag"] === "folder" ? (
-            <Link to={`/home${file.path_lower}`} className="tableNameLink" onClick={() => shouldStarListShow(false)}>
+            <Link to={`/home${file.path_lower}`} className="tableNameLink" >
               {file.name}
             </Link>
           ) : (
