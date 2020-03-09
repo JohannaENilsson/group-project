@@ -27,8 +27,6 @@ export default function Home() {
       });
   }
 
-
-
   function onDelete(id) {
     updateFileList(fileList.filter(x => x.id !== id));
   }

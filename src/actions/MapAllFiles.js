@@ -20,7 +20,7 @@ export default function MapAllFiles({
     let fullFavList = [];
     for (let fav of starList) {
       for (let file of fileList) {
-        if (file.id === fav) {
+        if (file === fav) {
           fullFavList.push(file);
         }
       }
@@ -70,7 +70,7 @@ export default function MapAllFiles({
         <td>
           <StarFileOrFolder
             file={file}
-            starred={starList.includes(file.id)}
+            starred={starList.includes(file)}
             onClickStar={onClickStar}
             onClickStarRemove={onClickStarRemove}
           />

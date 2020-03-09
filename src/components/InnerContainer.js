@@ -8,7 +8,7 @@ export default function InnerContainer({
   fileList,
   onDelete,
   showStarIsClicked,
-  query
+  query,
   shouldStarListShow
 }) {
   const [starList, updateStarList] = useState(star$.value);
