@@ -9,7 +9,7 @@ export default function InnerContainer({
   onDelete,
   showStarIsClicked,
   query,
-  shouldStarListShow
+  returnHome
 }) {
   const [starList, updateStarList] = useState(star$.value);
   const history = useHistory(); // använd för breadcrums
@@ -38,7 +38,7 @@ export default function InnerContainer({
         {breadcrums.map(path => {
           linkToUrl += `/${path}`;
           return (
-            <div key={path} onClick={() => shouldStarListShow()}>
+            <div key={path} onClick={() => returnHome()}>
               <Link to={`${linkToUrl}`}>
                 {' '}
                 / {path.charAt(0).toUpperCase() + path.slice(1)}{' '}
