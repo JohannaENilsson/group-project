@@ -29,7 +29,7 @@ export default function DeleteFile({
       .then(function(response) {
         onDelete(response.metadata.id);
         console.log("response.metadata.id", response.metadata.id)
-        onClickStarRemove(response.metadata.id);
+        onClickStarRemove(response.metadata);
       })
 
       .catch(function(error) {

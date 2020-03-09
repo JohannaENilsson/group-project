@@ -17,15 +17,7 @@ export default function MapAllFiles({
   query
 }) {
   if (showStarIsClicked) {
-    let fullFavList = [];
-    for (let fav of starList) {
-      for (let file of fileList) {
-        if (file.id === fav) {
-          fullFavList.push(file);
-        }
-      }
-    }
-    fileList = fullFavList;
+    fileList = starList;
   }
 
   let searchList = null;
@@ -70,7 +62,7 @@ export default function MapAllFiles({
         <td>
           <StarFileOrFolder
             file={file}
-            starred={starList.includes(file.id)}
+            starred={!!starList.find(x => x.id === file.id)}
             onClickStar={onClickStar}
             onClickStarRemove={onClickStarRemove}
           />
@@ -133,3 +125,13 @@ function downloadFileRequest(file) {
       console.error(error);
     });
 }
+
+
+    /*let fullFavList = [];
+    for (let fav of starList) {
+      for (let file of fileList) {
+        if (file === fav) {
+          fullFavList.push(file);
+        }
+      }
+    }*/

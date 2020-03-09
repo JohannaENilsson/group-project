@@ -17,15 +17,15 @@ export default function InnerContainer({
   let breadcrums = history.location.pathname.split("/").splice(1);
   let linkToUrl = "";
 
-  function onClickStar(id) {
-    updateStar([id, ...starList]); //store, sparar till localStorage
-    updateStarList([...starList, id]); //state
-    console.log('stared file -> ', id);
+  function onClickStar(file) {
+    updateStar([file, ...starList]); //store, sparar till localStorage
+    updateStarList([file,...starList]); //state
+    console.log('stared file -> ', file);
   }
 
-  function onClickStarRemove(id) {
+  function onClickStarRemove(file) {
     let removed = starList.filter(function(x) {
-      return x !== id;
+      return x.id !== file.id;
     });
 
     updateStar(removed);
