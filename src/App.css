@@ -41,14 +41,19 @@
 
 header {
   height: 160px;
-  position: relative;
+  width: 100%;
+  /* position: relative; */
+  position: sticky;
+  top: 0px;
+  margin-top: 0;;
   background-image: url("./pics/clouds1.jpeg");
   background-repeat: no-repeat;
   background-position-y: 23%;
   background-size: cover;
   box-shadow: 8px -98px 50px -42px rgba(255, 255, 255, 1) inset;
-
 }
+
+
 
 .headerTitle {
   padding-top: 10px;
@@ -69,7 +74,10 @@ header {
   height: 100vh;
   margin: 0px 3px;
   border-left: 1px solid darksalmon;
-  overflow: auto;
+  /* overflow: auto; */
+  position: relative;
+  margin-left: 17%;
+  z-index: -1;
 }
 
 .loginButton {
@@ -112,8 +120,9 @@ header {
 }
 
 .outerContainer {
-  width: 100vw;
-  height: 100vh;
+  /* width: 100vw; */
+  min-height: 90%;
+  /* height: 900vh; */
   display: flex;
 }
 
@@ -204,9 +213,12 @@ header {
 }
 
 .sidebarContainer {
+  position: fixed;
+  top: 130px;
   text-align: center;
   width: 17%;
   height: 100%;
+  /* height: 350px; */
 }
 
 .sidebarTitle,
@@ -307,3 +319,4 @@ tr:nth-child(even) {
   color: darksalmon;
 }
 
+/* @media (max-width: ) */

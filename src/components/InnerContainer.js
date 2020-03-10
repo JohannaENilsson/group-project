@@ -13,7 +13,7 @@ export default function InnerContainer({
   shouldStarListShow
 }) {
   const [starList, updateStarList] = useState(star$.value);
-  const history = useHistory(); // använd för breadcrums
+  const history = useHistory();
 
   let breadcrums = history.location.pathname.split("/").splice(1);
   let linkToUrl = "";
@@ -63,7 +63,7 @@ export default function InnerContainer({
           starList={starList}
           showStarIsClicked={showStarIsClicked}
           query={query}
-          shouldStarListShow={shouldStarListShow}
+          shouldStarListShow={shouldStarListShow} //// Vi använder inte den. Går den att plocka bort?
           returnFromStarList={returnFromStarList}
         />
       )}
