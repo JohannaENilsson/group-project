@@ -1,17 +1,19 @@
-import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
-import { Dropbox } from "dropbox";
+import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import { Dropbox } from 'dropbox';
 
-import { token$, star$, updateStar } from "./Store";
-import Header from "./Header.js";
-import Sidebar from "./Sidebar";
-import InnerContainer from "./InnerContainer";
-import GetAllFiles from "../actions/GetAllFiles";
+import { token$, star$, updateStar } from './Store';
+import Header from './Header.js';
+import Sidebar from './Sidebar';
+import InnerContainer from './InnerContainer';
+import GetAllFiles from '../actions/GetAllFiles';
 
 export default function Home() {
   const [fileList, updateFileList] = useState(null);
-  const [query, setQuery] = useState("")
-  const [showStarIsClicked, setShowStarIsClicked] = useState(window.localStorage.getItem("showFavorites") === "true");
+  const [query, setQuery] = useState('');
+  const [showStarIsClicked, setShowStarIsClicked] = useState(
+    window.localStorage.getItem('showFavorites') === 'true'
+  );
 
   var dbx = new Dropbox({ accessToken: token$.value, fetch });
 
@@ -23,7 +25,7 @@ export default function Home() {
         updateFileList(response.entries);
       })
       .catch(function(error) {
-        console.error("Can´t get files ", error);
+        console.error('Can´t get files ', error);
       });
   }
 
@@ -43,51 +45,44 @@ export default function Home() {
 
   function searchFilesAndFolders(searchInput, fileList) {
     dbx
-      .filesSearch({ path: "", query: searchInput })
+      .filesSearch({ path: '', query: searchInput })
       .then(response => {
-        console.log(searchInput);
         setQuery(response);
-        console.log(query);
       })
       .catch(error => {
         console.log(error);
       });
   }
 
- function shouldStarListShow(childData) {
-   console.log('childData', childData);
-   if(childData === false){
-    setShowStarIsClicked(false);
-    window.localStorage.removeItem("showFavorites");
-   }
-   
-   if (!showStarIsClicked) {
-     setShowStarIsClicked(true);
-     window.localStorage.setItem("showFavorites", "true");
-   } else {
-     setShowStarIsClicked(false);
-     window.localStorage.removeItem("showFavorites");
-   }
- }
+  function shouldStarListShow(childData) {
+    if (childData === false) {
+      setShowStarIsClicked(false);
+      window.localStorage.removeItem('showFavorites');
+    }
 
- function returnHome(){
-  setQuery('');
-  setShowStarIsClicked(window.localStorage.removeItem("showFavorites"));
-  console.log('go home!');
- }
- 
+    if (!showStarIsClicked) {
+      setShowStarIsClicked(true);
+      window.localStorage.setItem('showFavorites', 'true');
+    } else {
+      setShowStarIsClicked(false);
+      window.localStorage.removeItem('showFavorites');
+    }
+  }
+  
+  function returnHome() {
+    setShowStarIsClicked(window.localStorage.removeItem('showFavorites'));
+  }
 
   return (
     <div>
       <Header searchFilesAndFolders={searchFilesAndFolders} query={query} />
-      <div className="outerContainer">
-        <div className="sidebarContainer">
+      <div className='outerContainer'>
+        <div className='sidebarContainer'>
           <Sidebar
             token={token$.value}
             getFiles={getFiles}
             shouldStarListShow={shouldStarListShow}
             returnHome={returnHome}
-            
           />
         </div>
         <InnerContainer
