@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Dropbox } from "dropbox";
+import { FaStar } from "react-icons/fa";
+
 
 import { token$ } from "../components/Store.js";
 import StarFileOrFolder from "./StarFileOrFolder";
@@ -15,12 +17,9 @@ export default function MapAllFiles({
   starList,
   showStarIsClicked,
   query,
-  shouldStarListShow
+  shouldStarListShow,
+  returnFromStarList
 }) {
-  if (showStarIsClicked) {
-    fileList = starList;
-
-  }
 
   let searchList = null;
 
@@ -31,19 +30,31 @@ export default function MapAllFiles({
     fileList = searchList;
   }
 
+  let error = false;
+    if (showStarIsClicked) {
+      fileList = starList;
+      error = false;
+       if (!starList.length > 0 ) {
+        error = true;
+      }
+  }
+
   const mappedList = fileList.map((file, idx) => {
     return (
       <tr key={file.id}>
         <td>{<GetFileType file={file} />}</td>
         <td>
           {file[".tag"] === "folder" ? (
-            <Link to={`/home${file.path_lower}`} className="tableNameLink" >
+            <Link
+              to={`/home${file.path_lower}`}
+              className="tableNameLink"
+              onClick={() => returnFromStarList()}
+            >
               {file.name}
             </Link>
           ) : (
             <span
               className="tableNameLink"
-              style={{ cursor: "pointer" }}
               onClick={() => downloadFileRequest(file)}
             >
               {file.name}
@@ -78,9 +89,10 @@ export default function MapAllFiles({
 
   return (
     <>
-      {!fileList ? (
-        <p>List is empty. Upload a file or add a new folder</p>
-      ) : (
+    
+      { !fileList ? <p className="error">List is empty. Upload a file or add a new folder</p>
+      : error ? <p className="error">Click on a <FaStar style={{ color: 'darksalmon' }} /> to show file or folders...</p>  
+      : (
         <table>
           <thead>
             <tr>
@@ -92,7 +104,8 @@ export default function MapAllFiles({
           </thead>
           <tbody>{mappedList}</tbody>
         </table>
-      )}
+      )
+      }
     </>
   );
 }
@@ -128,8 +141,7 @@ function downloadFileRequest(file) {
     });
 }
 
-
-    /*let fullFavList = [];
+/*let fullFavList = [];
     for (let fav of starList) {
       for (let file of fileList) {
         if (file === fav) {

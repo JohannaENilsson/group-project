@@ -10,9 +10,9 @@ import GetAllFiles from '../actions/GetAllFiles';
 
 export default function Home() {
   const [fileList, updateFileList] = useState(null);
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState("");
   const [showStarIsClicked, setShowStarIsClicked] = useState(
-    window.localStorage.getItem('showFavorites') === 'true'
+    window.localStorage.getItem("showFavorites") === "true"
   );
 
   var dbx = new Dropbox({ accessToken: token$.value, fetch });
@@ -55,22 +55,19 @@ export default function Home() {
   }
 
   function shouldStarListShow(childData) {
+    console.log("childData", childData);
     if (childData === false) {
       setShowStarIsClicked(false);
-      window.localStorage.removeItem('showFavorites');
+      window.localStorage.removeItem("showFavorites");
     }
+    setShowStarIsClicked(true);
+    window.localStorage.setItem("showFavorites", "true");
 
-    if (!showStarIsClicked) {
-      setShowStarIsClicked(true);
-      window.localStorage.setItem('showFavorites', 'true');
-    } else {
-      setShowStarIsClicked(false);
-      window.localStorage.removeItem('showFavorites');
-    }
   }
-  
-  function returnHome() {
-    setShowStarIsClicked(window.localStorage.removeItem('showFavorites'));
+
+  function returnFromStarList() {
+    setShowStarIsClicked(window.localStorage.removeItem("showFavorites"));
+    console.log("go to another folder!");
   }
 
   return (
@@ -82,7 +79,7 @@ export default function Home() {
             token={token$.value}
             getFiles={getFiles}
             shouldStarListShow={shouldStarListShow}
-            returnHome={returnHome}
+            returnFromStarList={returnFromStarList}
           />
         </div>
         <InnerContainer
@@ -91,7 +88,7 @@ export default function Home() {
           getFiles={getFiles}
           showStarIsClicked={showStarIsClicked}
           query={query}
-          returnHome={returnHome}
+          returnFromStarList={returnFromStarList}
           shouldStarListShow={shouldStarListShow}
         />
       </div>

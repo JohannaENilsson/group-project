@@ -1,8 +1,5 @@
 import React, { useState } from "react";
-import { Dropbox } from "dropbox";
 import { FaStar } from "react-icons/fa";
-
-import { updateStar, token$ } from "../components/Store";
 
 export default function StarFileOrFolder({
   file,
