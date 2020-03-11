@@ -28,7 +28,6 @@ export default function DeleteFile({
       .filesDeleteV2({ path })
       .then(function(response) {
         onDelete(response.metadata.id);
-        console.log("response.metadata.id", response.metadata.id)
         onClickStarRemove(response.metadata);
       })
 

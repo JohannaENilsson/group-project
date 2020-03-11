@@ -20,7 +20,7 @@ export default function GetFileType({ file }) {
           console.log(error);
         });
     }
-  }, []);
+  }, [file.name, file.path_lower]);
 
   if (file['.tag'] === 'folder') {
     return <i className='fa fa-folder'></i>;

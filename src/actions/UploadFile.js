@@ -6,12 +6,12 @@ export default function UploadFile({ token, getFiles }) {
 
   const location = useLocation();
   let breadcrums = location.pathname.slice(5); // plockar bort 'home/'
-  // console.log('path ', breadcrums);
+
 
   const handleUploadFile = e => {
     if (e.target.files.length > 0) {
       const file = e.target.files[0];
-      // console.log(file);
+
       const dbx = new Dropbox({ accessToken: token });
 
       dbx

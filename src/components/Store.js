@@ -15,7 +15,6 @@ export function updateToken(token) {
 export const star$ = new BehaviorSubject(JSON.parse(localStorage.getItem("star") || "[]"));
 
 export function updateStar(star) {
-  console.log("Star-->", star);
   if (star) {
     star$.next(star);
 
