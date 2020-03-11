@@ -17,11 +17,9 @@ export const star$ = new BehaviorSubject(JSON.parse(localStorage.getItem("star")
 export function updateStar(star) {
   if (star) {
     star$.next(star);
-
     localStorage.setItem("star", JSON.stringify(star));
   } else {
     star$.next(star);
-
     localStorage.removeItem("star");
   }
 }
