@@ -17,28 +17,26 @@ export default function PopupAddNewFolder({
     setInputValue(e.target.value);
   };
 
- 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        handleAddNewFolder(inputValue);
-    }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    handleAddNewFolder(inputValue);
+  }
 
+  const handleAddNewFolder = folderName => {
+    const dbx = new Dropbox({ accessToken: token, fetch });
+    dbx
+      .filesCreateFolderV2({ path: `${breadcrums}/${folderName}`, autorename: true })
+      .then(() => {
+        handleCancelAddNewFolder();
+        getFiles(location);
+      });
+  };
 
-    const handleAddNewFolder = folderName => {
-        const dbx = new Dropbox({ accessToken: token, fetch });
-        dbx
-          .filesCreateFolderV2({ path: `${breadcrums}/${folderName}`, autorename: true })
-          .then(() => {
-            handleCancelAddNewFolder();
-            getFiles(location);
-          });
-      };
-    
     return ReactDOM.createPortal((
         <div className="popupBackground">
             <div className="popupWindow">
                 <div className="popupWindowContainer">
-                    <h3>Add new folder</h3>
+                    <h3 className="h3">Add new folder</h3>
                     <form onSubmit={handleSubmit}>
                         <input className="searchAndAddNewFolderInput folder" type="text" onChange={handleChange} value={inputValue}   />
                     </form>

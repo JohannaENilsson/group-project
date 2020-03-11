@@ -47,9 +47,7 @@ export default function Home() {
     dbx
       .filesSearch({ path: "", query: searchInput })
       .then(response => {
-        console.log(searchInput);
         setQuery(response);
-        console.log(query);
       })
       .catch(error => {
         console.log(error);

@@ -15,14 +15,12 @@ export function updateToken(token) {
 export const star$ = new BehaviorSubject(JSON.parse(localStorage.getItem("star") || "[]"));
 
 export function updateStar(star) {
-  console.log("Star-->", star);
+//  console.log("Star-->", star);
   if (star) {
     star$.next(star);
-
     localStorage.setItem("star", JSON.stringify(star));
   } else {
     star$.next(star);
-
     localStorage.removeItem("star");
   }
 }
