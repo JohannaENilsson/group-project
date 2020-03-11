@@ -2,16 +2,13 @@ import React, { useState } from 'react';
 import MoveFile from './MoveFile';
 import RenameFile from './RenameFile';
 
-export default function DropDown( file ) {
+export default function DropDown(file) {
   const [dropdown, setDropdown] = useState();
-  const [movePopUp, setMovePopUp] = useState(false);
-  console.log(file);
+  const [PopUp, setPopUp] = useState(false);
 
   const handlepopUp = () => {
-    setMovePopUp(true);
+    setPopUp(true);
   };
-
-
 
   function openDropDown() {
     dropdown ? setDropdown(false) : setDropdown(true);
@@ -22,8 +19,12 @@ export default function DropDown( file ) {
       <span onClick={openDropDown}>...</span>
       {dropdown ? (
         <ul>
-          <li><MoveFile  onClick={handlepopUp}/></li>
-          <li><RenameFile onClick={handlepopUp} file={file}/></li>
+          <li>
+            <MoveFile onClick={handlepopUp} />
+          </li>
+          <li>
+            <RenameFile onClick={handlepopUp} file={file} />
+          </li>
         </ul>
       ) : null}
     </>

@@ -37,11 +37,11 @@ export default function Home() {
   useEffect(() => {
     getFiles(location);
 
-    const interval = setInterval(() => {
-      getFiles(location);
-    }, 10000);
+    // const interval = setInterval(() => {
+    //   getFiles(location);
+    // }, 10000);
 
-    return () => clearInterval(interval);
+    // return () => clearInterval(interval);
   }, [location]);
 
   function searchFilesAndFolders(searchInput, fileList) {
@@ -90,7 +90,6 @@ export default function Home() {
           query={query}
           searchInput={searchInput}
           returnFromStarList={returnFromStarList}
-          shouldStarListShow={shouldStarListShow}
         />
       </div>
     </div>

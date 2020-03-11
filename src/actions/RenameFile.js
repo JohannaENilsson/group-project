@@ -1,28 +1,34 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 import PopupRename from './PopupRename';
 
-export default function RenameFile({ token, getFiles, file }) {
-    const [folder, setFolder] = useState(null);
-    const [showPopup, setShowPopup] = useState(false);
+export default function RenameFile({ getFiles, file }) {
+  const [folder, setFolder] = useState(null);
+  const [showPopup, setShowPopup] = useState(false);
 
-    console.log(file);
+  console.log(file);
 
-    const handleAddNewFolderPopup = () => {
-        setShowPopup(true);
-        setFolder(folder);
-    }
+  const handlePopup = () => {
+    setShowPopup(true);
+    setFolder(folder);
+  };
 
-    const handleCancelAddNewFolder = (e) => {
-        setShowPopup(false);                
-    }
+  const handleCancel = e => {
+    setShowPopup(false);
+  };
 
-    return (
-        <>
-            <div className="addFolderInputLabel"  onClick={handleAddNewFolderPopup}>Rename</div>
-            {
-                showPopup ? <PopupRename token={token} handleCancelAddNewFolder={handleCancelAddNewFolder} getFiles={getFiles} file={file}/> : null
-            }
-        </>
-    );
+  return (
+    <>
+      <div className='addFolderInputLabel' onClick={handlePopup}>
+        Rename
+      </div>
+      {showPopup ? (
+        <PopupRename
+          handleCancel={handleCancel}
+          getFiles={getFiles}
+          file={file}
+        />
+      ) : null}
+    </>
+  );
 }

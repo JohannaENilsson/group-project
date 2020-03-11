@@ -1,11 +1,11 @@
 import React, { useState } from "react";
+import { token$ } from "../components/Store";
 import ReactDOM from "react-dom";
 import { useLocation } from "react-router-dom";
 import { Dropbox } from "dropbox";
 
 export default function PopupMove({
-  token,
-  handleCancelAddNewFolder,
+  handleCancel,
   getFiles
 }) {
   const [inputValue, setInputValue] = useState("");
@@ -28,14 +28,14 @@ export default function PopupMove({
   };
 
   const handleAddNewFolder = folderName => {
-    const dbx = new Dropbox({ accessToken: token, fetch });
+    const dbx = new Dropbox({ accessToken: token$.value, fetch });
     dbx
       .filesCreateFolderV2({
         path: `${breadcrums}/${folderName}`,
         autorename: true
       })
       .then(() => {
-        handleCancelAddNewFolder();
+        handleCancel();
         getFiles(location);
       });
   };
@@ -68,7 +68,7 @@ export default function PopupMove({
 
               <button
                 className="popupAddAndCancelButton"
-                onClick={handleCancelAddNewFolder}
+                onClick={handleCancel}
               >
                 Cancel
               </button>

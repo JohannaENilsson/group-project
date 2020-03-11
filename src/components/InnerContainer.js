@@ -10,7 +10,6 @@ export default function InnerContainer({
   showStarIsClicked,
   query,
   returnFromStarList,
-  shouldStarListShow,
   searchInput,
 }) {
   const [starList, updateStarList] = useState(star$.value);
@@ -75,7 +74,6 @@ export default function InnerContainer({
           showStarIsClicked={showStarIsClicked}
           query={query}
           searchInput={searchInput}
-          shouldStarListShow={shouldStarListShow} //// Vi använder inte den. Går den att plocka bort?
           returnFromStarList={returnFromStarList}
         />
       )}

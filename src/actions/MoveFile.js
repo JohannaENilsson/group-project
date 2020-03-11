@@ -2,25 +2,27 @@ import React, { useState, useEffect } from 'react';
 
 import PopupMove from './PopupMove';
 
-export default function MoveFile({ token, getFiles }) {
-    const [folder, setFolder] = useState(null);
-    const [showPopup, setShowPopup] = useState(false);
+export default function MoveFile({ getFiles }) {
+  const [folder, setFolder] = useState(null);
+  const [showPopup, setShowPopup] = useState(false);
 
-    const handleAddNewFolderPopup = () => {
-        setShowPopup(true);
-        setFolder(folder);
-    }
+  const handlePopup = () => {
+    setShowPopup(true);
+    setFolder(folder);
+  };
 
-    const handleCancelAddNewFolder = (e) => {
-        setShowPopup(false);                
-    }
+  const handleCancel = e => {
+    setShowPopup(false);
+  };
 
-    return (
-        <>
-            <div className="addFolderInputLabel"  onClick={handleAddNewFolderPopup}>Move file</div>
-            {
-                showPopup ? <PopupMove token={token} handleCancelAddNewFolder={handleCancelAddNewFolder} getFiles={getFiles}/> : null
-            }
-        </>
-    );
+  return (
+    <>
+      <div className='addFolderInputLabel' onClick={handlePopup}>
+        Move file
+      </div>
+      {showPopup ? (
+        <PopupMove handleCancel={handleCancel} getFiles={getFiles} />
+      ) : null}
+    </>
+  );
 }

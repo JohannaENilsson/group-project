@@ -5,11 +5,12 @@ import { useLocation } from "react-router-dom";
 import { Dropbox } from "dropbox";
 
 export default function PopupRename({
-   handleCancelAddNewFolder,
+  handleCancel,
   getFiles,
   file
 }) {
   const [inputValue, setInputValue] = useState("");
+  console.log(file);
 
   const location = useLocation();
   let breadcrums = location.pathname.slice(5); // plockar bort 'home/'
@@ -25,21 +26,26 @@ export default function PopupRename({
       return;
     }
 
-    handleAddNewFolder(inputValue);
+    handleRename(inputValue);
   };
-console.log(file);
-  const handleAddNewFolder = folderName => {
+  console.log(file);
+console.log(file.file.name);
+  const handleRename = newName => {
     const dbx = new Dropbox({ accessToken: token$.value, fetch });
+
+    const data = {
+      from_path: `${breadcrums}/${file.file.name}`,
+      to_path: `${breadcrums}/${newName}`,
+      allow_shared_folder: true,
+      autorename: true,
+      allow_ownership_transfer: false
+    };
+    console.log(data);
     dbx
-      .filesMoveV2({
-        // path: `${breadcrums}/${folderName}`,
-        from_path: `${breadcrums}/${file.name}`,
-        to_path: `${breadcrums}/${inputValue}`,
-        autorename: true
-      })
+      .filesMoveV2(data)
       .then(function(resp) {
           console.log(resp);
-        handleCancelAddNewFolder();
+          handleCancel();
         // getFiles(location);
       });
   };
@@ -72,7 +78,7 @@ console.log(file);
 
               <button
                 className="popupAddAndCancelButton"
-                onClick={handleCancelAddNewFolder}
+                onClick={handleCancel}
               >
                 Cancel
               </button>
