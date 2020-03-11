@@ -140,12 +140,3 @@ function downloadFileRequest(file) {
       console.error(error);
     });
 }
-
-/*let fullFavList = [];
-    for (let fav of starList) {
-      for (let file of fileList) {
-        if (file === fav) {
-          fullFavList.push(file);
-        }
-      }
-    }*/
