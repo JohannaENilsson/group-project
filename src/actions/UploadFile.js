@@ -19,7 +19,7 @@ export default function UploadFile({ token, getFiles }) {
       dbx
         .filesUpload({ path: `${breadcrums}/${file.name}`, contents: file, autorename: true })
         .then(function(resp) {
-          if ((resp.size / 1000000) >= 10 ) {
+          if ((resp.size / 1000000) >= 150 ) {
             setshowPopup( true );
           } else{ 
             getFiles(location);
