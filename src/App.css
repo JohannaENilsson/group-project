@@ -3,6 +3,7 @@
   position: relative;
   max-width: 100vw;
   box-sizing: border-box;
+  overflow: hidden;
 }
 
 .breadCrumbs{
@@ -41,19 +42,14 @@
 
 header {
   height: 160px;
-  width: 100%;
-  /* position: relative; */
-  position: sticky;
-  top: 0px;
-  margin-top: 0;;
+  position: relative;
   background-image: url("./pics/clouds1.jpeg");
   background-repeat: no-repeat;
   background-position-y: 23%;
   background-size: cover;
   box-shadow: 8px -98px 50px -42px rgba(255, 255, 255, 1) inset;
+
 }
-
-
 
 .headerTitle {
   padding-top: 10px;
@@ -74,10 +70,7 @@ header {
   height: 100vh;
   margin: 0px 3px;
   border-left: 1px solid darksalmon;
-  /* overflow: auto; */
-  position: relative;
-  margin-left: 17%;
-  z-index: -1;
+  overflow: auto;
 }
 
 .loginButton {
@@ -120,9 +113,8 @@ header {
 }
 
 .outerContainer {
-  /* width: 100vw; */
-  min-height: 90%;
-  /* height: 900vh; */
+  width: 98vw;
+  height: 100vh;
   display: flex;
 }
 
@@ -213,12 +205,9 @@ header {
 }
 
 .sidebarContainer {
-  position: fixed;
-  top: 130px;
   text-align: center;
   width: 17%;
   height: 100%;
-  /* height: 350px; */
 }
 
 .sidebarTitle,
@@ -242,6 +231,7 @@ table {
 .tableNameLink {
   text-decoration: none;
   color: black;
+  cursor: pointer;
 }
 
 .tableNameLink:hover {
@@ -319,4 +309,17 @@ tr:nth-child(even) {
   color: darksalmon;
 }
 
-/* @media (max-width: ) */
+@media (max-width: 910px){
+  td{
+    font-size: 1.1rem;
+  }
+
+  td:nth-child(3), td:nth-child(4) {
+    display: none;
+  }
+  
+  th:nth-child(3), th:nth-child(4) {
+    display: none;
+  }
+
+}
