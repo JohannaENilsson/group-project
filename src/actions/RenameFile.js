@@ -2,11 +2,9 @@ import React, { useState } from 'react';
 
 import PopupRename from './PopupRename';
 
-export default function RenameFile({ getFiles, file }) {
+export default function RenameFile({ file, setDropdown }) {
   const [folder, setFolder] = useState(null);
   const [showPopup, setShowPopup] = useState(false);
-
-  console.log(file);
 
   const handlePopup = () => {
     setShowPopup(true);
@@ -15,6 +13,7 @@ export default function RenameFile({ getFiles, file }) {
 
   const handleCancel = e => {
     setShowPopup(false);
+    setDropdown(false);
   };
 
   return (
@@ -23,11 +22,7 @@ export default function RenameFile({ getFiles, file }) {
         Rename
       </div>
       {showPopup ? (
-        <PopupRename
-          handleCancel={handleCancel}
-          getFiles={getFiles}
-          file={file}
-        />
+        <PopupRename handleCancel={handleCancel} file={file} />
       ) : null}
     </>
   );

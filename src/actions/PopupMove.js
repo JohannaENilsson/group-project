@@ -1,17 +1,14 @@
-import React, { useState } from "react";
-import { token$ } from "../components/Store";
-import ReactDOM from "react-dom";
-import { useLocation } from "react-router-dom";
-import { Dropbox } from "dropbox";
+import React, { useState } from 'react';
+import { token$ } from '../components/Store';
+import ReactDOM from 'react-dom';
+import { useLocation } from 'react-router-dom';
+import { Dropbox } from 'dropbox';
 
-export default function PopupMove({
-  handleCancel,
-  getFiles
-}) {
-  const [inputValue, setInputValue] = useState("");
+export default function PopupMove({ handleCancel, file }) {
+  const [inputValue, setInputValue] = useState('');
 
   const location = useLocation();
-  let breadcrums = location.pathname.slice(5); // plockar bort 'home/'
+  let breadcrums = location.pathname.slice(5);
 
   const handleChange = e => {
     setInputValue(e.target.value);
@@ -20,54 +17,63 @@ export default function PopupMove({
   const handleSubmit = e => {
     e.preventDefault();
     if (inputValue.trim().length === 0) {
-      setInputValue("");
+      setInputValue('');
       return;
     }
 
-    handleAddNewFolder(inputValue);
+    handleMove(inputValue);
   };
 
-  const handleAddNewFolder = folderName => {
+  const handleMove = newPath => {
     const dbx = new Dropbox({ accessToken: token$.value, fetch });
+    const data = {
+      from_path: `${file.file.path_lower}`,
+      to_path: `/${newPath}/${file.file.name}`,
+      allow_shared_folder: true,
+      autorename: true,
+      allow_ownership_transfer: false
+    };
+    console.log(data);
+
     dbx
-      .filesCreateFolderV2({
-        path: `${breadcrums}/${folderName}`,
-        autorename: true
-      })
-      .then(() => {
+      .filesMoveV2(data)
+      .then((resp) => {
+        console.log(resp);
         handleCancel();
-        getFiles(location);
+      })
+      .catch(resp => {
+        console.log(resp);
       });
   };
 
   return ReactDOM.createPortal(
-    <div className="popupBackground">
-      <div className="popupWindow">
-        <div className="popupWindowContainer">
+    <div className='popupBackground'>
+      <div className='popupWindow'>
+        <div className='popupWindowContainer'>
           <h3>Move file</h3>
           <form onSubmit={handleSubmit}>
             <input
-              className="searchAndAddNewFolderInput folder"
-              type="text"
+              className='searchAndAddNewFolderInput folder'
+              type='text'
               onChange={handleChange}
               value={inputValue}
-              minLength="1"
-              maxLength="20"
+              minLength='1'
+              maxLength='20'
               required
               autoFocus
-              placeholder="1-20 characters"
+              placeholder='1-20 characters'
             />
 
-            <div className="popupWindowButtonContainer">
+            <div className='popupWindowButtonContainer'>
               <input
-                type="submit"
-                className="popupAddAndCancelButton"
+                type='submit'
+                className='popupAddAndCancelButton'
                 onSubmit={handleSubmit}
-                value="Move"
+                value='Move'
               />
 
               <button
-                className="popupAddAndCancelButton"
+                className='popupAddAndCancelButton'
                 onClick={handleCancel}
               >
                 Cancel

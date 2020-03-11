@@ -1,12 +1,12 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { Dropbox } from "dropbox";
-import { FaStar } from "react-icons/fa";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { Dropbox } from 'dropbox';
+import { FaStar } from 'react-icons/fa';
 
-import { token$ } from "../components/Store.js";
-import StarFileOrFolder from "./StarFileOrFolder";
-import DeleteFile from "./DeleteFile";
-import GetFileType from "./GetFileType";
+import { token$ } from '../components/Store.js';
+import StarFileOrFolder from './StarFileOrFolder';
+import DeleteFile from './DeleteFile';
+import GetFileType from './GetFileType';
 import DropDown from './DropDown';
 
 export default function MapAllFiles({
@@ -30,7 +30,7 @@ export default function MapAllFiles({
   }
 
   if (searchInput.length > 0 && query.matches.length === 0) {
-    return <p className="error">No files found!</p>;
+    return <p className='error'>No files found!</p>;
   }
 
   let errorStar = false;
@@ -47,17 +47,17 @@ export default function MapAllFiles({
       <tr key={file.id}>
         <td>{<GetFileType file={file} />}</td>
         <td>
-          {file[".tag"] === "folder" ? (
+          {file['.tag'] === 'folder' ? (
             <Link
               to={`/home${file.path_lower}`}
-              className="tableNameLink"
+              className='tableNameLink'
               onClick={() => returnFromStarList()}
             >
               {file.name}
             </Link>
           ) : (
             <span
-              className="tableNameLink"
+              className='tableNameLink'
               onClick={() => downloadFileRequest(file)}
             >
               {file.name}
@@ -84,7 +84,7 @@ export default function MapAllFiles({
           />
         </td>
         <td>
-          <DropDown file={file}/>
+          <DropDown file={file} />
         </td>
       </tr>
     );
@@ -93,12 +93,12 @@ export default function MapAllFiles({
   return (
     <>
       {!fileList ? (
-        <p className="error">
+        <p className='error'>
           List is empty. Upload a file or add a new folder
         </p>
       ) : errorStar ? (
-        <p className="error">
-          Click on a <FaStar style={{ color: "darksalmon" }} /> to show file or
+        <p className='error'>
+          Click on a <FaStar style={{ color: 'darksalmon' }} /> to show file or
           folders...
         </p>
       ) : (
@@ -119,18 +119,18 @@ export default function MapAllFiles({
 }
 
 function sizeFormat(byte) {
-  if (!byte) return "-";
+  if (!byte) return '-';
   else if (byte > 100 && byte < 999999) {
-    return (byte / 1000).toFixed(1) + " kb";
+    return (byte / 1000).toFixed(1) + ' kb';
   } else if (byte >= 1000000 && byte < 1000000000) {
-    return (byte / 1000000).toFixed(1) + " mb";
+    return (byte / 1000000).toFixed(1) + ' mb';
   } else {
-    return (byte / 1000000000).toFixed(1) + "gb";
+    return (byte / 1000000000).toFixed(1) + 'gb';
   }
 }
 
 function dateFormat(date) {
-  if (!date) return "-";
+  if (!date) return '-';
   let newdate = new Date(date);
   return `${newdate.toLocaleDateString()}, ${newdate.toLocaleTimeString()}`;
 }

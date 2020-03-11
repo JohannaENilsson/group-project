@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import PopupMove from './PopupMove';
 
-export default function MoveFile({ getFiles }) {
+export default function MoveFile({ file, setDropdown }) {
   const [folder, setFolder] = useState(null);
   const [showPopup, setShowPopup] = useState(false);
 
@@ -13,6 +13,7 @@ export default function MoveFile({ getFiles }) {
 
   const handleCancel = e => {
     setShowPopup(false);
+    setDropdown(false);
   };
 
   return (
@@ -21,7 +22,7 @@ export default function MoveFile({ getFiles }) {
         Move file
       </div>
       {showPopup ? (
-        <PopupMove handleCancel={handleCancel} getFiles={getFiles} />
+        <PopupMove handleCancel={handleCancel} file={file} />
       ) : null}
     </>
   );

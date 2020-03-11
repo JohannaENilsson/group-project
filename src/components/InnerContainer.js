@@ -10,7 +10,7 @@ export default function InnerContainer({
   showStarIsClicked,
   query,
   returnFromStarList,
-  searchInput,
+  searchInput
 }) {
   const [starList, updateStarList] = useState(star$.value);
   const history = useHistory();

@@ -13,17 +13,17 @@ export default function DropDown(file) {
   function openDropDown() {
     dropdown ? setDropdown(false) : setDropdown(true);
   }
-
+  
   return (
     <>
       <span onClick={openDropDown}>...</span>
       {dropdown ? (
         <ul>
           <li>
-            <MoveFile onClick={handlepopUp} />
+            <MoveFile onClick={handlepopUp} file={file} setDropdown={setDropdown}/>
           </li>
           <li>
-            <RenameFile onClick={handlepopUp} file={file} />
+            <RenameFile onClick={handlepopUp} file={file} setDropdown={setDropdown}/>
           </li>
         </ul>
       ) : null}
