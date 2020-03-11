@@ -23,8 +23,6 @@ export default function UploadFile({ token, getFiles }) {
             setshowPopup( true );
           } else{ 
             getFiles(location);
-            console.log(resp);
-            console.log(resp.size); 
           }
       })
         .catch(function(error) {
