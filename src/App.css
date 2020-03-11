@@ -67,7 +67,7 @@ header {
 
 .innerContainer {
   width: 83%;
-  height: 100vh;
+  height: 100%;
   margin: 0px 3px;
   border-left: 1px solid darksalmon;
   overflow: auto;
@@ -114,7 +114,7 @@ header {
 
 .outerContainer {
   width: 98vw;
-  height: 100vh;
+  height: 77vh;
   display: flex;
 }
 
