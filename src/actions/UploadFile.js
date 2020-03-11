@@ -13,7 +13,7 @@ export default function UploadFile({ token, getFiles }) {
   const handleUploadFile = e => {
     if (e.target.files.length > 0) {
       const file = e.target.files[0];
-      // console.log(file);
+
       const dbx = new Dropbox({ accessToken: token, fetch });
       dbx
         .filesUpload({ path: `${breadcrums}/${file.name}`, contents: file, autorename: true })
@@ -22,8 +22,6 @@ export default function UploadFile({ token, getFiles }) {
             setshowPopup( true );
           } else{ 
             getFiles(location);
-            console.log(resp);
-            console.log(resp.size); 
           }
       })
         .catch(function(error) {

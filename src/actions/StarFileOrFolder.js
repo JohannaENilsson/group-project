@@ -7,14 +7,9 @@ export default function StarFileOrFolder({
   onClickStarRemove,
   starred
 }) {
-
   const clickStar = () => {
-    console.log('i got this file ', file);
-    {
-      starred ? onClickStarRemove(file) : onClickStar(file);
-    }
+    starred ? onClickStarRemove(file) : onClickStar(file);
   };
-
 
   const opacity = starred ? 1 : 0.2;
   const color = starred ? "darksalmon" : "black";
@@ -22,7 +17,11 @@ export default function StarFileOrFolder({
   return (
     <>
       <div>
-        <FaStar className="star" onClick={clickStar} style={{ opacity, color }} />
+        <FaStar
+          className="star"
+          onClick={clickStar}
+          style={{ opacity, color }}
+        />
       </div>
     </>
   );

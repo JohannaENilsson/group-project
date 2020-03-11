@@ -14,6 +14,7 @@ export default function Home() {
   const [showStarIsClicked, setShowStarIsClicked] = useState(
     window.localStorage.getItem("showFavorites") === "true"
   );
+  const [searchInput, setSearchInput] = useState("");
 
   var dbx = new Dropbox({ accessToken: token$.value, fetch });
 
@@ -44,6 +45,7 @@ export default function Home() {
   }, [location]);
 
   function searchFilesAndFolders(searchInput, fileList) {
+    setSearchInput(searchInput)
     dbx
       .filesSearch({ path: '', query: searchInput })
       .then(response => {
@@ -66,7 +68,6 @@ export default function Home() {
 
   function returnFromStarList() {
     setShowStarIsClicked(window.localStorage.removeItem("showFavorites"));
-    console.log("go to another folder!");
   }
 
   return (
@@ -87,6 +88,7 @@ export default function Home() {
           getFiles={getFiles}
           showStarIsClicked={showStarIsClicked}
           query={query}
+          searchInput={searchInput}
           returnFromStarList={returnFromStarList}
           shouldStarListShow={shouldStarListShow}
         />
