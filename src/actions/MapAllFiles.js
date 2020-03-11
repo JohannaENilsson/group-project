@@ -17,9 +17,9 @@ export default function MapAllFiles({
   starList,
   showStarIsClicked,
   query,
-  shouldStarListShow, // Vi använder inte denna här. Går den att plocka bort?
   returnFromStarList
-}) {
+  }) 
+{
 
   let searchList = null;
 

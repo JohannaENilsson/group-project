@@ -8,8 +8,7 @@ export default function UploadFile({ token, getFiles }) {
   const [showPopup, setshowPopup] = useState(false);
 
   const location = useLocation();
-  let breadcrums = location.pathname.slice(5); // plockar bort 'home/'
-  // console.log('path ', breadcrums);
+  let breadcrums = location.pathname.slice(5); 
 
   const handleUploadFile = e => {
     if (e.target.files.length > 0) {
