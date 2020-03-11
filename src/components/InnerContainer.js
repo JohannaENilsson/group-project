@@ -10,7 +10,8 @@ export default function InnerContainer({
   showStarIsClicked,
   query,
   returnFromStarList,
-  shouldStarListShow
+  shouldStarListShow,
+  searchInput,
 }) {
   const [starList, updateStarList] = useState(star$.value);
   const history = useHistory();
@@ -21,7 +22,6 @@ export default function InnerContainer({
   function onClickStar(file) {
     updateStar([file, ...starList]); //store, sparar till localStorage
     updateStarList([file, ...starList]); //state
-    console.log('stared file -> ', file);
   }
 
   function onClickStarRemove(file) {
@@ -74,6 +74,7 @@ export default function InnerContainer({
           starList={starList}
           showStarIsClicked={showStarIsClicked}
           query={query}
+          searchInput={searchInput}
           shouldStarListShow={shouldStarListShow} //// Vi använder inte den. Går den att plocka bort?
           returnFromStarList={returnFromStarList}
         />

@@ -65,6 +65,10 @@ header {
   color: darksalmon;
 }
 
+.h3 {
+  text-align: center;
+}
+
 .innerContainer {
   width: 83%;
   height: 100%;
@@ -157,6 +161,7 @@ header {
   width: 80px;
   height: 30px;
   margin: 20px;
+  cursor: pointer;
 }
 
 .popupWindowButtonContainer {

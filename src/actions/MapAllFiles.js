@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { Dropbox } from "dropbox";
 import { FaStar } from "react-icons/fa";
 
-
 import { token$ } from "../components/Store.js";
 import StarFileOrFolder from "./StarFileOrFolder";
 import DeleteFile from "./DeleteFile";
@@ -17,14 +16,10 @@ export default function MapAllFiles({
   onClickStarRemove,
   starList,
   showStarIsClicked,
+  searchInput,
   query,
-  shouldStarListShow, // Vi använder inte denna här. Går den att plocka bort?
-  returnFromStarList,
-  openDropDown,
-  dropdown,
-  setDropdown
+  returnFromStarList
 }) {
-
   let searchList = null;
 
   if (query && query.matches.length > 0) {
@@ -34,13 +29,17 @@ export default function MapAllFiles({
     fileList = searchList;
   }
 
-  let error = false;
-    if (showStarIsClicked) {
-      fileList = starList;
-      error = false;
-       if (!starList.length > 0 ) {
-        error = true;
-      }
+  if (searchInput.length > 0 && query.matches.length === 0) {
+    return <p className="error">No files found!</p>;
+  }
+
+  let errorStar = false;
+  if (showStarIsClicked) {
+    fileList = starList;
+    errorStar = false;
+    if (!starList.length > 0) {
+      errorStar = true;
+    }
   }
 
   const mappedList = fileList.map((file, idx) => {
@@ -93,10 +92,16 @@ export default function MapAllFiles({
 
   return (
     <>
-    
-      { !fileList ? <p className="error">List is empty. Upload a file or add a new folder</p>
-      : error ? <p className="error">Click on a <FaStar style={{ color: 'darksalmon' }} /> to show file or folders...</p>  
-      : (
+      {!fileList ? (
+        <p className="error">
+          List is empty. Upload a file or add a new folder
+        </p>
+      ) : errorStar ? (
+        <p className="error">
+          Click on a <FaStar style={{ color: "darksalmon" }} /> to show file or
+          folders...
+        </p>
+      ) : (
         <table>
           <thead>
             <tr>
@@ -108,8 +113,7 @@ export default function MapAllFiles({
           </thead>
           <tbody>{mappedList}</tbody>
         </table>
-      )
-      }
+      )}
     </>
   );
 }
@@ -138,18 +142,8 @@ function downloadFileRequest(file) {
     .filesGetTemporaryLink({ path: file.path_lower })
     .then(function(response) {
       window.location.href = response.link;
-      console.log("download", response);
     })
     .catch(function(error) {
       console.error(error);
     });
 }
-
-/*let fullFavList = [];
-    for (let fav of starList) {
-      for (let file of fileList) {
-        if (file === fav) {
-          fullFavList.push(file);
-        }
-      }
-    }*/
