@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import React, { useState } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 
-import { star$, updateStar } from "./Store.js";
-import MapAllFiles from "../actions/MapAllFiles";
+import { star$, updateStar } from './Store.js';
+import MapAllFiles from '../actions/MapAllFiles';
 
 export default function InnerContainer({
   fileList,
@@ -15,13 +15,13 @@ export default function InnerContainer({
   const [starList, updateStarList] = useState(star$.value);
   const history = useHistory();
 
-  let breadcrums = history.location.pathname.split("/").splice(1);
-  let linkToUrl = "";
+  let breadcrums = history.location.pathname.split('/').splice(1);
+  let linkToUrl = '';
 
   function onClickStar(file) {
     updateStar([file, ...starList]); //store, sparar till localStorage
     updateStarList([file, ...starList]); //state
-    console.log("stared file -> ", file);
+    console.log('stared file -> ', file);
   }
 
   function onClickStarRemove(file) {
@@ -34,39 +34,37 @@ export default function InnerContainer({
   }
 
   return (
-    <div className="innerContainer">
-      <div className="breadCrumbs">
+    <div className='innerContainer'>
+      <div className='breadCrumbs'>
         {showStarIsClicked ? (
           <p> Starred</p>
         ) : (
           breadcrums.map((path, idx) => {
             linkToUrl += `/${path}`;
-            if(idx === 0){
+            if (idx === 0) {
               return (
                 <div key={path} onClick={() => returnFromStarList()}>
                   <Link to={`${linkToUrl}`}>
-                    {" "}
-                    {path.charAt(0).toUpperCase() + path.slice(1)}{" "}
+                    {' '}
+                    {path.charAt(0).toUpperCase() + path.slice(1)}{' '}
                   </Link>
                 </div>
               );
-
             } else {
               return (
                 <div key={path} onClick={() => returnFromStarList()}>
                   <Link to={`${linkToUrl}`}>
-                    {" "}
-                    > {path.charAt(0).toUpperCase() + path.slice(1)}{" "}
+                    {' '}
+                    > {path.charAt(0).toUpperCase() + path.slice(1)}{' '}
                   </Link>
                 </div>
               );
             }
-           
           })
         )}
       </div>
       {fileList === null ? (
-        <p className="error">Loading files..</p>
+        <p className='error'>Loading files..</p>
       ) : (
         <MapAllFiles
           onDelete={onDelete}

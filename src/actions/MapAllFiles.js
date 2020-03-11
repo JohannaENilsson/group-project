@@ -8,6 +8,7 @@ import { token$ } from "../components/Store.js";
 import StarFileOrFolder from "./StarFileOrFolder";
 import DeleteFile from "./DeleteFile";
 import GetFileType from "./GetFileType";
+import DropDown from './DropDown';
 
 export default function MapAllFiles({
   fileList,
@@ -18,7 +19,10 @@ export default function MapAllFiles({
   showStarIsClicked,
   query,
   shouldStarListShow, // Vi använder inte denna här. Går den att plocka bort?
-  returnFromStarList
+  returnFromStarList,
+  openDropDown,
+  dropdown,
+  setDropdown
 }) {
 
   let searchList = null;
@@ -81,7 +85,7 @@ export default function MapAllFiles({
           />
         </td>
         <td>
-          <span>...</span>
+          <DropDown file={file}/>
         </td>
       </tr>
     );
