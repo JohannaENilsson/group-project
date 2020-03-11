@@ -13,7 +13,7 @@ export default function InnerContainer({
   shouldStarListShow
 }) {
   const [starList, updateStarList] = useState(star$.value);
-  const history = useHistory(); // använd för breadcrums
+  const history = useHistory();
 
   let breadcrums = history.location.pathname.split("/").splice(1);
   let linkToUrl = "";
@@ -37,18 +37,31 @@ export default function InnerContainer({
     <div className="innerContainer">
       <div className="breadCrumbs">
         {showStarIsClicked ? (
-          <p>/ Starred</p>
+          <p> Starred</p>
         ) : (
-          breadcrums.map(path => {
+          breadcrums.map((path, idx) => {
             linkToUrl += `/${path}`;
-            return (
-              <div key={path} onClick={() => returnFromStarList()}>
-                <Link to={`${linkToUrl}`}>
-                  {" "}
-                  / {path.charAt(0).toUpperCase() + path.slice(1)}{" "}
-                </Link>
-              </div>
-            );
+            if(idx === 0){
+              return (
+                <div key={path} onClick={() => returnFromStarList()}>
+                  <Link to={`${linkToUrl}`}>
+                    {" "}
+                    {path.charAt(0).toUpperCase() + path.slice(1)}{" "}
+                  </Link>
+                </div>
+              );
+
+            } else {
+              return (
+                <div key={path} onClick={() => returnFromStarList()}>
+                  <Link to={`${linkToUrl}`}>
+                    {" "}
+                    > {path.charAt(0).toUpperCase() + path.slice(1)}{" "}
+                  </Link>
+                </div>
+              );
+            }
+           
           })
         )}
       </div>
@@ -63,7 +76,7 @@ export default function InnerContainer({
           starList={starList}
           showStarIsClicked={showStarIsClicked}
           query={query}
-          shouldStarListShow={shouldStarListShow}
+          shouldStarListShow={shouldStarListShow} //// Vi använder inte den. Går den att plocka bort?
           returnFromStarList={returnFromStarList}
         />
       )}
