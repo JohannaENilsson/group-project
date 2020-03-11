@@ -3,6 +3,7 @@
   position: relative;
   max-width: 100vw;
   box-sizing: border-box;
+  overflow: hidden;
 }
 
 .breadCrumbs{
@@ -112,7 +113,7 @@ header {
 }
 
 .outerContainer {
-  width: 100vw;
+  width: 98vw;
   height: 100vh;
   display: flex;
 }
@@ -230,6 +231,7 @@ table {
 .tableNameLink {
   text-decoration: none;
   color: black;
+  cursor: pointer;
 }
 
 .tableNameLink:hover {
@@ -307,3 +309,17 @@ tr:nth-child(even) {
   color: darksalmon;
 }
 
+@media (max-width: 910px){
+  td{
+    font-size: 1.1rem;
+  }
+
+  td:nth-child(3), td:nth-child(4) {
+    display: none;
+  }
+  
+  th:nth-child(3), th:nth-child(4) {
+    display: none;
+  }
+
+}

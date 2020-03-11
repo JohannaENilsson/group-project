@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Dropbox } from 'dropbox';
 
-import { token$, star$, updateStar } from './Store';
+import { token$ } from './Store';
 import Header from './Header.js';
 import Sidebar from './Sidebar';
 import InnerContainer from './InnerContainer';
@@ -55,7 +55,6 @@ export default function Home() {
   }
 
   function shouldStarListShow(childData) {
-    console.log("childData", childData);
     if (childData === false) {
       setShowStarIsClicked(false);
       window.localStorage.removeItem("showFavorites");

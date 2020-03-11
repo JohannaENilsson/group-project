@@ -9,11 +9,9 @@ export default function Sidebar({ token, getFiles, shouldStarListShow, returnFro
 
   const handleAddFolder = () => {
     setAddFolderPopUp(true);
-    console.log("Click");
   };
 
   function clickShowStarred() {
-    console.log("clicked starred");
     shouldStarListShow("show some stars")
   }
 
