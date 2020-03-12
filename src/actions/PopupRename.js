@@ -62,6 +62,7 @@ export default function PopupRename({ handleCancel, file }) {
         <div className='popupWindowContainer'>
           <h3>Rename</h3>
           <form onSubmit={handleSubmit}>
+            {file.file['.tag'] === 'file' && <span>new name + .file </span>}
             <input
               className='searchAndAddNewFolderInput folder'
               type='text'
