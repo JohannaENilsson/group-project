@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import { token$ } from '../components/Store';
+import { token$, star$, updateStar } from '../components/Store';
 import ReactDOM from 'react-dom';
 import { useLocation } from 'react-router-dom';
 import { Dropbox } from 'dropbox';
 
 export default function PopupRename({ handleCancel, file }) {
   const [inputValue, setInputValue] = useState('');
+  const [starList, updateStarList] = useState(star$.value);
+
   const location = useLocation();
   let breadcrums = location.pathname.slice(5);
 
@@ -19,9 +21,16 @@ export default function PopupRename({ handleCancel, file }) {
       setInputValue('');
       return;
     }
-
     handleRename(inputValue);
   };
+
+  function updateStarLocalStorage(newFile) {
+    let filteredStarList = starList.filter(function(x) {
+      return x.id !== newFile.id;
+    });
+    updateStarList([...filteredStarList, newFile]);
+    updateStar([...filteredStarList, newFile]);
+  }
 
   const handleRename = newName => {
     const dbx = new Dropbox({ accessToken: token$.value, fetch });
@@ -45,12 +54,11 @@ export default function PopupRename({ handleCancel, file }) {
         allow_ownership_transfer: false
       };
     }
-    console.log(data);
 
     dbx
       .filesMoveV2(data)
       .then(function(resp) {
-        console.log(resp);
+        updateStarLocalStorage(resp.metadata);
         handleCancel();
       })
       .catch(resp => {
