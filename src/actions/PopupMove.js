@@ -7,8 +7,8 @@ import { Dropbox } from 'dropbox';
 import GetAllFiles from '../actions/GetAllFiles';
 
 export default function PopupMove({ handleCancel, file }) {
-  const [inputValue, setInputValue] = useState('');
   const [fileList, updateFileList] = useState(null);
+  const [newPath2, setNewPath2] = useState([]);
   const location = useLocation();
   let breadcrums = location.pathname.slice(5);
 
@@ -30,30 +30,15 @@ console.log(fileList);
 
   useEffect(() => {
     getFiles(location);
-
-
   }, [location]);
 
 
 
-
-
-
-
-
-
-  const handleChange = e => {
-    setInputValue(e.target.value);
-  };
-
   const handleSubmit = e => {
     e.preventDefault();
-    if (inputValue.trim().length === 0) {
-      setInputValue('');
-      return;
-    }
+  
 
-    handleMove(inputValue);
+    handleMove(newPath2.join('/'));
   };
 
   const handleMove = newPath => {
@@ -85,24 +70,25 @@ console.log(fileList);
           <h3>Move file</h3>
           {!fileList ? <p>Loading... </p> :  
   <div>{fileList.map(file => {
-    if(file['.tag'] === 'folder'){
+    if(file['.tag'] === 'folder' && fileList.length > 0){
       console.log(file);
-      return ;
-    }
-  })}</div>}
+      
+      return <p key={file.id} onClick={() => {
+        {setNewPath2([...newPath2, file.name])};
+        let next = getFiles({pathname: `/home${file.path_lower}`});
+        console.log('resp from getFiles ', next);
+      }}>{file.name}</p>;
+    } 
+    console.log('Array path ',newPath2);
+  })}</div>
+          
+
+  
+  }
+
 
           <form onSubmit={handleSubmit}>
-            <input
-              className='searchAndAddNewFolderInput folder'
-              type='text'
-              onChange={handleChange}
-              value={inputValue}
-              minLength='1'
-              maxLength='20'
-              required
-              autoFocus
-              placeholder='1-20 characters'
-            />
+
 
             <div className='popupWindowButtonContainer'>
               <input
