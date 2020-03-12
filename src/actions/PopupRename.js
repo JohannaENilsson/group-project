@@ -24,36 +24,13 @@ export default function PopupRename({ handleCancel, file }) {
     handleRename(inputValue);
   };
 
-      // function onClickStar(file) {
-    //   updateStar([file, ...starList]);
-    //   updateStarList([file, ...starList]);
-    // }
-
-
   function updateStarLocalStorage(newFile) {
-    console.log('new name obj ', newFile);
-    
-        let filteredStarList = starList.filter(function(x) {
-          console.log('x name ', x.name, 'file name -->', newFile.name);
-
-          return x.id !== newFile.id;
-        });
-        updateStarList([...filteredStarList, newFile]);
-        updateStar([...filteredStarList, newFile]);
-      }
-    
-  
-
-  // function onClickStarRemove(file) {
-  //   let removed = starList.filter(function(x) {
-  //     return x.id !== file.id;
-  //   });
-
-  //   updateStar(removed);
-  //   updateStarList(removed);
-  // }
-  
-  console.log('starlist done ',starList);
+    let filteredStarList = starList.filter(function(x) {
+      return x.id !== newFile.id;
+    });
+    updateStarList([...filteredStarList, newFile]);
+    updateStar([...filteredStarList, newFile]);
+  }
 
   const handleRename = newName => {
     const dbx = new Dropbox({ accessToken: token$.value, fetch });
@@ -77,16 +54,14 @@ export default function PopupRename({ handleCancel, file }) {
         allow_ownership_transfer: false
       };
     }
-    console.log(data);
 
     dbx
       .filesMoveV2(data)
       .then(function(resp) {
-        console.log(resp);
         updateStarLocalStorage(resp.metadata);
         handleCancel();
       })
-      .catch(resp => {  
+      .catch(resp => {
         console.log(resp);
       });
   };
