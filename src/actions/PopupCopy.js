@@ -6,7 +6,7 @@ import { Dropbox } from 'dropbox';
 
 import GetAllFiles from '../actions/GetAllFiles';
 
-export default function PopupMove({ handleCancel, file }) {
+export default function PopupCopy({ handleCancel, file }) {
   const [fileList, updateFileList] = useState(null);
   const [newPath2, setNewPath2] = useState([]);
   const location = useLocation();
@@ -25,10 +25,8 @@ export default function PopupMove({ handleCancel, file }) {
   }
 
   useEffect(() => {
-    getFiles({
-      pathname: `/home`
-    });
-  }, []);
+    getFiles(location);
+  }, [location]);
 
   const handleSubmit = e => {
     e.preventDefault();

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import MoveFile from './MoveFile';
 import RenameFile from './RenameFile';
+import CopyFile from './CopyFile';
 
 export default function DropDown(file) {
   const [dropdown, setDropdown] = useState();
@@ -24,6 +25,9 @@ export default function DropDown(file) {
           </li>
           <li>
             <RenameFile onClick={handlepopUp} file={file} setDropdown={setDropdown}/>
+          </li>
+          <li>
+            <CopyFile onClick={handlepopUp} file={file} setDropdown={setDropdown}/>
           </li>
         </ul>
       ) : null}
