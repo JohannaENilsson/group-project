@@ -85,12 +85,10 @@ export default function Home() {
         <InnerContainer
           onDelete={onDelete}
           fileList={fileList}
-          getFiles={getFiles}
           showStarIsClicked={showStarIsClicked}
           query={query}
           searchInput={searchInput}
           returnFromStarList={returnFromStarList}
-          shouldStarListShow={shouldStarListShow}
         />
       </div>
     </div>

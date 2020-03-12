@@ -29,6 +29,7 @@ export default function DeleteFile({
       .then(function(response) {
         onDelete(response.metadata.id);
         onClickStarRemove(response.metadata);
+        
       })
 
       .catch(function(error) {

@@ -7,11 +7,12 @@ export default function PopupAddNewFolder({
   token,
   handleCancelAddNewFolder,
   getFiles
-}) {
+  }) 
+{
   const [inputValue, setInputValue] = useState("");
 
   const location = useLocation();
-  let breadcrums = location.pathname.slice(5); // plockar bort 'home/'
+  let breadcrums = location.pathname.slice(5); 
 
   const handleChange = e => {
     setInputValue(e.target.value);

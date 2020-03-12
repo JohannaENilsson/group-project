@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Dropbox } from 'dropbox';
+
 import { token$ } from '../components/Store.js';
 
 export default function GetUserAccount() {
