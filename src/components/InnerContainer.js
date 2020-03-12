@@ -19,8 +19,8 @@ export default function InnerContainer({
   let linkToUrl = '';
 
   function onClickStar(file) {
-    updateStar([file, ...starList]); //store, sparar till localStorage
-    updateStarList([file, ...starList]); //state
+    updateStar([file, ...starList]);
+    updateStarList([file, ...starList]);
   }
 
   function onClickStarRemove(file) {
