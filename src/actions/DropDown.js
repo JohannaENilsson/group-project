@@ -19,7 +19,7 @@ export default function DropDown(file) {
     <>
       <span onClick={openDropDown}>...</span>
       {dropdown ? (
-        <ul>
+        <ul className='dropdown'>
           <li>
             <MoveFile onClick={handlepopUp} file={file} setDropdown={setDropdown}/>
           </li>

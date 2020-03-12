@@ -29,6 +29,11 @@
   text-decoration: none;
 }
 
+.dropdown li {
+  list-style-type: none;  
+}
+
+
 .fa-folder,
 .fa-file {
   font-size: 25px;
