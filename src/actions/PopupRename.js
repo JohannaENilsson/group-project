@@ -6,20 +6,8 @@ import { Dropbox } from 'dropbox';
 
 export default function PopupRename({ handleCancel, file }) {
   const [inputValue, setInputValue] = useState('');
-  const [fileType, handleFileType] = useState(''); 
   const location = useLocation();
   let breadcrums = location.pathname.slice(5);
-
-  console.log(file.file['.tag']);
-  console.log(file.file.name.split('.'));
-  // let fileT = '';
-  // if(file.file['.tag'] === 'file'){
-  //   let arr = ['.'];
-  //   const splitFileName = file.file.name.split('.');
-  //   arr.push(splitFileName[1]);
-  //   fileT = arr.join();
-  //   handleFileType(fileT);
-  // }
 
   const handleChange = e => {
     setInputValue(e.target.value);
@@ -37,13 +25,27 @@ export default function PopupRename({ handleCancel, file }) {
 
   const handleRename = newName => {
     const dbx = new Dropbox({ accessToken: token$.value, fetch });
-    const data = {
-      from_path: `${breadcrums}/${file.file.name}${fileType}`,
-      to_path: `${breadcrums}/${newName}`,
-      allow_shared_folder: true,
-      autorename: true,
-      allow_ownership_transfer: false
-    };
+    let data;
+    if (file.file['.tag'] === 'file') {
+      const splitFileName = file.file.name.split('.');
+
+      data = {
+        from_path: `${breadcrums}/${file.file.name}`,
+        to_path: `${breadcrums}/${newName}.${splitFileName[1]}`,
+        allow_shared_folder: true,
+        autorename: true,
+        allow_ownership_transfer: false
+      };
+    } else {
+      data = {
+        from_path: `${breadcrums}/${file.file.name}`,
+        to_path: `${breadcrums}/${newName}`,
+        allow_shared_folder: true,
+        autorename: true,
+        allow_ownership_transfer: false
+      };
+    }
+    console.log(data);
 
     dbx
       .filesMoveV2(data)
