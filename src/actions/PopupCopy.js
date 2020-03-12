@@ -25,16 +25,18 @@ export default function PopupCopy({ handleCancel, file }) {
   }
 
   useEffect(() => {
-    getFiles(location);
-  }, [location]);
+    getFiles({
+      pathname: `/home`
+    });
+  }, []);
 
   const handleSubmit = e => {
     e.preventDefault();
 
-    handleMove(newPath2.join('/'));
+    handleCopy(newPath2.join('/'));
   };
 
-  const handleMove = newPath => {
+  const handleCopy = newPath => {
     const dbx = new Dropbox({ accessToken: token$.value, fetch });
     const data = {
       from_path: `${file.file.path_lower}`,
@@ -46,7 +48,7 @@ export default function PopupCopy({ handleCancel, file }) {
     console.log(data);
 
     dbx
-      .filesMoveV2(data)
+      .filesCopyV2(data)
       .then(resp => {
         console.log(resp);
         handleCancel();
@@ -60,7 +62,7 @@ export default function PopupCopy({ handleCancel, file }) {
     <div className='popupBackground'>
       <div className='popupWindow'>
         <div className='popupWindowContainer'>
-          <h3>Move file</h3>
+          <h3>Copy file</h3>
           {!fileList ? (
             <p>Loading... </p>
           ) : (
@@ -97,7 +99,7 @@ export default function PopupCopy({ handleCancel, file }) {
                 type='submit'
                 className='popupAddAndCancelButton'
                 onSubmit={handleSubmit}
-                value='Move'
+                value='Copy'
               />
 
               <button

@@ -12,8 +12,6 @@ export default function PopupMove({ handleCancel, file }) {
   const location = useLocation();
   let breadcrums = location.pathname.slice(5);
 
-  console.log(fileList);
-
   function getFiles(currentLocation) {
     GetAllFiles(currentLocation)
       .then(function(response) {
@@ -45,12 +43,10 @@ export default function PopupMove({ handleCancel, file }) {
       autorename: true,
       allow_ownership_transfer: false
     };
-    console.log(data);
 
     dbx
       .filesMoveV2(data)
       .then(resp => {
-        console.log(resp);
         handleCancel();
       })
       .catch(resp => {
@@ -69,8 +65,6 @@ export default function PopupMove({ handleCancel, file }) {
             <div>
               {fileList.map(file => {
                 if (file['.tag'] === 'folder' && fileList.length > 0) {
-                  console.log(file);
-
                   return (
                     <p
                       key={file.id}
@@ -81,14 +75,12 @@ export default function PopupMove({ handleCancel, file }) {
                         let next = getFiles({
                           pathname: `/home${file.path_lower}`
                         });
-                        console.log('resp from getFiles ', next);
                       }}
                     >
                       {file.name}
                     </p>
                   );
                 }
-                console.log('Array path ', newPath2);
               })}
             </div>
           )}
