@@ -1,14 +1,46 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { token$ } from '../components/Store';
 import ReactDOM from 'react-dom';
 import { useLocation } from 'react-router-dom';
 import { Dropbox } from 'dropbox';
 
+import GetAllFiles from '../actions/GetAllFiles';
+
 export default function PopupMove({ handleCancel, file }) {
   const [inputValue, setInputValue] = useState('');
-
+  const [fileList, updateFileList] = useState(null);
   const location = useLocation();
   let breadcrums = location.pathname.slice(5);
+
+console.log(fileList);
+
+  function getFiles(currentLocation) {
+    GetAllFiles(currentLocation)
+      .then(function(response) {
+        updateFileList(response.entries);
+        
+      })
+      .catch(function(error) {
+        console.error('Can´t get files ', error);
+      });
+  }
+
+
+
+
+  useEffect(() => {
+    getFiles(location);
+
+
+  }, [location]);
+
+
+
+
+
+
+
+
 
   const handleChange = e => {
     setInputValue(e.target.value);
@@ -51,6 +83,14 @@ export default function PopupMove({ handleCancel, file }) {
       <div className='popupWindow'>
         <div className='popupWindowContainer'>
           <h3>Move file</h3>
+          {!fileList ? <p>Loading... </p> :  
+  <div>{fileList.map(file => {
+    if(file['.tag'] === 'folder'){
+      console.log(file);
+      return ;
+    }
+  })}</div>}
+
           <form onSubmit={handleSubmit}>
             <input
               className='searchAndAddNewFolderInput folder'
